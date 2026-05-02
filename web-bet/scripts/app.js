@@ -1,5 +1,6 @@
-const WHATSAPP_NUMBER = "5210000000000";
-const WHATSAPP_MESSAGE = "Hola BET, me gustaría recibir información comercial sobre prótesis internas y soluciones quirúrgicas.";
+const WHATSAPP_NUMBER = "525520810867";
+const WHATSAPP_MESSAGE = "Hola, me interesa uno de sus productos. ¿Podrían darme más detalles y precios?";
+const WHATSAPP_URL = "https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F";
 
 const escapeHtml = (value = "") =>
   value
@@ -14,8 +15,12 @@ function createWhatsAppUrl(message = WHATSAPP_MESSAGE) {
 }
 
 document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
-  link.href = createWhatsAppUrl();
+  link.href = WHATSAPP_URL;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
 });
+
+let newsletterArticles = [];
 
 document.querySelectorAll("[data-spline-scene]").forEach((scene) => {
   const viewer = scene.querySelector("spline-viewer");
@@ -75,6 +80,29 @@ const selectors = {
 
 let anatomyProducts = fallbackProducts;
 
+function renderNewsArticles(articles) {
+  const carousel = document.querySelector("[data-news-carousel]");
+  if (!carousel) return;
+
+  const cards = articles
+    .map(
+      (article) => `
+        <article class="news-card glass">
+          <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.title)}" loading="lazy">
+          <div>
+            <span>${escapeHtml(article.source)} · ${escapeHtml(article.date)}</span>
+            <h3>${escapeHtml(article.title)}</h3>
+            <p>${escapeHtml(article.description)}</p>
+          </div>
+          <a class="button glass-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">Ver más…</a>
+        </article>
+      `
+    )
+    .join("");
+
+  carousel.innerHTML = `<div class="news-track">${cards}${cards}</div>`;
+}
+
 function renderBone(boneId) {
   const bone = anatomyProducts.find((item) => item.id === boneId) || anatomyProducts[0];
   if (!bone) return;
@@ -113,6 +141,19 @@ fetch("data/anatomicalProducts.json")
   })
   .catch(() => {
     renderBone("femur");
+  });
+
+fetch("data/newsletterArticles.json")
+  .then((response) => {
+    if (!response.ok) throw new Error("No se pudo cargar newsletterArticles.json");
+    return response.json();
+  })
+  .then((articles) => {
+    newsletterArticles = articles;
+    renderNewsArticles(articles);
+  })
+  .catch(() => {
+    document.querySelector("[data-news-carousel]")?.replaceChildren();
   });
 
 selectors.targets.forEach((target) => {
@@ -173,11 +214,210 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
       form.reset();
     })
     .catch((error) => {
-      status.textContent = `${error.message} También puedes continuar por WhatsApp con el mensaje prellenado.`;
+      status.textContent = `${error.message} Abrimos WhatsApp con el mensaje prellenado para que no pierdas la solicitud.`;
       status.className = "form-status is-error";
+      window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
     })
     .finally(() => {
       submitButton.disabled = false;
       submitButton.textContent = "Enviar solicitud";
     });
+});
+
+const siteSections = [
+  {
+    title: "Soluciones médicas",
+    description: "Prótesis internas, osteosíntesis, trauma y soporte hospitalario especializado.",
+    target: "#soluciones",
+    keywords: "prótesis protesis implantes osteosíntesis osteosintesis trauma placas tornillos clavos instrumental"
+  },
+  {
+    title: "Explorador anatómico",
+    description: "Consulta áreas anatómicas, productos relacionados y aplicaciones quirúrgicas.",
+    target: "#explorador",
+    keywords: "fémur femur cadera cráneo craneo clavícula clavicula húmero humero tibia pelvis columna anatomía anatomia"
+  },
+  {
+    title: "Proceso de atención",
+    description: "Análisis del caso, selección técnica, coordinación operativa y seguimiento.",
+    target: "#proceso",
+    keywords: "proceso análisis analisis selección seleccion coordinación coordinacion seguimiento atención atencion"
+  },
+  {
+    title: "Valores BET",
+    description: "Precisión clínica, confiabilidad, especialización, respaldo profesional y eficiencia operativa.",
+    target: ".values-section",
+    keywords: "valores precisión precision confiabilidad especialización especializacion respaldo eficiencia"
+  },
+  {
+    title: "Contacto BET",
+    description: "Formulario y WhatsApp para orientación comercial y disponibilidad.",
+    target: "#contacto",
+    keywords: "contacto whatsapp disponibilidad precios cotización cotizacion información informacion"
+  }
+];
+
+function normalizeText(value = "") {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function buildSearchIndex() {
+  const anatomyItems = anatomyProducts.map((bone) => ({
+    title: bone.nombre,
+    description: `${bone.categoria}. ${bone.descripcion}`,
+    target: "#explorador",
+    keywords: `${bone.nombre} ${bone.categoria} ${bone.descripcion} ${bone.productos.map((item) => `${item.nombre} ${item.descripcion} ${item.uso}`).join(" ")} ${bone.aplicaciones.join(" ")}`
+  }));
+
+  const articleItems = newsletterArticles.map((article) => ({
+    title: article.title,
+    description: `${article.source}. ${article.description}`,
+    target: article.url,
+    external: true,
+    keywords: `${article.title} ${article.description} ${article.source}`
+  }));
+
+  return [...siteSections, ...anatomyItems, ...articleItems];
+}
+
+function renderSearchResults(results, query) {
+  const container = document.querySelector(".search-results");
+  if (!container) return;
+
+  if (!query.trim()) {
+    container.innerHTML = "";
+    return;
+  }
+
+  if (results.length === 0) {
+    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactarnos para orientación personalizada.</p>`;
+    return;
+  }
+
+  container.innerHTML = results
+    .slice(0, 8)
+    .map(
+      (result) => `
+        <article class="search-result">
+          <div>
+            <h3>${escapeHtml(result.title)}</h3>
+            <p>${escapeHtml(result.description)}</p>
+          </div>
+          <button class="button glass-button" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}">Ver sección</button>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function executeSearch(query) {
+  const normalizedQuery = normalizeText(query);
+  const terms = normalizedQuery.split(/\s+/).filter(Boolean);
+  const results = buildSearchIndex().filter((item) => {
+    const haystack = normalizeText(`${item.title} ${item.description} ${item.keywords}`);
+    return terms.every((term) => haystack.includes(term));
+  });
+
+  renderSearchResults(results, query);
+}
+
+document.querySelector(".site-search")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const input = event.currentTarget.querySelector("input");
+  executeSearch(input.value);
+});
+
+document.querySelector(".search-results")?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-search-target]");
+  if (!button) return;
+
+  const target = button.dataset.searchTarget;
+  if (button.dataset.external === "true") {
+    window.open(target, "_blank", "noopener,noreferrer");
+    return;
+  }
+
+  document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+function handleAssistantMessage(message) {
+  const text = normalizeText(message);
+
+  if (/(protesis|implante|implantes)/.test(text)) {
+    return "BET se especializa en prótesis internas, implantes y soluciones quirúrgicas para procedimientos ortopédicos y de trauma. Podemos orientarte según área anatómica y disponibilidad.";
+  }
+  if (/(femur|cadera)/.test(text)) {
+    return "Para fémur y cadera, BET puede orientar sobre prótesis femoral, clavos intramedulares, placas y soluciones de reconstrucción según el caso quirúrgico.";
+  }
+  if (/(craneo|craneal|craneomaxilofacial)/.test(text)) {
+    return "En cráneo y región craneomaxilofacial, la orientación suele enfocarse en placas, fijación y reconstrucción. Para validar disponibilidad, conviene contactar a BET directamente.";
+  }
+  if (/(contacto|whatsapp|telefono|correo)/.test(text)) {
+    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario de contacto con tus datos clínicos y de institución.";
+  }
+  if (/(precio|precios|cotizacion|costo|costos)/.test(text)) {
+    return "Los precios dependen del producto, zona anatómica, disponibilidad y requerimiento quirúrgico. Para cotización, usa WhatsApp con los datos del caso.";
+  }
+  if (/(disponibilidad|disponible|inventario|entrega)/.test(text)) {
+    return "La disponibilidad se revisa por área anatómica, producto y tiempo de procedimiento. BET puede dar seguimiento directo por WhatsApp.";
+  }
+  if (/(proceso|atencion|seleccion|seguimiento)/.test(text)) {
+    return "El proceso BET contempla análisis del caso, selección técnica, coordinación operativa y seguimiento para futuras decisiones clínicas.";
+  }
+
+  return "Puedo orientarte sobre soluciones médicas, áreas anatómicas o contacto con BET. Para atención directa, usa WhatsApp.";
+}
+
+async function askAssistant(message) {
+  try {
+    const response = await fetch("/api/assistant", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+    if (!response.ok) throw new Error("Sin endpoint activo");
+    const data = await response.json();
+    return data.reply || handleAssistantMessage(message);
+  } catch {
+    return handleAssistantMessage(message);
+  }
+}
+
+function appendAssistantMessage(content, type = "bot") {
+  const messages = document.querySelector(".assistant-messages");
+  if (!messages) return;
+  const bubble = document.createElement("p");
+  bubble.className = `assistant-message ${type}`;
+  bubble.textContent = content;
+  messages.appendChild(bubble);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+const assistantToggle = document.querySelector(".assistant-toggle");
+const assistantPanel = document.querySelector(".assistant-panel");
+
+assistantToggle?.addEventListener("click", () => {
+  const isOpen = !assistantPanel.hidden;
+  assistantPanel.hidden = isOpen;
+  assistantToggle.setAttribute("aria-expanded", String(!isOpen));
+});
+
+document.querySelector(".assistant-close")?.addEventListener("click", () => {
+  assistantPanel.hidden = true;
+  assistantToggle?.setAttribute("aria-expanded", "false");
+});
+
+document.querySelector(".assistant-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const input = event.currentTarget.querySelector("input");
+  const message = input.value.trim();
+  if (!message) return;
+
+  appendAssistantMessage(message, "user");
+  input.value = "";
+  const reply = await askAssistant(message);
+  appendAssistantMessage(reply, "bot");
 });

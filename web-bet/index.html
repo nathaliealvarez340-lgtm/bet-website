@@ -20,7 +20,7 @@
         <a href="#proceso">Proceso</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <a class="button glass-button nav-whatsapp" data-whatsapp-link href="#" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a class="button glass-button nav-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </header>
 
     <main>
@@ -45,7 +45,7 @@
           <p class="hero-subtitle">En BET proveemos prótesis internas y soluciones quirúrgicas confiables, diseñadas para respaldar decisiones médicas críticas con disponibilidad, precisión y acompañamiento especializado.</p>
           <div class="hero-actions">
             <a class="button glass-button primary" href="#soluciones">Explorar soluciones</a>
-            <a class="button glass-button" href="#contacto">Contactar a BET</a>
+            <a class="button glass-button" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Contactar a BET</a>
           </div>
           <dl class="hero-metrics" aria-label="Diferenciales operativos">
             <div>
@@ -61,6 +61,21 @@
               <dd>Selección y trazabilidad clínica</dd>
             </div>
           </dl>
+        </div>
+      </section>
+
+      <section class="search-section" aria-labelledby="site-search-title">
+        <div class="search-shell glass reveal">
+          <div>
+            <span class="eyebrow">Búsqueda clínica</span>
+            <h2 id="site-search-title">Encuentra soluciones, áreas o información técnica.</h2>
+          </div>
+          <form class="site-search" role="search">
+            <label for="site-search-input" class="sr-only">Buscar en el sitio</label>
+            <input id="site-search-input" type="search" placeholder="Buscar prótesis, fémur, disponibilidad, proceso..." autocomplete="off">
+            <button class="button glass-button primary" type="submit">Buscar</button>
+          </form>
+          <div class="search-results" aria-live="polite"></div>
         </div>
       </section>
 
@@ -207,7 +222,7 @@
               <h4>Aplicaciones quirúrgicas</h4>
               <ul id="bone-applications"></ul>
             </div>
-            <a class="button glass-button primary full" href="#contacto">Solicitar información</a>
+            <a class="button glass-button primary full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Solicitar información</a>
           </aside>
         </div>
       </section>
@@ -223,6 +238,14 @@
           <article class="step reveal"><span>03</span><h3>Coordinación operativa</h3><p>Preparamos respuesta, entrega y acompañamiento para hospital o equipo médico.</p></article>
           <article class="step reveal"><span>04</span><h3>Seguimiento</h3><p>Mantenemos trazabilidad y soporte posterior para futuras decisiones clínicas.</p></article>
         </div>
+      </section>
+
+      <section class="news-section" id="actualidad" aria-labelledby="news-title">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Actualidad médica</span>
+          <h2 id="news-title">Referencias clínicas sobre prótesis internas, trauma e innovación quirúrgica.</h2>
+        </div>
+        <div class="news-carousel" data-news-carousel aria-live="polite"></div>
       </section>
 
       <section class="section differentials-section" aria-labelledby="diff-title">
@@ -251,15 +274,37 @@
           <label>Mensaje<textarea name="message" rows="4" placeholder="Describe brevemente el requerimiento" required></textarea></label>
           <p class="form-status" role="status" aria-live="polite"></p>
           <button class="button glass-button primary full" type="submit">Enviar solicitud</button>
-          <a class="button glass-button full" data-whatsapp-link href="#" target="_blank" rel="noreferrer">Contactar por WhatsApp</a>
+          <a class="button glass-button full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
         </form>
       </section>
     </main>
 
     <footer class="site-footer">
       <img src="assets/logo-bet.png" alt="BET" width="110" height="44">
-      <span>Soluciones médicas quirúrgicas de precisión.</span>
+      <span>© 2026 BODY EDGE TECHNOLOGIES. Todos los derechos reservados.</span>
     </footer>
+
+    <button class="assistant-toggle" type="button" aria-controls="assistant-panel" aria-expanded="false">
+      <span>Asistencia BET</span>
+    </button>
+    <section class="assistant-panel glass" id="assistant-panel" aria-labelledby="assistant-title" hidden>
+      <div class="assistant-header">
+        <div>
+          <span class="eyebrow">Asistencia</span>
+          <h2 id="assistant-title">Orientación rápida BET</h2>
+        </div>
+        <button class="assistant-close" type="button" aria-label="Cerrar chat">×</button>
+      </div>
+      <div class="assistant-messages" aria-live="polite">
+        <p class="assistant-message bot">Hola. Puedo orientarte sobre soluciones médicas, áreas anatómicas, disponibilidad o contacto con BET.</p>
+      </div>
+      <form class="assistant-form">
+        <label for="assistant-input" class="sr-only">Mensaje para asistencia BET</label>
+        <input id="assistant-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off">
+        <button class="button glass-button primary" type="submit">Enviar</button>
+      </form>
+      <a class="button glass-button full assistant-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+    </section>
 
     <script src="scripts/app.js" defer></script>
   </body>
