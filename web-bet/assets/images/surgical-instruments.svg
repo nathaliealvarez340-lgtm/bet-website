@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">Instrumental quirúrgico de precisión</title>
+  <desc id="desc">Instrumental e implantes internos representados con estética tecnológica.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edfafa"/>
+    </linearGradient>
+    <linearGradient id="tool" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".5" stop-color="#9fdcdd"/>
+      <stop offset="1" stop-color="#1693a5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#1693a5" flood-opacity=".16"/>
+    </filter>
+  </defs>
+  <rect width="900" height="620" rx="44" fill="url(#bg)"/>
+  <circle cx="450" cy="310" r="220" fill="#7ececa" opacity=".12"/>
+  <g stroke="#1693a5" stroke-width="2" opacity=".18" fill="none">
+    <path d="M118 184h664M118 436h664"/>
+    <circle cx="450" cy="310" r="154"/>
+  </g>
+  <g filter="url(#shadow)" stroke-linecap="round">
+    <path d="M268 438L610 96" stroke="url(#tool)" stroke-width="28"/>
+    <path d="M612 96l76-38 18 18-38 76" fill="none" stroke="#1693a5" stroke-width="16"/>
+    <path d="M204 500l76-76" stroke="#1693a5" stroke-width="18"/>
+    <path d="M548 462H276c-38 0-68-30-68-68 0-37 30-68 68-68h272c38 0 68 31 68 68 0 38-30 68-68 68Z" fill="url(#tool)" opacity=".92"/>
+    <g fill="#ffffff" stroke="#1693a5" stroke-width="7">
+      <circle cx="304" cy="394" r="22"/>
+      <circle cx="386" cy="394" r="22"/>
+      <circle cx="468" cy="394" r="22"/>
+      <circle cx="550" cy="394" r="22"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "craneo",
+    "label": "Cráneo",
+    "nombre": "Cráneo",
+    "categoria": "Cabeza y cuello",
+    "descripcion": "Estructura ósea que protege el encéfalo y funciona como referencia crítica en procedimientos maxilofaciales, neuroquirúrgicos y reconstructivos.",
+    "productos": [
+      {
+        "nombre": "Placas craneomaxilofaciales",
+        "descripcion": "Sistemas de fijación para reconstrucción, estabilización o soporte óseo en zonas craneales y faciales.",
+        "uso": "Neurocirugía, maxilofacial y reconstrucción"
+      }
+    ],
+    "aplicaciones": ["Reconstrucción craneal", "Fijación maxilofacial", "Trauma de alta complejidad"]
+  },
+  {
+    "id": "clavicula",
+    "label": "Clavícula",
+    "nombre": "Clavícula",
+    "categoria": "Cintura escapular",
+    "descripcion": "Hueso de soporte entre tórax y hombro, relevante para la estabilidad del miembro superior y la recuperación funcional.",
+    "productos": [
+      {
+        "nombre": "Placa anatómica para clavícula",
+        "descripcion": "Implante de osteosíntesis para estabilización de fracturas y reconstrucción de la cintura escapular.",
+        "uso": "Traumatología y ortopedia"
+      }
+    ],
+    "aplicaciones": ["Fijación de fracturas", "Reconstrucción postraumática", "Estabilidad escapular"]
+  },
+  {
+    "id": "humerus",
+    "label": "Húmero",
+    "nombre": "Húmero",
+    "categoria": "Miembro superior",
+    "descripcion": "Hueso largo del brazo que participa en movilidad, carga funcional y estabilidad de hombro y codo.",
+    "productos": [
+      {
+        "nombre": "Sistema de fijación humeral",
+        "descripcion": "Solución para estabilización de fracturas proximales, diafisarias o distales del húmero.",
+        "uso": "Traumatología, ortopedia y reconstrucción"
+      }
+    ],
+    "aplicaciones": ["Osteosíntesis", "Reconstrucción articular", "Trauma de miembro superior"]
+  },
+  {
+    "id": "columna",
+    "label": "Columna",
+    "nombre": "Columna vertebral",
+    "categoria": "Eje axial",
+    "descripcion": "Estructura central de soporte y protección neurológica que exige precisión en planeación, estabilización y selección de implantes.",
+    "productos": [
+      {
+        "nombre": "Sistema de estabilización vertebral",
+        "descripcion": "Conjunto de implantes para soporte, fijación y alineación en procedimientos de columna.",
+        "uso": "Cirugía de columna y neurocirugía"
+      }
+    ],
+    "aplicaciones": ["Estabilización vertebral", "Corrección estructural", "Soporte postraumático"]
+  },
+  {
+    "id": "pelvis",
+    "label": "Pelvis",
+    "nombre": "Pelvis",
+    "categoria": "Cintura pélvica",
+    "descripcion": "Anillo óseo de transferencia de carga que demanda soluciones confiables para estabilidad, reconstrucción y soporte funcional.",
+    "productos": [
+      {
+        "nombre": "Sistema acetabular y pélvico",
+        "descripcion": "Soluciones para reconstrucción, fijación y soporte en procedimientos relacionados con pelvis y cadera.",
+        "uso": "Ortopedia, trauma y reconstrucción"
+      }
+    ],
+    "aplicaciones": ["Reconstrucción acetabular", "Trauma pélvico", "Artroplastia de cadera"]
+  },
+  {
+    "id": "femur",
+    "label": "Fémur",
+    "nombre": "Fémur",
+    "categoria": "Miembro inferior",
+    "descripcion": "Hueso largo del muslo que cumple una función clave en movilidad, soporte de peso y estabilidad estructural.",
+    "productos": [
+      {
+        "nombre": "Prótesis femoral",
+        "descripcion": "Solución diseñada para procedimientos de reconstrucción o reemplazo en la zona femoral.",
+        "uso": "Traumatología y ortopedia"
+      },
+      {
+        "nombre": "Clavo intramedular femoral",
+        "descripcion": "Sistema para estabilización interna en fracturas de fémur con enfoque en alineación y carga progresiva.",
+        "uso": "Trauma ortopédico"
+      }
+    ],
+    "aplicaciones": ["Artroplastia", "Fijación interna", "Reconstrucción femoral"]
+  },
+  {
+    "id": "tibia",
+    "label": "Tibia",
+    "nombre": "Tibia",
+    "categoria": "Miembro inferior",
+    "descripcion": "Hueso principal de soporte en la pierna, asociado a procedimientos de fijación, alineación y recuperación de carga.",
+    "productos": [
+      {
+        "nombre": "Placa anatómica tibial",
+        "descripcion": "Implante para estabilización de fracturas proximales, diafisarias o distales de tibia.",
+        "uso": "Traumatología y ortopedia"
+      }
+    ],
+    "aplicaciones": ["Osteosíntesis tibial", "Trauma articular", "Corrección y estabilidad"]
+  }
+]
