@@ -109,9 +109,10 @@ code {
 .hero {
   position: relative;
   min-height: 100svh;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: clamp(6rem, 10vw, 8rem) clamp(1rem, 5vw, 5rem) clamp(3rem, 7vw, 5rem);
+  padding: 0;
   overflow: hidden;
   background: var(--white);
 }
@@ -119,8 +120,11 @@ code {
 .hero-spline-background {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   overflow: hidden;
+  pointer-events: auto;
   background:
     radial-gradient(circle at 72% 46%, rgba(126, 206, 202, 0.26), transparent 32rem),
     linear-gradient(90deg, #ffffff 0%, #f8fdfd 48%, #eefafa 100%);
@@ -131,8 +135,8 @@ code {
   width: 100%;
   height: 100%;
   min-height: 100svh;
-  transform: translateX(18%) scale(1.08);
-  transform-origin: center right;
+  transform: translateX(8%) scale(1.03);
+  transform-origin: center center;
 }
 
 .hero-overlay {
@@ -140,9 +144,13 @@ code {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.78) 38%, rgba(255,255,255,.16) 100%),
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.08) 52%, rgba(255,255,255,.88));
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.94) 0%,
+    rgba(255,255,255,0.82) 38%,
+    rgba(255,255,255,0.42) 62%,
+    rgba(255,255,255,0.12) 100%
+  );
 }
 
 .eyebrow,
@@ -168,8 +176,8 @@ h1 {
   max-width: 13.5ch;
   margin-bottom: 1.2rem;
   color: var(--black);
-  font-size: clamp(3rem, 5.25vw, 5.8rem);
-  line-height: 0.98;
+  font-size: clamp(3.4rem, 6vw, 6.8rem);
+  line-height: 0.95;
   letter-spacing: 0;
   text-wrap: balance;
 }
@@ -204,7 +212,9 @@ p {
 .hero-content {
   position: relative;
   z-index: 2;
-  width: min(55%, 48rem);
+  width: min(55%, 720px);
+  max-width: 720px;
+  padding: clamp(7rem, 10vw, 9rem) clamp(1.5rem, 5vw, 5rem) 4rem;
 }
 
 .hero-content p {
@@ -824,23 +834,27 @@ textarea {
 
   .hero {
     min-height: 100svh;
-    padding-top: 5.5rem;
     align-items: flex-start;
   }
 
   .hero-content {
-    width: min(100%, 32rem);
+    width: 100%;
+    max-width: 100%;
+    padding-top: 6rem;
   }
 
   .hero-spline-background spline-viewer {
-    transform: translateX(2%) translateY(16%) scale(1.15);
-    opacity: 0.52;
+    transform: translateX(0) scale(1);
+    opacity: 0.42;
   }
 
   .hero-overlay {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.86) 56%, rgba(255,255,255,.5) 100%),
-      linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.5));
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.96) 0%,
+      rgba(255,255,255,0.88) 48%,
+      rgba(255,255,255,0.72) 100%
+    );
   }
 
   h1 {
