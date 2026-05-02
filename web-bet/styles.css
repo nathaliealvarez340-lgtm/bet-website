@@ -108,29 +108,45 @@ code {
 
 .hero {
   position: relative;
-  min-height: calc(94svh - 5rem);
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(24rem, 1.08fr);
+  min-height: 100svh;
+  display: flex;
   align-items: center;
-  gap: clamp(2rem, 5vw, 5.5rem);
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 5vw, 5rem) 4rem;
+  padding: clamp(6rem, 10vw, 8rem) clamp(1rem, 5vw, 5rem) clamp(3rem, 7vw, 5rem);
   overflow: hidden;
+  background: var(--white);
 }
 
-.hero::after {
-  content: "";
+.hero-spline-background {
   position: absolute;
-  right: -10vw;
-  bottom: 4vh;
-  z-index: -1;
-  width: min(62rem, 74vw);
-  aspect-ratio: 1;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(126, 206, 202, 0.26), transparent 68%);
-  filter: blur(10px);
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 46%, rgba(126, 206, 202, 0.26), transparent 32rem),
+    linear-gradient(90deg, #ffffff 0%, #f8fdfd 48%, #eefafa 100%);
 }
 
-.eyebrow {
+.hero-spline-background spline-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  transform: translateX(18%) scale(1.08);
+  transform-origin: center right;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.78) 38%, rgba(255,255,255,.16) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.08) 52%, rgba(255,255,255,.88));
+}
+
+.eyebrow,
+.hero-kicker {
   display: inline-flex;
   max-width: 100%;
   color: var(--primary);
@@ -178,21 +194,27 @@ p {
   line-height: 1.72;
 }
 
-.hero-copy,
-.hero-visual,
+.hero-content,
 .section-heading,
 .contact-copy,
 .contact-form {
   min-width: 0;
 }
 
-.hero-copy p {
-  max-width: 43rem;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(55%, 48rem);
+}
+
+.hero-content p {
+  max-width: 42rem;
   color: #4f6468;
   font-size: 1.1rem;
 }
 
-.actions {
+.actions,
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
@@ -294,73 +316,23 @@ p {
   line-height: 1.35;
 }
 
-.hero-visual {
-  --cursor-x: 0;
-  --cursor-y: 0;
-  position: relative;
-  min-height: clamp(31rem, 57vw, 48rem);
-  perspective: 1200px;
-}
-
-.spline-scene {
-  position: absolute;
-  inset: -3% -4% -3% -2%;
-  overflow: hidden;
-  border: 1px solid rgba(126, 206, 202, 0.3);
-  border-radius: 2.25rem;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(126, 206, 202, 0.2), transparent 23rem),
-    linear-gradient(145deg, rgba(23, 54, 59, 0.96), rgba(15, 47, 53, 0.92) 54%, rgba(16, 40, 44, 0.96));
-  box-shadow: 0 34px 95px rgba(22, 147, 165, 0.18), 0 18px 60px rgba(34, 34, 34, 0.12);
-  transform: translate3d(calc(var(--cursor-x) * 6px), calc(var(--cursor-y) * 5px), 0) rotateX(calc(var(--cursor-y) * -1.6deg)) rotateY(calc(var(--cursor-x) * 2deg));
-  transition: transform 140ms ease-out, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.spline-scene::before {
-  content: "";
-  position: absolute;
-  inset: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.5rem;
-  pointer-events: none;
-}
-
-.spline-viewer {
-  position: absolute;
-  inset: -2rem;
-  z-index: 2;
-  display: block;
-  width: calc(100% + 4rem);
-  height: calc(100% + 4rem);
-  opacity: 0;
-  transition: opacity 420ms ease;
-}
-
-.spline-scene.is-ready .spline-viewer {
-  opacity: 1;
-}
-
 .spline-loading {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: grid;
   place-content: center;
   gap: 0.45rem;
-  color: var(--white);
+  color: var(--primary);
   text-align: center;
-  background:
-    repeating-radial-gradient(circle at center, rgba(255,255,255,0.13) 0 1px, transparent 1px 34px),
-    linear-gradient(135deg, rgba(22, 147, 165, 0.15), transparent);
+  pointer-events: none;
+  transition: opacity 320ms ease, visibility 320ms ease;
 }
 
-.spline-scene.is-ready .spline-loading {
+.hero-spline-background.is-ready .spline-loading {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}
-
-.spline-loading small {
-  color: rgba(255, 255, 255, 0.72);
 }
 
 .loading-orbit {
@@ -368,7 +340,7 @@ p {
   aspect-ratio: 1;
   margin: 0 auto 0.5rem;
   border: 1px solid rgba(126, 206, 202, 0.4);
-  border-top-color: var(--accent);
+  border-top-color: var(--primary);
   border-radius: 999px;
   animation: rotate 1.8s linear infinite;
 }
@@ -797,18 +769,17 @@ textarea {
 }
 
 @media (max-width: 1120px) {
-  .hero,
   .contact-section,
   .anatomy-workbench {
     grid-template-columns: 1fr;
   }
 
-  h1 {
-    max-width: 15ch;
+  .hero-content {
+    width: min(72%, 46rem);
   }
 
-  .hero-visual {
-    min-height: 34rem;
+  h1 {
+    max-width: 15ch;
   }
 
   .values-grid,
@@ -852,28 +823,24 @@ textarea {
   }
 
   .hero {
-    min-height: auto;
-    padding-top: 2.5rem;
+    min-height: 100svh;
+    padding-top: 5.5rem;
+    align-items: flex-start;
   }
 
-  .hero-copy,
-  .hero-visual {
-    width: min(100%, calc(100vw - 2rem));
+  .hero-content {
+    width: min(100%, 32rem);
   }
 
-  .hero-visual {
-    min-height: 25rem;
+  .hero-spline-background spline-viewer {
+    transform: translateX(2%) translateY(16%) scale(1.15);
+    opacity: 0.52;
   }
 
-  .spline-scene {
-    border-radius: 1.4rem;
-    inset: 0;
-  }
-
-  .spline-viewer {
-    inset: -1rem;
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.86) 56%, rgba(255,255,255,.5) 100%),
+      linear-gradient(90deg, rgba(255,255,255,.94), rgba(255,255,255,.5));
   }
 
   h1 {
@@ -886,17 +853,19 @@ textarea {
     font-size: clamp(1.9rem, 9vw, 2.5rem);
   }
 
-  .eyebrow {
+  .eyebrow,
+  .hero-kicker {
     font-size: 0.68rem;
     white-space: normal;
   }
 
-  .hero-copy p {
+  .hero-content p {
     max-width: 22rem;
     font-size: 1rem;
   }
 
-  .actions {
+  .actions,
+  .hero-actions {
     display: grid;
     grid-template-columns: 1fr;
     width: min(100%, 22rem);

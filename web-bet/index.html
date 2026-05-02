@@ -25,11 +25,25 @@
 
     <main>
       <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="hero-copy reveal">
-          <span class="eyebrow">Precisión quirúrgica | Prótesis internas | Respaldo clínico</span>
+        <div class="hero-spline-background" data-spline-scene aria-hidden="true">
+          <div class="spline-loading" aria-live="polite">
+            <span class="loading-orbit"></span>
+            <strong>Cargando modelo 3D</strong>
+          </div>
+          <spline-viewer
+            url="https://prod.spline.design/IKylaPNvsBaiYB3h/scene.splinecode"
+            events-target="global"
+            loading-anim-type="spinner-small-light"
+          ></spline-viewer>
+        </div>
+
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content reveal">
+          <span class="hero-kicker">Precisión quirúrgica | Prótesis internas | Respaldo clínico</span>
           <h1 id="hero-title">Soluciones médicas para procedimientos quirúrgicos de alta precisión</h1>
           <p>En BET proveemos prótesis internas y soluciones quirúrgicas confiables, diseñadas para respaldar decisiones médicas críticas con disponibilidad, precisión y acompañamiento especializado.</p>
-          <div class="actions">
+          <div class="hero-actions">
             <a class="button glass-button primary" href="#soluciones">Explorar soluciones</a>
             <a class="button glass-button" href="#contacto">Contactar a BET</a>
           </div>
@@ -48,22 +62,6 @@
             </div>
           </dl>
         </div>
-
-        <section class="hero-visual reveal" aria-label="Modelo 3D interactivo BET">
-          <div class="spline-scene" data-spline-scene>
-            <div class="spline-loading" aria-live="polite">
-              <span class="loading-orbit"></span>
-              <strong>Cargando modelo 3D</strong>
-              <small>Escena interactiva de Spline</small>
-            </div>
-            <spline-viewer
-              class="spline-viewer"
-              url="https://prod.spline.design/IKylaPNvsBaiYB3h/scene.splinecode"
-              events-target="global"
-              loading-anim-type="spinner-small-light"
-            ></spline-viewer>
-          </div>
-        </section>
       </section>
 
       <section class="section focus-section" id="enfoque" aria-labelledby="focus-title">

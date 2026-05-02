@@ -27,22 +27,6 @@ document.querySelectorAll("[data-spline-scene]").forEach((scene) => {
   }, 6500);
 });
 
-const heroVisual = document.querySelector(".hero-visual");
-if (heroVisual) {
-  heroVisual.addEventListener("pointermove", (event) => {
-    const rect = heroVisual.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-    heroVisual.style.setProperty("--cursor-x", x.toFixed(3));
-    heroVisual.style.setProperty("--cursor-y", y.toFixed(3));
-  });
-
-  heroVisual.addEventListener("pointerleave", () => {
-    heroVisual.style.setProperty("--cursor-x", "0");
-    heroVisual.style.setProperty("--cursor-y", "0");
-  });
-}
-
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
