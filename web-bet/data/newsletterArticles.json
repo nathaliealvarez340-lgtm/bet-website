@@ -5,7 +5,8 @@
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/medical-devices/products-and-medical-procedures/implants-and-prosthetics",
-    "image": "assets/images/implant-system.svg"
+    "image": "assets/images/implant-system.svg",
+    "imageAlt": "Implante ortopédico interno con estética médica"
   },
   {
     "title": "General Information about Hip Implants",
@@ -13,7 +14,8 @@
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/MedicalDevices/ProductsandMedicalProcedures/ImplantsandProsthetics/MetalonMetalHipImplants/ucm241594.htm",
-    "image": "assets/images/implant-system.svg"
+    "image": "assets/images/implant-system.svg",
+    "imageAlt": "Sistema de implante interno para cadera"
   },
   {
     "title": "Total Joint Replacement",
@@ -21,7 +23,8 @@
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/treatment/total-joint-replacement",
-    "image": "assets/images/implant-system.svg"
+    "image": "assets/images/implant-system.svg",
+    "imageAlt": "Prótesis interna para reemplazo articular"
   },
   {
     "title": "Internal Fixation for Fractures",
@@ -29,7 +32,8 @@
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/treatment/internal-fixation-for-fractures/",
-    "image": "assets/images/osteosynthesis-plate.svg"
+    "image": "assets/images/osteosynthesis-plate.svg",
+    "imageAlt": "Placa quirúrgica y tornillos para fijación interna"
   },
   {
     "title": "Femur Shaft Fractures (Broken Thighbone)",
@@ -37,7 +41,8 @@
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/diseases--conditions/femur-shaft-fractures-broken-thighbone",
-    "image": "assets/images/osteosynthesis-plate.svg"
+    "image": "assets/images/osteosynthesis-plate.svg",
+    "imageAlt": "Sistema de osteosíntesis para fracturas de fémur"
   },
   {
     "title": "Clavicle Fracture (Broken Collarbone)",
@@ -45,7 +50,8 @@
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/diseases--conditions/clavicle-fracture-broken-collarbone",
-    "image": "assets/images/osteosynthesis-plate.svg"
+    "image": "assets/images/osteosynthesis-plate.svg",
+    "imageAlt": "Placa anatómica y tornillos para clavícula"
   },
   {
     "title": "Hip Fractures",
@@ -53,7 +59,8 @@
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/diseases--conditions/hip-fractures",
-    "image": "assets/images/surgical-instruments.svg"
+    "image": "assets/images/surgical-instruments.svg",
+    "imageAlt": "Instrumental quirúrgico e implantes para trauma de cadera"
   },
   {
     "title": "Medical Applications of 3D Printing",
@@ -61,7 +68,8 @@
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/MedicalDevices/ProductsandMedicalProcedures/3DPrintingofMedicalDevices/ucm500539.htm",
-    "image": "assets/images/surgical-instruments.svg"
+    "image": "assets/images/surgical-instruments.svg",
+    "imageAlt": "Instrumental quirúrgico e innovación en dispositivos médicos"
   },
   {
     "title": "Process of 3D Printing Medical Devices",
@@ -69,7 +77,8 @@
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/medical-devices/3d-printing-medical-devices/process-3d-printing-medical-devices",
-    "image": "assets/images/surgical-instruments.svg"
+    "image": "assets/images/surgical-instruments.svg",
+    "imageAlt": "Proceso de manufactura médica e implantes"
   },
   {
     "title": "Hip Replacement Surgery",
@@ -77,7 +86,8 @@
     "source": "Johns Hopkins Medicine",
     "date": "Consultado 2026-05-02",
     "url": "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/hip-replacement-surgery",
-    "image": "assets/images/implant-system.svg"
+    "image": "assets/images/implant-system.svg",
+    "imageAlt": "Prótesis interna de cadera"
   },
   {
     "title": "Hip replacement",
@@ -85,7 +95,8 @@
     "source": "Mayo Clinic",
     "date": "Consultado 2026-05-02",
     "url": "https://www.mayoclinic.org/tests-procedures/hip-replacement/about/pac-20385042",
-    "image": "assets/images/implant-system.svg"
+    "image": "assets/images/implant-system.svg",
+    "imageAlt": "Implante interno para reemplazo de cadera"
   },
   {
     "title": "Orthopedic Devices Program: Research on Orthopedic Medical Devices",
@@ -93,6 +104,7 @@
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/medical-devices/medical-device-regulatory-science-research-programs-conducted-osel/orthopedic-devices-program-research-orthopedic-medical-devices",
-    "image": "assets/images/surgical-instruments.svg"
+    "image": "assets/images/surgical-instruments.svg",
+    "imageAlt": "Investigación en dispositivos médicos ortopédicos"
   }
 ]

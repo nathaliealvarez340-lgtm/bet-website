@@ -83,12 +83,13 @@ let anatomyProducts = fallbackProducts;
 function renderNewsArticles(articles) {
   const carousel = document.querySelector("[data-news-carousel]");
   if (!carousel) return;
+  const validArticles = articles.filter((article) => article.url && /^https?:\/\//.test(article.url));
 
-  const cards = articles
+  const cards = validArticles
     .map(
       (article) => `
         <article class="news-card glass">
-          <img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.title)}" loading="lazy">
+          <img src="${escapeHtml(article.image || "assets/images/implant-system.svg")}" alt="${escapeHtml(article.imageAlt || article.title)}" loading="lazy">
           <div>
             <span>${escapeHtml(article.source)} · ${escapeHtml(article.date)}</span>
             <h3>${escapeHtml(article.title)}</h3>
@@ -99,6 +100,11 @@ function renderNewsArticles(articles) {
       `
     )
     .join("");
+
+  if (!cards) {
+    carousel.innerHTML = "";
+    return;
+  }
 
   carousel.innerHTML = `<div class="news-track">${cards}${cards}</div>`;
 }
@@ -143,14 +149,17 @@ fetch("data/anatomicalProducts.json")
     renderBone("femur");
   });
 
-fetch("data/newsletterArticles.json")
+// Future-ready: /api/news can refresh articles server-side with Vercel Cron every 5 days,
+// extract Open Graph metadata such as og:image, and fall back to this local JSON.
+fetch("/api/news")
   .then((response) => {
-    if (!response.ok) throw new Error("No se pudo cargar newsletterArticles.json");
+    if (!response.ok) throw new Error("Endpoint de noticias no disponible");
     return response.json();
   })
+  .catch(() => fetch("data/newsletterArticles.json").then((response) => response.json()))
   .then((articles) => {
-    newsletterArticles = articles;
-    renderNewsArticles(articles);
+    newsletterArticles = Array.isArray(articles) ? articles : articles.items || [];
+    renderNewsArticles(newsletterArticles);
   })
   .catch(() => {
     document.querySelector("[data-news-carousel]")?.replaceChildren();
@@ -187,18 +196,17 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   const formData = new FormData(form);
   const payload = {
     name: formData.get("name").trim(),
-    institution: formData.get("institution").trim(),
     area: formData.get("area").trim(),
     contact: formData.get("contact").trim(),
     message: formData.get("message").trim(),
   };
-  const message = `Hola BET, soy ${payload.name} de ${payload.institution}. Me interesa recibir información sobre ${payload.area}. Mi contacto es ${payload.contact}. ${payload.message}`;
+  const message = `Hola BET, soy ${payload.name}. Me interesa recibir información sobre ${payload.area}. Mi contacto es ${payload.contact}. ${payload.message}`;
   const whatsappLink = form.querySelector("[data-whatsapp-link]");
   whatsappLink.href = createWhatsAppUrl(message);
 
   submitButton.disabled = true;
-  submitButton.textContent = "Enviando solicitud";
-  status.textContent = "Enviando información al equipo de BET.";
+  submitButton.textContent = "Preparando solicitud";
+  status.textContent = "Intentando enviar la solicitud. Si el correo no está disponible, abriremos WhatsApp.";
   status.className = "form-status";
 
   fetch("/api/contact", {
@@ -293,7 +301,7 @@ function renderSearchResults(results, query) {
   }
 
   if (results.length === 0) {
-    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactarnos para orientación personalizada.</p>`;
+    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactar a BET para orientación personalizada.</p>`;
     return;
   }
 
@@ -347,28 +355,28 @@ function handleAssistantMessage(message) {
   const text = normalizeText(message);
 
   if (/(protesis|implante|implantes)/.test(text)) {
-    return "BET se especializa en prótesis internas, implantes y soluciones quirúrgicas para procedimientos ortopédicos y de trauma. Podemos orientarte según área anatómica y disponibilidad.";
+    return "Claro. BET trabaja con prótesis internas, implantes y soluciones quirúrgicas para procedimientos ortopédicos y de trauma. Si me dices el área anatómica, puedo orientarte mejor.";
   }
   if (/(femur|cadera)/.test(text)) {
-    return "Para fémur y cadera, BET puede orientar sobre prótesis femoral, clavos intramedulares, placas y soluciones de reconstrucción según el caso quirúrgico.";
+    return "Para fémur y cadera, BET puede orientar sobre prótesis femoral, clavos intramedulares, placas y soluciones de reconstrucción según el requerimiento quirúrgico.";
   }
   if (/(craneo|craneal|craneomaxilofacial)/.test(text)) {
-    return "En cráneo y región craneomaxilofacial, la orientación suele enfocarse en placas, fijación y reconstrucción. Para validar disponibilidad, conviene contactar a BET directamente.";
+    return "En cráneo y región craneomaxilofacial, la orientación suele enfocarse en placas, fijación y reconstrucción. Para validar disponibilidad, te recomiendo contactar directamente a BET.";
   }
   if (/(contacto|whatsapp|telefono|correo)/.test(text)) {
-    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario de contacto con tus datos clínicos y de institución.";
+    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario de contacto. Comparte área de interés, datos de contacto y mensaje para dar mejor seguimiento.";
   }
   if (/(precio|precios|cotizacion|costo|costos)/.test(text)) {
-    return "Los precios dependen del producto, zona anatómica, disponibilidad y requerimiento quirúrgico. Para cotización, usa WhatsApp con los datos del caso.";
+    return "Los precios dependen del producto, zona anatómica, disponibilidad y requerimiento quirúrgico. Para cotización, lo mejor es enviar los datos del caso por WhatsApp.";
   }
   if (/(disponibilidad|disponible|inventario|entrega)/.test(text)) {
-    return "La disponibilidad se revisa por área anatómica, producto y tiempo de procedimiento. BET puede dar seguimiento directo por WhatsApp.";
+    return "La disponibilidad se revisa por área anatómica, producto y tiempo de procedimiento. BET puede darte seguimiento directo por WhatsApp.";
   }
   if (/(proceso|atencion|seleccion|seguimiento)/.test(text)) {
     return "El proceso BET contempla análisis del caso, selección técnica, coordinación operativa y seguimiento para futuras decisiones clínicas.";
   }
 
-  return "Puedo orientarte sobre soluciones médicas, áreas anatómicas o contacto con BET. Para atención directa, usa WhatsApp.";
+  return "Puedo ayudarte a ubicar información general. Para una solicitud específica, te recomiendo contactar directamente a BET por WhatsApp.";
 }
 
 async function askAssistant(message) {

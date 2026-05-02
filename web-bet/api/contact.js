@@ -1,4 +1,4 @@
-const requiredFields = ["name", "institution", "area", "contact", "message"];
+const requiredFields = ["name", "area", "contact", "message"];
 
 function sanitize(value = "") {
   return String(value).trim().slice(0, 2000);
@@ -9,7 +9,6 @@ function buildEmailHtml(data) {
     <div style="font-family:Arial,sans-serif;color:#222;line-height:1.55">
       <h2 style="color:#1693a5;margin:0 0 16px">Nueva solicitud desde BET</h2>
       <p><strong>Nombre:</strong> ${data.name}</p>
-      <p><strong>Institución:</strong> ${data.institution}</p>
       <p><strong>Área de interés:</strong> ${data.area}</p>
       <p><strong>Correo o teléfono:</strong> ${data.contact}</p>
       <p><strong>Mensaje:</strong></p>

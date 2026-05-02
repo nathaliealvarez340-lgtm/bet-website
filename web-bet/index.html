@@ -64,15 +64,11 @@
         </div>
       </section>
 
-      <section class="search-section" aria-labelledby="site-search-title">
+      <section class="search-section" aria-label="Búsqueda en BET">
         <div class="search-shell glass reveal">
-          <div>
-            <span class="eyebrow">Búsqueda clínica</span>
-            <h2 id="site-search-title">Encuentra soluciones, áreas o información técnica.</h2>
-          </div>
           <form class="site-search" role="search">
             <label for="site-search-input" class="sr-only">Buscar en el sitio</label>
-            <input id="site-search-input" type="search" placeholder="Buscar prótesis, fémur, disponibilidad, proceso..." autocomplete="off">
+            <input id="site-search-input" type="search" placeholder="Buscar prótesis, fémur, cadera, disponibilidad…" autocomplete="off">
             <button class="button glass-button primary" type="submit">Buscar</button>
           </form>
           <div class="search-results" aria-live="polite"></div>
@@ -268,7 +264,6 @@
         </div>
         <form class="contact-form glass reveal" novalidate>
           <label>Nombre<input type="text" name="name" autocomplete="name" placeholder="Nombre completo" required></label>
-          <label>Institución<input type="text" name="institution" placeholder="Hospital o consultorio" required></label>
           <label>Área de interés<select name="area" required><option value="">Selecciona un área</option><option>Fémur / cadera</option><option>Columna</option><option>Trauma y osteosíntesis</option><option>Craneomaxilofacial</option><option>Otra área</option></select></label>
           <label>Correo o teléfono de contacto<input type="text" name="contact" autocomplete="email" placeholder="correo@institucion.com o teléfono" required></label>
           <label>Mensaje<textarea name="message" rows="4" placeholder="Describe brevemente el requerimiento" required></textarea></label>
@@ -285,18 +280,18 @@
     </footer>
 
     <button class="assistant-toggle" type="button" aria-controls="assistant-panel" aria-expanded="false">
-      <span>Asistencia BET</span>
+      <span>Clara</span>
     </button>
     <section class="assistant-panel glass" id="assistant-panel" aria-labelledby="assistant-title" hidden>
       <div class="assistant-header">
         <div>
-          <span class="eyebrow">Asistencia</span>
-          <h2 id="assistant-title">Orientación rápida BET</h2>
+          <span class="eyebrow">Asistencia BET</span>
+          <h2 id="assistant-title">Clara</h2>
         </div>
         <button class="assistant-close" type="button" aria-label="Cerrar chat">×</button>
       </div>
       <div class="assistant-messages" aria-live="polite">
-        <p class="assistant-message bot">Hola. Puedo orientarte sobre soluciones médicas, áreas anatómicas, disponibilidad o contacto con BET.</p>
+        <p class="assistant-message bot">Hola, soy Clara, tu asistente personal de BET. Puedo orientarte sobre prótesis internas, áreas anatómicas, disponibilidad, proceso de atención o contacto con nuestro equipo.</p>
       </div>
       <form class="assistant-form">
         <label for="assistant-input" class="sr-only">Mensaje para asistencia BET</label>
