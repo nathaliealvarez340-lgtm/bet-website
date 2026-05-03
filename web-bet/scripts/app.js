@@ -297,8 +297,11 @@ function renderSearchResults(results, query) {
 
   if (!query.trim()) {
     container.innerHTML = "";
+    container.classList.add("is-hidden");
     return;
   }
+
+  container.classList.remove("is-hidden");
 
   if (results.length === 0) {
     container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactar a BET para orientación personalizada.</p>`;
@@ -314,7 +317,7 @@ function renderSearchResults(results, query) {
             <h3>${escapeHtml(result.title)}</h3>
             <p>${escapeHtml(result.description)}</p>
           </div>
-          <button class="button glass-button" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}">Ver sección</button>
+          <button class="button glass-button small-button" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}">Ver sección</button>
         </article>
       `
     )
@@ -332,6 +335,8 @@ function executeSearch(query) {
   renderSearchResults(results, query);
 }
 
+document.querySelector(".search-results")?.classList.add("is-hidden");
+
 document.querySelector(".site-search")?.addEventListener("submit", (event) => {
   event.preventDefault();
   const input = event.currentTarget.querySelector("input");
@@ -345,10 +350,24 @@ document.querySelector(".search-results")?.addEventListener("click", (event) => 
   const target = button.dataset.searchTarget;
   if (button.dataset.external === "true") {
     window.open(target, "_blank", "noopener,noreferrer");
+    document.querySelector(".search-results")?.classList.add("is-hidden");
     return;
   }
 
   document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  document.querySelector(".search-results")?.classList.add("is-hidden");
+});
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".search-shell")) {
+    document.querySelector(".search-results")?.classList.add("is-hidden");
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    document.querySelector(".search-results")?.classList.add("is-hidden");
+  }
 });
 
 function handleAssistantMessage(message) {
