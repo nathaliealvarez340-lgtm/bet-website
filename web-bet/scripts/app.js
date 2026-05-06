@@ -1,14 +1,20 @@
 const WHATSAPP_NUMBER = "525520810867";
-const WHATSAPP_MESSAGE = "Hola, me interesa uno de sus productos. ¿Podrían darme más detalles y precios?";
+const WHATSAPP_MESSAGE = "Hola, me interesa uno de sus productos. Podrian darme mas detalles y precios?";
 const WHATSAPP_URL = "https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F";
 
 const escapeHtml = (value = "") =>
-  value
+  String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+
+const normalizeText = (value = "") =>
+  String(value)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 
 function createWhatsAppUrl(message = WHATSAPP_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -35,10 +41,9 @@ document.querySelectorAll("[data-spline-scene]").forEach((scene) => {
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
     });
   },
   { threshold: 0.13 }
@@ -54,18 +59,18 @@ window.addEventListener("scroll", () => {
 const fallbackProducts = [
   {
     id: "femur",
-    label: "Fémur",
-    nombre: "Fémur",
+    label: "Femur",
+    nombre: "Femur",
     categoria: "Miembro inferior",
-    descripcion: "Hueso largo del muslo que cumple una función clave en movilidad, soporte de peso y estabilidad estructural.",
+    descripcion: "Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.",
     productos: [
       {
-        nombre: "Prótesis femoral",
-        descripcion: "Solución diseñada para procedimientos de reconstrucción o reemplazo en la zona femoral.",
-        uso: "Traumatología y ortopedia",
+        nombre: "Protesis femoral",
+        descripcion: "Solucion disenada para procedimientos de reconstruccion o reemplazo en la zona femoral.",
+        uso: "Traumatologia y ortopedia",
       },
     ],
-    aplicaciones: ["Artroplastia", "Fijación interna", "Reconstrucción femoral"],
+    aplicaciones: ["Artroplastia", "Fijacion interna", "Reconstruccion femoral"],
   },
 ];
 
@@ -83,8 +88,8 @@ let anatomyProducts = fallbackProducts;
 function renderNewsArticles(articles) {
   const carousel = document.querySelector("[data-news-carousel]");
   if (!carousel) return;
-  const validArticles = articles.filter((article) => article.url && /^https?:\/\//.test(article.url));
 
+  const validArticles = articles.filter((article) => article.url && /^https?:\/\//.test(article.url));
   const cards = validArticles
     .map(
       (article) => `
@@ -95,18 +100,13 @@ function renderNewsArticles(articles) {
             <h3>${escapeHtml(article.title)}</h3>
             <p>${escapeHtml(article.description)}</p>
           </div>
-          <a class="button glass-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">Ver más…</a>
+          <a class="button glass-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><span>Ver mas</span></a>
         </article>
       `
     )
     .join("");
 
-  if (!cards) {
-    carousel.innerHTML = "";
-    return;
-  }
-
-  carousel.innerHTML = `<div class="news-track">${cards}${cards}</div>`;
+  carousel.innerHTML = cards ? `<div class="news-track">${cards}${cards}</div>` : "";
 }
 
 function renderBone(boneId) {
@@ -149,8 +149,6 @@ fetch("data/anatomicalProducts.json")
     renderBone("femur");
   });
 
-// Future-ready: /api/news can refresh articles server-side with Vercel Cron every 5 days,
-// extract Open Graph metadata such as og:image, and fall back to this local JSON.
 fetch("/api/news")
   .then((response) => {
     if (!response.ok) throw new Error("Endpoint de noticias no disponible");
@@ -168,116 +166,69 @@ fetch("/api/news")
 selectors.targets.forEach((target) => {
   target.addEventListener("click", () => renderBone(target.dataset.bone));
   target.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      renderBone(target.dataset.bone);
-    }
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    renderBone(target.dataset.bone);
   });
 });
 
-document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const status = form.querySelector(".form-status");
-  const submitButton = form.querySelector("button[type='submit']");
-  const requiredFields = [...form.querySelectorAll("[required]")];
-  const invalidFields = requiredFields.filter((field) => !field.value.trim());
+const valueAccordion = document.querySelector("[data-value-accordion]");
 
-  form.querySelectorAll(".is-invalid").forEach((field) => field.classList.remove("is-invalid"));
+function setActiveValuePanel(panelId) {
+  if (!valueAccordion) return;
 
-  if (invalidFields.length > 0) {
-    invalidFields.forEach((field) => field.classList.add("is-invalid"));
-    status.textContent = "Completa los campos requeridos para preparar la solicitud.";
-    status.className = "form-status is-error";
-    invalidFields[0].focus();
-    return;
-  }
+  valueAccordion.querySelectorAll("[data-value-panel]").forEach((panel) => {
+    const isActive = panel.dataset.valuePanel === panelId;
+    panel.classList.toggle("is-active", isActive);
+    panel.setAttribute("aria-expanded", String(isActive));
+  });
+}
 
-  const formData = new FormData(form);
-  const payload = {
-    name: formData.get("name").trim(),
-    area: formData.get("area").trim(),
-    contact: formData.get("contact").trim(),
-    message: formData.get("message").trim(),
-  };
-  const message = `Hola BET, soy ${payload.name}. Me interesa recibir información sobre ${payload.area}. Mi contacto es ${payload.contact}. ${payload.message}`;
-  const whatsappLink = form.querySelector("[data-whatsapp-link]");
-  whatsappLink.href = createWhatsAppUrl(message);
-
-  submitButton.disabled = true;
-  submitButton.textContent = "Preparando solicitud";
-  status.textContent = "Intentando enviar la solicitud. Si el correo no está disponible, abriremos WhatsApp.";
-  status.className = "form-status";
-
-  fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  })
-    .then(async (response) => {
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(data.error || "No se pudo enviar la solicitud.");
-      status.textContent = "Solicitud enviada. El equipo de BET dará seguimiento con la información proporcionada.";
-      status.className = "form-status is-success";
-      form.reset();
-    })
-    .catch((error) => {
-      status.textContent = `${error.message} Abrimos WhatsApp con el mensaje prellenado para que no pierdas la solicitud.`;
-      status.className = "form-status is-error";
-      window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
-    })
-    .finally(() => {
-      submitButton.disabled = false;
-      submitButton.textContent = "Enviar solicitud";
-    });
+valueAccordion?.addEventListener("click", (event) => {
+  const panel = event.target.closest("[data-value-panel]");
+  if (!panel) return;
+  setActiveValuePanel(panel.dataset.valuePanel);
 });
 
 const siteSections = [
   {
-    title: "Soluciones médicas",
-    description: "Prótesis internas, osteosíntesis, trauma y soporte hospitalario especializado.",
+    title: "Soluciones medicas",
+    description: "Protesis internas, osteosintesis, trauma y soporte hospitalario especializado.",
     target: "#soluciones",
-    keywords: "prótesis protesis implantes osteosíntesis osteosintesis trauma placas tornillos clavos instrumental"
+    keywords: "protesis implantes osteosintesis trauma placas tornillos clavos instrumental",
   },
   {
-    title: "Explorador anatómico",
-    description: "Consulta áreas anatómicas, productos relacionados y aplicaciones quirúrgicas.",
+    title: "Explorador anatomico",
+    description: "Consulta areas anatomicas, productos relacionados y aplicaciones quirurgicas.",
     target: "#explorador",
-    keywords: "fémur femur cadera cráneo craneo clavícula clavicula húmero humero tibia pelvis columna anatomía anatomia"
+    keywords: "femur cadera craneo clavicula humero tibia pelvis columna anatomia",
   },
   {
-    title: "Proceso de atención",
-    description: "Análisis del caso, selección técnica, coordinación operativa y seguimiento.",
+    title: "Proceso de atencion",
+    description: "Analisis del caso, seleccion tecnica, coordinacion operativa y seguimiento.",
     target: "#proceso",
-    keywords: "proceso análisis analisis selección seleccion coordinación coordinacion seguimiento atención atencion"
+    keywords: "proceso analisis seleccion coordinacion seguimiento atencion",
   },
   {
     title: "Valores BET",
-    description: "Precisión clínica, confiabilidad, especialización, respaldo profesional y eficiencia operativa.",
+    description: "Precision clinica, confiabilidad, especializacion, respaldo profesional y eficiencia operativa.",
     target: ".values-section",
-    keywords: "valores precisión precision confiabilidad especialización especializacion respaldo eficiencia"
+    keywords: "valores precision confiabilidad especializacion respaldo eficiencia",
   },
   {
     title: "Contacto BET",
-    description: "Formulario y WhatsApp para orientación comercial y disponibilidad.",
+    description: "Formulario y WhatsApp para orientacion comercial y disponibilidad.",
     target: "#contacto",
-    keywords: "contacto whatsapp disponibilidad precios cotización cotizacion información informacion"
-  }
+    keywords: "contacto whatsapp disponibilidad precios cotizacion informacion",
+  },
 ];
-
-function normalizeText(value = "") {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-}
 
 function buildSearchIndex() {
   const anatomyItems = anatomyProducts.map((bone) => ({
     title: bone.nombre,
     description: `${bone.categoria}. ${bone.descripcion}`,
     target: "#explorador",
-    keywords: `${bone.nombre} ${bone.categoria} ${bone.descripcion} ${bone.productos.map((item) => `${item.nombre} ${item.descripcion} ${item.uso}`).join(" ")} ${bone.aplicaciones.join(" ")}`
+    keywords: `${bone.nombre} ${bone.categoria} ${bone.descripcion} ${bone.productos.map((item) => `${item.nombre} ${item.descripcion} ${item.uso}`).join(" ")} ${bone.aplicaciones.join(" ")}`,
   }));
 
   const articleItems = newsletterArticles.map((article) => ({
@@ -285,7 +236,7 @@ function buildSearchIndex() {
     description: `${article.source}. ${article.description}`,
     target: article.url,
     external: true,
-    keywords: `${article.title} ${article.description} ${article.source}`
+    keywords: `${article.title} ${article.description} ${article.source}`,
   }));
 
   return [...siteSections, ...anatomyItems, ...articleItems];
@@ -304,7 +255,7 @@ function renderSearchResults(results, query) {
   container.classList.remove("is-hidden");
 
   if (results.length === 0) {
-    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactar a BET para orientación personalizada.</p>`;
+    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactar a BET para orientacion personalizada.</p>`;
     return;
   }
 
@@ -312,12 +263,12 @@ function renderSearchResults(results, query) {
     .slice(0, 8)
     .map(
       (result) => `
-        <article class="search-result">
+        <article class="search-result-item">
           <div>
-            <h3>${escapeHtml(result.title)}</h3>
+            <h4>${escapeHtml(result.title)}</h4>
             <p>${escapeHtml(result.description)}</p>
           </div>
-          <button class="button glass-button small-button" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}">Ver sección</button>
+          <button class="button glass-button small-button result-action" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}"><span>Ver seccion</span></button>
         </article>
       `
     )
@@ -335,7 +286,8 @@ function executeSearch(query) {
   renderSearchResults(results, query);
 }
 
-document.querySelector(".search-results")?.classList.add("is-hidden");
+const searchResults = document.querySelector(".search-results");
+searchResults?.classList.add("is-hidden");
 
 document.querySelector(".site-search")?.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -343,59 +295,114 @@ document.querySelector(".site-search")?.addEventListener("submit", (event) => {
   executeSearch(input.value);
 });
 
-document.querySelector(".search-results")?.addEventListener("click", (event) => {
+searchResults?.addEventListener("click", (event) => {
   const button = event.target.closest("[data-search-target]");
   if (!button) return;
 
   const target = button.dataset.searchTarget;
+  searchResults.classList.add("is-hidden");
+
   if (button.dataset.external === "true") {
     window.open(target, "_blank", "noopener,noreferrer");
-    document.querySelector(".search-results")?.classList.add("is-hidden");
     return;
   }
 
   document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  document.querySelector(".search-results")?.classList.add("is-hidden");
 });
 
 document.addEventListener("click", (event) => {
-  if (!event.target.closest(".search-shell")) {
-    document.querySelector(".search-results")?.classList.add("is-hidden");
-  }
+  if (event.target.closest(".search-wrapper")) return;
+  searchResults?.classList.add("is-hidden");
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    document.querySelector(".search-results")?.classList.add("is-hidden");
+  if (event.key === "Escape") searchResults?.classList.add("is-hidden");
+});
+
+document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const status = form.querySelector(".form-status");
+  const submitButton = form.querySelector("button[type='submit']");
+  const submitLabel = submitButton?.querySelector("span");
+  const requiredFields = [...form.querySelectorAll("[required]")];
+  const invalidFields = requiredFields.filter((field) => !field.value.trim());
+
+  form.querySelectorAll(".is-invalid").forEach((field) => field.classList.remove("is-invalid"));
+
+  if (invalidFields.length > 0) {
+    invalidFields.forEach((field) => field.classList.add("is-invalid"));
+    status.textContent = "Completa los campos requeridos para preparar la solicitud.";
+    status.className = "form-status is-error";
+    invalidFields[0].focus();
+    return;
   }
+
+  const formData = new FormData(form);
+  const payload = {
+    name: String(formData.get("name")).trim(),
+    area: String(formData.get("area")).trim(),
+    contact: String(formData.get("contact")).trim(),
+    message: String(formData.get("message")).trim(),
+  };
+  const message = `Hola BET, soy ${payload.name}. Me interesa recibir informacion sobre ${payload.area}. Mi contacto es ${payload.contact}. ${payload.message}`;
+  const whatsappLink = form.querySelector("[data-whatsapp-link]");
+  whatsappLink.href = createWhatsAppUrl(message);
+
+  submitButton.disabled = true;
+  if (submitLabel) submitLabel.textContent = "Preparando solicitud";
+  status.textContent = "Intentando enviar la solicitud. Si el correo no esta disponible, abriremos WhatsApp.";
+  status.className = "form-status";
+
+  fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then(async (response) => {
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "No se pudo enviar la solicitud.");
+      status.textContent = "Solicitud enviada. El equipo de BET dara seguimiento con la informacion proporcionada.";
+      status.className = "form-status is-success";
+      form.reset();
+    })
+    .catch((error) => {
+      status.textContent = `${error.message} Abrimos WhatsApp con el mensaje prellenado para que no pierdas la solicitud.`;
+      status.className = "form-status is-error";
+      window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      if (submitLabel) submitLabel.textContent = "Enviar solicitud";
+    });
 });
 
 function handleAssistantMessage(message) {
   const text = normalizeText(message);
 
   if (/(protesis|implante|implantes)/.test(text)) {
-    return "Claro. BET trabaja con prótesis internas, implantes y soluciones quirúrgicas para procedimientos ortopédicos y de trauma. Si me dices el área anatómica, puedo orientarte mejor.";
+    return "Claro. BET trabaja con protesis internas, implantes y soluciones quirurgicas para procedimientos ortopedicos y de trauma. Si me dices el area anatomica, puedo orientarte mejor.";
   }
   if (/(femur|cadera)/.test(text)) {
-    return "Para fémur y cadera, BET puede orientar sobre prótesis femoral, clavos intramedulares, placas y soluciones de reconstrucción según el requerimiento quirúrgico.";
+    return "Para femur y cadera, BET puede orientar sobre protesis femoral, clavos intramedulares, placas y soluciones de reconstruccion segun el requerimiento quirurgico.";
   }
   if (/(craneo|craneal|craneomaxilofacial)/.test(text)) {
-    return "En cráneo y región craneomaxilofacial, la orientación suele enfocarse en placas, fijación y reconstrucción. Para validar disponibilidad, te recomiendo contactar directamente a BET.";
+    return "En craneo y region craneomaxilofacial, la orientacion suele enfocarse en placas, fijacion y reconstruccion. Para validar disponibilidad, te recomiendo contactar directamente a BET.";
   }
   if (/(contacto|whatsapp|telefono|correo)/.test(text)) {
-    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario de contacto. Comparte área de interés, datos de contacto y mensaje para dar mejor seguimiento.";
+    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario de contacto. Comparte area de interes, datos de contacto y mensaje para dar mejor seguimiento.";
   }
   if (/(precio|precios|cotizacion|costo|costos)/.test(text)) {
-    return "Los precios dependen del producto, zona anatómica, disponibilidad y requerimiento quirúrgico. Para cotización, lo mejor es enviar los datos del caso por WhatsApp.";
+    return "Los precios dependen del producto, zona anatomica, disponibilidad y requerimiento quirurgico. Para cotizacion, lo mejor es enviar los datos del caso por WhatsApp.";
   }
   if (/(disponibilidad|disponible|inventario|entrega)/.test(text)) {
-    return "La disponibilidad se revisa por área anatómica, producto y tiempo de procedimiento. BET puede darte seguimiento directo por WhatsApp.";
+    return "La disponibilidad se revisa por area anatomica, producto y tiempo de procedimiento. BET puede darte seguimiento directo por WhatsApp.";
   }
   if (/(proceso|atencion|seleccion|seguimiento)/.test(text)) {
-    return "El proceso BET contempla análisis del caso, selección técnica, coordinación operativa y seguimiento para futuras decisiones clínicas.";
+    return "El proceso BET contempla analisis del caso, seleccion tecnica, coordinacion operativa y seguimiento para futuras decisiones clinicas.";
   }
 
-  return "Puedo ayudarte a ubicar información general. Para una solicitud específica, te recomiendo contactar directamente a BET por WhatsApp.";
+  return "Puedo ayudarte a ubicar informacion general. Para una solicitud especifica, te recomiendo contactar directamente a BET por WhatsApp.";
 }
 
 async function askAssistant(message) {
@@ -416,6 +423,7 @@ async function askAssistant(message) {
 function appendAssistantMessage(content, type = "bot") {
   const messages = document.querySelector(".assistant-messages");
   if (!messages) return;
+
   const bubble = document.createElement("p");
   bubble.className = `assistant-message ${type}`;
   bubble.textContent = content;

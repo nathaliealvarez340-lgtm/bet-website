@@ -3,24 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BET | Soluciones médicas quirúrgicas de precisión</title>
-    <meta name="description" content="BET provee prótesis internas y soluciones quirúrgicas confiables para procedimientos de alta precisión.">
+    <title>BET | Soluciones medicas quirurgicas de precision</title>
+    <meta name="description" content="BET provee protesis internas y soluciones quirurgicas confiables para procedimientos de alta precision.">
     <link rel="preload" href="assets/logo-bet.png" as="image">
+    <link rel="icon" href="assets/logo-bet.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
   </head>
   <body>
-    <header class="site-header" data-elevate>
+    <header class="site-header navbar" data-elevate>
       <a class="brand" href="#inicio" aria-label="BET inicio">
         <img src="assets/logo-bet.png" alt="BET" width="132" height="52">
       </a>
-      <nav class="nav" aria-label="Navegación principal">
+      <nav class="nav" aria-label="Navegacion principal">
         <a href="#enfoque">Enfoque</a>
         <a href="#explorador">Explorador</a>
         <a href="#proceso">Proceso</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <a class="button glass-button nav-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a class="button glass-button nav-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span></a>
     </header>
 
     <main>
@@ -40,12 +44,20 @@
         <div class="hero-overlay" aria-hidden="true"></div>
 
         <div class="hero-content reveal">
-          <span class="hero-kicker">Precisión quirúrgica | Prótesis internas | Respaldo clínico</span>
-          <h1 id="hero-title">Soluciones médicas para procedimientos quirúrgicos de alta precisión</h1>
-          <p class="hero-subtitle">En BET proveemos prótesis internas y soluciones quirúrgicas confiables, diseñadas para respaldar decisiones médicas críticas con disponibilidad, precisión y acompañamiento especializado.</p>
-          <div class="hero-actions">
-            <a class="button glass-button primary" href="#soluciones">Explorar soluciones</a>
-            <a class="button glass-button" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Contactar a BET</a>
+          <span class="hero-kicker">Precision quirurgica | Protesis internas | Respaldo clinico</span>
+          <div class="hero-main-row">
+            <div class="hero-copy">
+              <h1 id="hero-title">
+                <span>Soluciones medicas para</span>
+                <span>procedimientos quirurgicos</span>
+                <span>de alta precision</span>
+              </h1>
+              <p class="hero-subtitle subtitle">En BET proveemos protesis internas y soluciones quirurgicas confiables, disenadas para respaldar decisiones medicas criticas con disponibilidad, precision y acompanamiento especializado.</p>
+            </div>
+            <div class="hero-actions">
+              <a class="button glass-button primary" href="#soluciones"><span>Explorar soluciones</span></a>
+              <a class="button glass-button" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Contactar a BET</span></a>
+            </div>
           </div>
           <dl class="hero-metrics" aria-label="Diferenciales operativos">
             <div>
@@ -54,48 +66,63 @@
             </div>
             <div>
               <dt>+5</dt>
-              <dd>Áreas anatómicas clave</dd>
+              <dd>Areas anatomicas clave</dd>
             </div>
             <div>
               <dt>QA</dt>
-              <dd>Selección y trazabilidad clínica</dd>
+              <dd>Seleccion y trazabilidad clinica</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      <section class="search-section" aria-label="Búsqueda en BET">
-        <div class="search-shell glass reveal">
-          <form class="site-search" role="search">
+      <section class="search-section" aria-label="Busqueda en BET">
+        <div class="search-wrapper reveal">
+          <form class="site-search search-bar" role="search">
             <label for="site-search-input" class="sr-only">Buscar en el sitio</label>
-            <input id="site-search-input" type="search" placeholder="Buscar prótesis, fémur, cadera, disponibilidad…" autocomplete="off">
-            <button class="button glass-button primary" type="submit">Buscar</button>
+            <input id="site-search-input" type="search" placeholder="Buscar protesis, femur, cadera, disponibilidad..." autocomplete="off">
+            <button class="button glass-button primary" type="submit"><span>Buscar</span></button>
           </form>
-          <div class="search-results" aria-live="polite"></div>
+          <div class="search-results is-hidden" aria-live="polite"></div>
         </div>
       </section>
 
       <section class="section focus-section" id="enfoque" aria-labelledby="focus-title">
         <div class="section-heading reveal">
           <span class="eyebrow">Nuestro enfoque</span>
-          <h2 id="focus-title">Precisión clínica traducida en disponibilidad real.</h2>
+          <h2 id="focus-title">Precision clinica traducida en disponibilidad real.</h2>
         </div>
-        <div class="focus-grid">
-          <article class="focus-panel reveal">
-            <span class="panel-index">01</span>
-            <h3>Misión</h3>
-            <p>Impulsar procedimientos quirúrgicos de alta precisión mediante soluciones médicas confiables, especializadas y clínicamente respaldadas.</p>
-          </article>
-          <article class="focus-panel reveal">
-            <span class="panel-index">02</span>
-            <h3>Visión</h3>
-            <p>Transformar la forma en que hospitales y especialistas acceden a soluciones quirúrgicas, elevando los estándares de precisión, disponibilidad y confianza en cada intervención.</p>
-          </article>
-          <article class="focus-panel emphasis reveal">
-            <span class="panel-index">03</span>
-            <h3>Propuesta de valor</h3>
-            <p>En BET no solo suministramos prótesis internas. Proveemos soluciones precisas que respaldan decisiones quirúrgicas críticas, con disponibilidad, calidad y acompañamiento especializado.</p>
-          </article>
+        <div class="value-accordion reveal" data-value-accordion>
+          <button class="value-panel mission" type="button" data-value-panel="mision" aria-expanded="false">
+            <span class="value-panel-shell">
+              <span class="value-panel-title">Mision</span>
+              <span class="value-panel-content">
+                <span class="panel-index">01</span>
+                <strong>Mision</strong>
+                <p>Impulsar procedimientos quirurgicos de alta precision mediante soluciones medicas confiables, especializadas y clinicamente respaldadas.</p>
+              </span>
+            </span>
+          </button>
+          <button class="value-panel vision" type="button" data-value-panel="vision" aria-expanded="false">
+            <span class="value-panel-shell">
+              <span class="value-panel-title">Vision</span>
+              <span class="value-panel-content">
+                <span class="panel-index">02</span>
+                <strong>Vision</strong>
+                <p>Transformar la forma en que hospitales y especialistas acceden a soluciones quirurgicas, elevando los estandares de precision, disponibilidad y confianza en cada intervencion.</p>
+              </span>
+            </span>
+          </button>
+          <button class="value-panel bet is-active" type="button" data-value-panel="bet" aria-expanded="true">
+            <span class="value-panel-shell">
+              <span class="value-panel-title">BET</span>
+              <span class="value-panel-content">
+                <span class="panel-index">03</span>
+                <strong>BET</strong>
+                <p>En BET no solo suministramos protesis internas. Proveemos soluciones precisas que respaldan decisiones quirurgicas criticas, con disponibilidad, calidad y acompanamiento especializado.</p>
+              </span>
+            </span>
+          </button>
         </div>
       </section>
 
@@ -107,70 +134,70 @@
         <div class="values-grid">
           <article class="value-card glass reveal">
             <span class="icon" aria-hidden="true">+</span>
-            <h3>Precisión clínica</h3>
-            <p>Cada solución responde a requerimientos médicos específicos, no a inventario genérico.</p>
+            <h3>Precision clinica</h3>
+            <p>Cada solucion responde a requerimientos medicos especificos, no a inventario generico.</p>
           </article>
           <article class="value-card glass reveal">
-            <span class="icon" aria-hidden="true">✓</span>
+            <span class="icon" aria-hidden="true">&#10003;</span>
             <h3>Confiabilidad</h3>
             <p>Disponibilidad y calidad en momentos donde el margen de error no existe.</p>
           </article>
           <article class="value-card glass reveal">
-            <span class="icon" aria-hidden="true">◎</span>
-            <h3>Especialización</h3>
-            <p>Enfoque profundo en prótesis internas y soluciones quirúrgicas.</p>
+            <span class="icon" aria-hidden="true">&#9678;</span>
+            <h3>Especializacion</h3>
+            <p>Enfoque profundo en protesis internas y soluciones quirurgicas.</p>
           </article>
           <article class="value-card glass reveal">
-            <span class="icon" aria-hidden="true">◌</span>
+            <span class="icon" aria-hidden="true">&#9688;</span>
             <h3>Respaldo profesional</h3>
-            <p>Acompañamiento a médicos y hospitales en la toma de decisiones.</p>
+            <p>Acompanamiento a medicos y hospitales en la toma de decisiones.</p>
           </article>
           <article class="value-card glass reveal">
-            <span class="icon" aria-hidden="true">↗</span>
+            <span class="icon" aria-hidden="true">&#8599;</span>
             <h3>Eficiencia operativa</h3>
-            <p>Respuesta rápida, procesos claros y entrega oportuna.</p>
+            <p>Respuesta rapida, procesos claros y entrega oportuna.</p>
           </article>
         </div>
       </section>
 
       <section class="section solutions-section" id="soluciones" aria-labelledby="solutions-title">
         <div class="section-heading reveal">
-          <span class="eyebrow">Soluciones médicas</span>
-          <h2 id="solutions-title">Portafolio preparado para decisiones quirúrgicas críticas.</h2>
+          <span class="eyebrow">Soluciones medicas</span>
+          <h2 id="solutions-title">Portafolio preparado para decisiones quirurgicas criticas.</h2>
         </div>
         <div class="solution-lanes">
           <article class="solution-lane reveal">
-            <img src="assets/images/implant-system.svg" alt="Implante ortopédico interno y sistema de fijación" loading="lazy">
-            <h3>Prótesis internas</h3>
-            <p>Implantes seleccionados según zona anatómica, técnica quirúrgica y objetivo funcional.</p>
+            <img src="assets/images/implant-system.svg" alt="Implante ortopedico interno y sistema de fijacion" loading="lazy">
+            <h3>Protesis internas</h3>
+            <p>Implantes seleccionados segun zona anatomica, tecnica quirurgica y objetivo funcional.</p>
           </article>
           <article class="solution-lane reveal">
-            <img src="assets/images/osteosynthesis-plate.svg" alt="Placa quirúrgica y tornillos para osteosíntesis" loading="lazy">
-            <h3>Osteosíntesis y trauma</h3>
-            <p>Sistemas de fijación, placas y soluciones para estabilización estructural.</p>
+            <img src="assets/images/osteosynthesis-plate.svg" alt="Placa quirurgica y tornillos para osteosintesis" loading="lazy">
+            <h3>Osteosintesis y trauma</h3>
+            <p>Sistemas de fijacion, placas y soluciones para estabilizacion estructural.</p>
           </article>
           <article class="solution-lane reveal">
-            <img src="assets/images/surgical-instruments.svg" alt="Instrumental quirúrgico de precisión" loading="lazy">
+            <img src="assets/images/surgical-instruments.svg" alt="Instrumental quirurgico de precision" loading="lazy">
             <h3>Soporte hospitalario</h3>
-            <p>Disponibilidad, coordinación y acompañamiento para equipos médicos y administrativos.</p>
+            <p>Disponibilidad, coordinacion y acompanamiento para equipos medicos y administrativos.</p>
           </article>
         </div>
       </section>
 
       <section class="section anatomy-section" id="explorador" aria-labelledby="anatomy-title">
         <div class="section-heading reveal">
-          <span class="eyebrow">Áreas anatómicas</span>
-          <h2 id="anatomy-title">Explorador anatómico interactivo.</h2>
-          <p>Selecciona una zona para consultar soluciones relacionadas, aplicaciones quirúrgicas y datos clínicos editables desde JSON.</p>
+          <span class="eyebrow">Areas anatomicas</span>
+          <h2 id="anatomy-title">Explorador anatomico interactivo.</h2>
+          <p>Selecciona una zona para consultar soluciones relacionadas, aplicaciones quirurgicas y datos clinicos editables desde JSON.</p>
         </div>
         <div class="anatomy-workbench reveal">
-          <div class="anatomy-map" aria-label="Mapa anatómico interactivo">
+          <div class="anatomy-map" aria-label="Mapa anatomico interactivo">
             <div class="map-toolbar">
-              <span>Vista clínica</span>
-              <small>Selección anatómica interactiva</small>
+              <span>Vista clinica</span>
+              <small>Seleccion anatomica interactiva</small>
             </div>
             <svg viewBox="0 0 360 760" role="img" aria-labelledby="skeleton-title skeleton-desc">
-              <title id="skeleton-title">Estructura anatómica interactiva</title>
+              <title id="skeleton-title">Estructura anatomica interactiva</title>
               <desc id="skeleton-desc">Esqueleto simplificado con regiones seleccionables.</desc>
               <g class="skeleton-lines">
                 <path d="M180 82 L180 630" />
@@ -180,13 +207,13 @@
                 <path d="M132 382 L148 610" />
                 <path d="M228 382 L212 610" />
               </g>
-              <g class="bone-target" data-bone="craneo" data-label="Cráneo" role="button" tabindex="0" aria-label="Cráneo">
+              <g class="bone-target" data-bone="craneo" data-label="Craneo" role="button" tabindex="0" aria-label="Craneo">
                 <circle cx="180" cy="72" r="44"></circle>
               </g>
-              <g class="bone-target" data-bone="clavicula" data-label="Clavícula" role="button" tabindex="0" aria-label="Clavícula">
+              <g class="bone-target" data-bone="clavicula" data-label="Clavicula" role="button" tabindex="0" aria-label="Clavicula">
                 <path d="M118 168 C150 143 210 143 242 168"></path>
               </g>
-              <g class="bone-target" data-bone="humerus" data-label="Húmero" role="button" tabindex="0" aria-label="Húmero">
+              <g class="bone-target" data-bone="humerus" data-label="Humero" role="button" tabindex="0" aria-label="Humero">
                 <path d="M104 214 C92 276 80 328 62 382"></path>
                 <path d="M256 214 C268 276 280 328 298 382"></path>
               </g>
@@ -196,7 +223,7 @@
               <g class="bone-target" data-bone="pelvis" data-label="Pelvis" role="button" tabindex="0" aria-label="Pelvis">
                 <path d="M124 360 C142 330 218 330 236 360 C226 416 202 445 180 448 C158 445 134 416 124 360Z"></path>
               </g>
-              <g class="bone-target" data-bone="femur" data-label="Fémur" role="button" tabindex="0" aria-label="Fémur">
+              <g class="bone-target" data-bone="femur" data-label="Femur" role="button" tabindex="0" aria-label="Femur">
                 <path d="M145 434 C132 500 126 558 118 632"></path>
                 <path d="M215 434 C228 500 234 558 242 632"></path>
               </g>
@@ -208,38 +235,38 @@
           </div>
           <aside class="anatomy-panel glass" aria-live="polite">
             <span class="eyebrow" id="bone-category">Miembro inferior</span>
-            <h3 id="bone-name">Fémur</h3>
-            <p id="bone-description">Hueso largo del muslo que cumple una función clave en movilidad, soporte de peso y estabilidad estructural.</p>
+            <h3 id="bone-name">Femur</h3>
+            <p id="bone-description">Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.</p>
             <div class="panel-block">
               <h4>Productos relacionados</h4>
               <div id="bone-products"></div>
             </div>
             <div class="panel-block">
-              <h4>Aplicaciones quirúrgicas</h4>
+              <h4>Aplicaciones quirurgicas</h4>
               <ul id="bone-applications"></ul>
             </div>
-            <a class="button glass-button primary full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Solicitar información</a>
+            <a class="button glass-button primary full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Solicitar informacion</span></a>
           </aside>
         </div>
       </section>
 
       <section class="section process-section" id="proceso" aria-labelledby="process-title">
         <div class="section-heading reveal">
-          <span class="eyebrow">Proceso de atención</span>
-          <h2 id="process-title">Una ruta clara entre necesidad clínica y disponibilidad quirúrgica.</h2>
+          <span class="eyebrow">Proceso de atencion</span>
+          <h2 id="process-title">Una ruta clara entre necesidad clinica y disponibilidad quirurgica.</h2>
         </div>
         <div class="process-steps">
-          <article class="step reveal"><span>01</span><h3>Análisis del caso</h3><p>Identificamos zona anatómica, objetivo quirúrgico y requerimientos del especialista.</p></article>
-          <article class="step reveal"><span>02</span><h3>Selección técnica</h3><p>Validamos alternativas de implante, compatibilidad y disponibilidad.</p></article>
-          <article class="step reveal"><span>03</span><h3>Coordinación operativa</h3><p>Preparamos respuesta, entrega y acompañamiento para hospital o equipo médico.</p></article>
-          <article class="step reveal"><span>04</span><h3>Seguimiento</h3><p>Mantenemos trazabilidad y soporte posterior para futuras decisiones clínicas.</p></article>
+          <article class="step reveal"><span>01</span><h3>Analisis del caso</h3><p>Identificamos zona anatomica, objetivo quirurgico y requerimientos del especialista.</p></article>
+          <article class="step reveal"><span>02</span><h3>Seleccion tecnica</h3><p>Validamos alternativas de implante, compatibilidad y disponibilidad.</p></article>
+          <article class="step reveal"><span>03</span><h3>Coordinacion operativa</h3><p>Preparamos respuesta, entrega y acompanamiento para hospital o equipo medico.</p></article>
+          <article class="step reveal"><span>04</span><h3>Seguimiento</h3><p>Mantenemos trazabilidad y soporte posterior para futuras decisiones clinicas.</p></article>
         </div>
       </section>
 
       <section class="news-section" id="actualidad" aria-labelledby="news-title">
         <div class="section-heading reveal">
-          <span class="eyebrow">Actualidad médica</span>
-          <h2 id="news-title">Referencias clínicas sobre prótesis internas, trauma e innovación quirúrgica.</h2>
+          <span class="eyebrow">Actualidad medica</span>
+          <h2 id="news-title">Referencias clinicas sobre protesis internas, trauma e innovacion quirurgica.</h2>
         </div>
         <div class="news-carousel" data-news-carousel aria-live="polite"></div>
       </section>
@@ -247,11 +274,11 @@
       <section class="section differentials-section" aria-labelledby="diff-title">
         <div class="section-heading reveal">
           <span class="eyebrow">Diferenciales de BET</span>
-          <h2 id="diff-title">Especialización, rapidez y criterio clínico en una sola experiencia.</h2>
+          <h2 id="diff-title">Especializacion, rapidez y criterio clinico en una sola experiencia.</h2>
         </div>
         <div class="diff-grid">
-          <div class="diff-item reveal"><strong>Inventario curado</strong><span>Soluciones enfocadas en procedimientos quirúrgicos de alta precisión.</span></div>
-          <div class="diff-item reveal"><strong>Respuesta cercana</strong><span>Comunicación directa con equipos médicos y hospitales.</span></div>
+          <div class="diff-item reveal"><strong>Inventario curado</strong><span>Soluciones enfocadas en procedimientos quirurgicos de alta precision.</span></div>
+          <div class="diff-item reveal"><strong>Respuesta cercana</strong><span>Comunicacion directa con equipos medicos y hospitales.</span></div>
           <div class="diff-item reveal"><strong>Estructura escalable</strong><span>Preparada para conectarse a CMS, base de datos o panel administrativo.</span></div>
         </div>
       </section>
@@ -259,24 +286,24 @@
       <section class="contact-section" id="contacto" aria-labelledby="contact-title">
         <div class="contact-copy reveal">
           <span class="eyebrow">Contacto</span>
-          <h2 id="contact-title">Conversemos sobre la solución adecuada para tu procedimiento.</h2>
-          <p>Comparte los datos del caso, área anatómica y tiempo estimado de intervención. BET puede coordinar información técnica, disponibilidad y seguimiento.</p>
+          <h2 id="contact-title">Conversemos sobre la solucion adecuada para tu procedimiento.</h2>
+          <p>Comparte los datos del caso, area anatomica y tiempo estimado de intervencion. BET puede coordinar informacion tecnica, disponibilidad y seguimiento.</p>
         </div>
         <form class="contact-form glass reveal" novalidate>
           <label>Nombre<input type="text" name="name" autocomplete="name" placeholder="Nombre completo" required></label>
-          <label>Área de interés<select name="area" required><option value="">Selecciona un área</option><option>Fémur / cadera</option><option>Columna</option><option>Trauma y osteosíntesis</option><option>Craneomaxilofacial</option><option>Otra área</option></select></label>
-          <label>Correo o teléfono de contacto<input type="text" name="contact" autocomplete="email" placeholder="correo@institucion.com o teléfono" required></label>
+          <label>Area de interes<select name="area" required><option value="">Selecciona un area</option><option>Femur / cadera</option><option>Columna</option><option>Trauma y osteosintesis</option><option>Craneomaxilofacial</option><option>Otra area</option></select></label>
+          <label>Correo o telefono de contacto<input type="text" name="contact" autocomplete="email" placeholder="correo@institucion.com o telefono" required></label>
           <label>Mensaje<textarea name="message" rows="4" placeholder="Describe brevemente el requerimiento" required></textarea></label>
           <p class="form-status" role="status" aria-live="polite"></p>
-          <button class="button glass-button primary full" type="submit">Enviar solicitud</button>
-          <a class="button glass-button full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+          <button class="button glass-button primary full" type="submit"><span>Enviar solicitud</span></button>
+          <a class="button glass-button full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Contactar por WhatsApp</span></a>
         </form>
       </section>
     </main>
 
     <footer class="site-footer">
       <img src="assets/logo-bet.png" alt="BET" width="110" height="44">
-      <span>© 2026 BODY EDGE TECHNOLOGIES. Todos los derechos reservados.</span>
+      <span>&copy; 2026 BODY EDGE TECHNOLOGIES. Todos los derechos reservados.</span>
     </footer>
 
     <button class="chat-float-btn assistant-toggle" type="button" aria-controls="assistant-panel" aria-expanded="false" aria-label="Asistencia BET" title="Asistencia BET">
@@ -291,17 +318,17 @@
           <span class="eyebrow">Asistencia BET</span>
           <h2 id="assistant-title">Clara</h2>
         </div>
-        <button class="assistant-close" type="button" aria-label="Cerrar chat">×</button>
+        <button class="assistant-close" type="button" aria-label="Cerrar chat">&times;</button>
       </div>
       <div class="assistant-messages" aria-live="polite">
-        <p class="assistant-message bot">Hola, soy Clara, tu asistente personal de BET. Puedo orientarte sobre prótesis internas, áreas anatómicas, disponibilidad, proceso de atención o contacto con nuestro equipo.</p>
+        <p class="assistant-message bot">Hola, soy Clara, tu asistente personal de BET. Puedo orientarte sobre protesis internas, areas anatomicas, disponibilidad, proceso de atencion o contacto con nuestro equipo.</p>
       </div>
       <form class="assistant-form">
         <label for="assistant-input" class="sr-only">Mensaje para asistencia BET</label>
         <input id="assistant-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off">
-        <button class="button glass-button primary" type="submit">Enviar</button>
+        <button class="button glass-button primary" type="submit"><span>Enviar</span></button>
       </form>
-      <a class="button glass-button full assistant-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+      <a class="button glass-button full assistant-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Hablar por WhatsApp</span></a>
     </section>
 
     <script src="scripts/app.js" defer></script>
