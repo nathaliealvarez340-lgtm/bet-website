@@ -1,110 +1,134 @@
 [
   {
     "title": "Implants and Prosthetics",
-    "description": "Información de FDA sobre implantes médicos, materiales, riesgos, permanencia y preguntas clínicas relevantes antes de una intervención.",
+    "description": "Informacion de FDA sobre implantes medicos, materiales, riesgos, permanencia y preguntas clinicas relevantes antes de una intervencion.",
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/medical-devices/products-and-medical-procedures/implants-and-prosthetics",
     "image": "assets/images/implant-system.svg",
-    "imageAlt": "Implante ortopédico interno con estética médica"
+    "imageAlt": "Imagen relacionada con implantes y protesis medicas",
+    "category": "implantes",
+    "fallbackImage": "/assets/newsletter-images/implantes.jpg"
   },
   {
     "title": "General Information about Hip Implants",
-    "description": "Guía de FDA sobre implantes de cadera, superficies de apoyo, factores de longevidad y señales de posible falla del dispositivo.",
+    "description": "Guia de FDA sobre implantes de cadera, superficies de apoyo, factores de longevidad y senales de posible falla del dispositivo.",
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/MedicalDevices/ProductsandMedicalProcedures/ImplantsandProsthetics/MetalonMetalHipImplants/ucm241594.htm",
     "image": "assets/images/implant-system.svg",
-    "imageAlt": "Sistema de implante interno para cadera"
+    "imageAlt": "Imagen relacionada con implantes de cadera",
+    "category": "cadera",
+    "fallbackImage": "/assets/newsletter-images/cadera.jpg"
   },
   {
     "title": "Total Joint Replacement",
-    "description": "Artículo de AAOS sobre reemplazo articular total y componentes protésicos de metal, plástico o cerámica para restaurar movimiento.",
+    "description": "Articulo de AAOS sobre reemplazo articular total y componentes protesicos de metal, plastico o ceramica para restaurar movimiento.",
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/treatment/total-joint-replacement",
     "image": "assets/images/implant-system.svg",
-    "imageAlt": "Prótesis interna para reemplazo articular"
+    "imageAlt": "Imagen relacionada con reemplazo articular total",
+    "category": "ortopedia",
+    "fallbackImage": "/assets/newsletter-images/ortopedia.jpg"
   },
   {
     "title": "Internal Fixation for Fractures",
-    "description": "Referencia de AAOS sobre fijación interna con placas, tornillos, clavos y alambres para estabilización de fracturas.",
+    "description": "Referencia de AAOS sobre fijacion interna con placas, tornillos, clavos y alambres para estabilizacion de fracturas.",
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/treatment/internal-fixation-for-fractures/",
     "image": "assets/images/osteosynthesis-plate.svg",
-    "imageAlt": "Placa quirúrgica y tornillos para fijación interna"
+    "imageAlt": "Imagen relacionada con trauma y fijacion interna",
+    "category": "trauma",
+    "fallbackImage": "/assets/newsletter-images/trauma.jpg"
   },
   {
     "title": "Femur Shaft Fractures (Broken Thighbone)",
-    "description": "Información clínica de AAOS sobre fracturas diafisarias de fémur, clavos intramedulares, placas y tornillos.",
+    "description": "Informacion clinica de AAOS sobre fracturas diafisarias de femur, clavos intramedulares, placas y tornillos.",
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/diseases--conditions/femur-shaft-fractures-broken-thighbone",
     "image": "assets/images/osteosynthesis-plate.svg",
-    "imageAlt": "Sistema de osteosíntesis para fracturas de fémur"
+    "imageAlt": "Imagen relacionada con fracturas de femur y osteosintesis",
+    "category": "trauma",
+    "fallbackImage": "/assets/newsletter-images/trauma.jpg"
   },
   {
     "title": "Clavicle Fracture (Broken Collarbone)",
-    "description": "Recurso de AAOS sobre fractura de clavícula y uso de placas, tornillos o fijación según el patrón de lesión.",
+    "description": "Recurso de AAOS sobre fractura de clavicula y uso de placas, tornillos o fijacion segun el patron de lesion.",
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/diseases--conditions/clavicle-fracture-broken-collarbone",
     "image": "assets/images/osteosynthesis-plate.svg",
-    "imageAlt": "Placa anatómica y tornillos para clavícula"
+    "imageAlt": "Imagen relacionada con trauma de clavicula",
+    "category": "trauma",
+    "fallbackImage": "/assets/newsletter-images/trauma.jpg"
   },
   {
     "title": "Hip Fractures",
-    "description": "Referencia AAOS sobre fracturas de cadera y opciones quirúrgicas como tornillos, placas, clavos intramedulares y reemplazo.",
+    "description": "Referencia AAOS sobre fracturas de cadera y opciones quirurgicas como tornillos, placas, clavos intramedulares y reemplazo.",
     "source": "AAOS OrthoInfo",
     "date": "Consultado 2026-05-02",
     "url": "https://orthoinfo.aaos.org/en/diseases--conditions/hip-fractures",
     "image": "assets/images/surgical-instruments.svg",
-    "imageAlt": "Instrumental quirúrgico e implantes para trauma de cadera"
+    "imageAlt": "Imagen relacionada con fracturas de cadera",
+    "category": "cadera",
+    "fallbackImage": "/assets/newsletter-images/cadera.jpg"
   },
   {
     "title": "Medical Applications of 3D Printing",
-    "description": "FDA explica aplicaciones de manufactura aditiva en dispositivos médicos, incluidos implantes craneales, cadera e instrumentos.",
+    "description": "FDA explica aplicaciones de manufactura aditiva en dispositivos medicos, incluidos implantes craneales, cadera e instrumentos.",
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/MedicalDevices/ProductsandMedicalProcedures/3DPrintingofMedicalDevices/ucm500539.htm",
     "image": "assets/images/surgical-instruments.svg",
-    "imageAlt": "Instrumental quirúrgico e innovación en dispositivos médicos"
+    "imageAlt": "Imagen relacionada con innovacion medica e impresion 3D",
+    "category": "innovacion",
+    "fallbackImage": "/assets/newsletter-images/innovacion-medica.jpg"
   },
   {
     "title": "Process of 3D Printing Medical Devices",
-    "description": "FDA describe procesos, materiales y consideraciones regulatorias para dispositivos médicos producidos con impresión 3D.",
+    "description": "FDA describe procesos, materiales y consideraciones regulatorias para dispositivos medicos producidos con impresion 3D.",
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/medical-devices/3d-printing-medical-devices/process-3d-printing-medical-devices",
     "image": "assets/images/surgical-instruments.svg",
-    "imageAlt": "Proceso de manufactura médica e implantes"
+    "imageAlt": "Imagen relacionada con manufactura e innovacion medica",
+    "category": "innovacion",
+    "fallbackImage": "/assets/newsletter-images/innovacion-medica.jpg"
   },
   {
     "title": "Hip Replacement Surgery",
-    "description": "Johns Hopkins Medicine resume la cirugía de reemplazo de cadera y el uso de implantes artificiales para sustituir partes del tejido articular.",
+    "description": "Johns Hopkins Medicine resume la cirugia de reemplazo de cadera y el uso de implantes artificiales para sustituir partes del tejido articular.",
     "source": "Johns Hopkins Medicine",
     "date": "Consultado 2026-05-02",
     "url": "https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/hip-replacement-surgery",
     "image": "assets/images/implant-system.svg",
-    "imageAlt": "Prótesis interna de cadera"
+    "imageAlt": "Imagen relacionada con cirugia de reemplazo de cadera",
+    "category": "cadera",
+    "fallbackImage": "/assets/newsletter-images/cadera.jpg"
   },
   {
     "title": "Hip replacement",
-    "description": "Mayo Clinic explica el reemplazo de cadera, la prótesis articular y el objetivo de reducir dolor y mejorar función.",
+    "description": "Mayo Clinic explica el reemplazo de cadera, la protesis articular y el objetivo de reducir dolor y mejorar funcion.",
     "source": "Mayo Clinic",
     "date": "Consultado 2026-05-02",
     "url": "https://www.mayoclinic.org/tests-procedures/hip-replacement/about/pac-20385042",
     "image": "assets/images/implant-system.svg",
-    "imageAlt": "Implante interno para reemplazo de cadera"
+    "imageAlt": "Imagen relacionada con implante interno para reemplazo de cadera",
+    "category": "cadera",
+    "fallbackImage": "/assets/newsletter-images/cadera.jpg"
   },
   {
     "title": "Orthopedic Devices Program: Research on Orthopedic Medical Devices",
-    "description": "FDA describe investigación regulatoria sobre dispositivos ortopédicos, implantes e instrumentos quirúrgicos asociados.",
+    "description": "FDA describe investigacion regulatoria sobre dispositivos ortopedicos, implantes e instrumentos quirurgicos asociados.",
     "source": "FDA",
     "date": "Consultado 2026-05-02",
     "url": "https://www.fda.gov/medical-devices/medical-device-regulatory-science-research-programs-conducted-osel/orthopedic-devices-program-research-orthopedic-medical-devices",
     "image": "assets/images/surgical-instruments.svg",
-    "imageAlt": "Investigación en dispositivos médicos ortopédicos"
+    "imageAlt": "Imagen relacionada con regulacion e investigacion en dispositivos ortopedicos",
+    "category": "regulacion",
+    "fallbackImage": "/assets/newsletter-images/regulacion-medica.jpg"
   }
 ]

@@ -28,6 +28,25 @@ document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
 
 let newsletterArticles = [];
 
+const fallbackImages = {
+  cadera: "/assets/newsletter-images/cadera.jpg",
+  trauma: "/assets/newsletter-images/trauma.jpg",
+  implantes: "/assets/newsletter-images/implantes.jpg",
+  ortopedia: "/assets/newsletter-images/ortopedia.jpg",
+  innovacion: "/assets/newsletter-images/innovacion-medica.jpg",
+  regulacion: "/assets/newsletter-images/regulacion-medica.jpg",
+  default: "/assets/newsletter-images/default-medical.jpg",
+};
+
+function getArticleImage(article) {
+  return (
+    article.image ||
+    article.fallbackImage ||
+    fallbackImages[article.category] ||
+    fallbackImages.default
+  );
+}
+
 document.querySelectorAll("[data-spline-scene]").forEach((scene) => {
   const viewer = scene.querySelector("spline-viewer");
   const markReady = () => scene.classList.add("is-ready");
@@ -91,10 +110,13 @@ function renderNewsArticles(articles) {
 
   const validArticles = articles.filter((article) => article.url && /^https?:\/\//.test(article.url));
   const cards = validArticles
-    .map(
-      (article) => `
+    .map((article) => {
+      const image = getArticleImage(article);
+      const imageAlt = article.imageAlt || `Imagen medica relacionada con ${article.category || "BET"}`;
+
+      return `
         <article class="news-card glass">
-          <img src="${escapeHtml(article.image || "assets/images/implant-system.svg")}" alt="${escapeHtml(article.imageAlt || article.title)}" loading="lazy">
+          <img src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${escapeHtml(fallbackImages.default)}';">
           <div>
             <span>${escapeHtml(article.source)} · ${escapeHtml(article.date)}</span>
             <h3>${escapeHtml(article.title)}</h3>
@@ -102,8 +124,8 @@ function renderNewsArticles(articles) {
           </div>
           <a class="button glass-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><span>Ver mas</span></a>
         </article>
-      `
-    )
+      `;
+    })
     .join("");
 
   carousel.innerHTML = cards ? `<div class="news-track">${cards}${cards}</div>` : "";
