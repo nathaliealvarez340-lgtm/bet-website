@@ -1,6 +1,66 @@
 const WHATSAPP_NUMBER = "525520810867";
 const WHATSAPP_MESSAGE = "Hola, me interesa uno de sus productos. Podrian darme mas detalles y precios?";
 const WHATSAPP_URL = "https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F";
+const HERO_ROTATION_MS = 4000;
+
+const translations = {
+  es: {
+    navEnfoque: "Enfoque",
+    navExplorador: "Explorador",
+    navProceso: "Proceso",
+    navContacto: "Contacto",
+    whatsapp: "WhatsApp",
+    heroKicker: "Precisión quirúrgica | Prótesis internas | Respaldo clínico",
+    heroPhrases: [
+      {
+        lines: ["HAY HISTORIAS QUE", "MERECEN SEGUIR"],
+        highlight: "AVANZANDO",
+      },
+      {
+        lines: ["NUEVAS POSIBILIDADES"],
+        highlight: "COMIENZAN AQUÍ",
+      },
+    ],
+    benefits: [
+      "Prótesis de máxima calidad certificada",
+      "Atención personalizada y seguimiento",
+      "Tecnología de vanguardia en prótesis",
+    ],
+    contactTitle: "Conversemos sobre la solución adecuada para tu procedimiento.",
+    contactCopy: "Comparte los datos del caso, área anatómica y tiempo estimado de intervención. BET puede coordinar información técnica, disponibilidad y seguimiento.",
+    submitRequest: "Enviar solicitud",
+    preparingRequest: "Preparando solicitud",
+    contactWhatsapp: "Contactar por WhatsApp",
+  },
+  en: {
+    navEnfoque: "Approach",
+    navExplorador: "Explorer",
+    navProceso: "Process",
+    navContacto: "Contact",
+    whatsapp: "WhatsApp",
+    heroKicker: "Surgical precision | Internal prosthetics | Clinical support",
+    heroPhrases: [
+      {
+        lines: ["SOME STORIES DESERVE", "TO KEEP MOVING"],
+        highlight: "FORWARD",
+      },
+      {
+        lines: ["NEW POSSIBILITIES"],
+        highlight: "BEGIN HERE",
+      },
+    ],
+    benefits: [
+      "Certified high-quality prosthetics",
+      "Personalized care and follow-up",
+      "Advanced technology in prosthetics",
+    ],
+    contactTitle: "Let's discuss the right solution for your procedure.",
+    contactCopy: "Share the case details, anatomical area and estimated timing. BET can coordinate technical information, availability and follow-up.",
+    submitRequest: "Send request",
+    preparingRequest: "Preparing request",
+    contactWhatsapp: "Contact via WhatsApp",
+  },
+};
 
 const escapeHtml = (value = "") =>
   String(value)
@@ -16,6 +76,22 @@ const normalizeText = (value = "") =>
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 
+function getStoredLanguage() {
+  try {
+    return localStorage.getItem("bet-language");
+  } catch {
+    return null;
+  }
+}
+
+function storeLanguage(language) {
+  try {
+    localStorage.setItem("bet-language", language);
+  } catch {
+    // Language still works for the current session if storage is unavailable.
+  }
+}
+
 function createWhatsAppUrl(message = WHATSAPP_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
@@ -27,6 +103,116 @@ document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
 });
 
 let newsletterArticles = [];
+const storedLanguage = getStoredLanguage();
+let currentLanguage = translations[storedLanguage] ? storedLanguage : "es";
+let currentHeroPhraseIndex = 0;
+let heroIntervalId;
+let heroTransitionTimeout;
+
+const heroTitle = document.querySelector(".hero-title");
+const heroTitleLines = document.querySelector(".hero-title-lines");
+const heroTitleHighlight = document.querySelector(".hero-title-highlight");
+const languageSwitcher = document.querySelector("[data-language-switcher]");
+const languageToggle = document.querySelector(".language-toggle");
+const languageMenu = document.querySelector(".language-menu");
+
+function renderHeroPhrase(phrase, animate = true) {
+  if (!heroTitle || !heroTitleLines || !heroTitleHighlight) return;
+  window.clearTimeout(heroTransitionTimeout);
+
+  const updateTitle = () => {
+    heroTitleLines.replaceChildren(
+      ...phrase.lines.map((line) => {
+        const span = document.createElement("span");
+        span.textContent = line;
+        return span;
+      })
+    );
+    heroTitleHighlight.textContent = phrase.highlight;
+    heroTitle.setAttribute("aria-label", [...phrase.lines, phrase.highlight].join(" "));
+    heroTitle.classList.remove("is-changing");
+  };
+
+  if (!animate) {
+    updateTitle();
+    return;
+  }
+
+  heroTitle.classList.add("is-changing");
+  heroTransitionTimeout = window.setTimeout(updateTitle, 280);
+}
+
+function updateLanguageButtons(language) {
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    const isActive = button.dataset.lang === language;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function closeLanguageMenu() {
+  if (!languageMenu || !languageToggle) return;
+  languageMenu.hidden = true;
+  languageToggle.setAttribute("aria-expanded", "false");
+}
+
+function applyLanguage(language) {
+  const dictionary = translations[language] || translations.es;
+  currentLanguage = translations[language] ? language : "es";
+  document.documentElement.lang = currentLanguage;
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    if (dictionary[key]) element.textContent = dictionary[key];
+  });
+
+  dictionary.benefits.forEach((benefit, index) => {
+    const key = ["benefitOne", "benefitTwo", "benefitThree"][index];
+    const element = document.querySelector(`[data-i18n="${key}"]`);
+    if (element) element.textContent = benefit;
+  });
+
+  currentHeroPhraseIndex = 0;
+  renderHeroPhrase(dictionary.heroPhrases[currentHeroPhraseIndex], false);
+  updateLanguageButtons(currentLanguage);
+  storeLanguage(currentLanguage);
+}
+
+function startHeroRotation() {
+  if (!heroTitle) return;
+  window.clearInterval(heroIntervalId);
+  heroIntervalId = window.setInterval(() => {
+    const phrases = translations[currentLanguage].heroPhrases;
+    currentHeroPhraseIndex = (currentHeroPhraseIndex + 1) % phrases.length;
+    renderHeroPhrase(phrases[currentHeroPhraseIndex]);
+  }, HERO_ROTATION_MS);
+}
+
+languageToggle?.addEventListener("click", () => {
+  const isOpen = languageMenu && !languageMenu.hidden;
+  if (!languageMenu) return;
+  languageMenu.hidden = isOpen;
+  languageToggle.setAttribute("aria-expanded", String(!isOpen));
+});
+
+languageMenu?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-lang]");
+  if (!button) return;
+  applyLanguage(button.dataset.lang);
+  closeLanguageMenu();
+});
+
+document.addEventListener("click", (event) => {
+  if (!languageSwitcher || languageSwitcher.contains(event.target)) return;
+  closeLanguageMenu();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeLanguageMenu();
+});
+
+applyLanguage(currentLanguage);
+startHeroRotation();
 
 const fallbackImages = {
   cadera: "/assets/newsletter-images/cadera.jpg",
@@ -372,7 +558,7 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   whatsappLink.href = createWhatsAppUrl(message);
 
   submitButton.disabled = true;
-  if (submitLabel) submitLabel.textContent = "Preparando solicitud";
+  if (submitLabel) submitLabel.textContent = translations[currentLanguage].preparingRequest;
   status.textContent = "Intentando enviar la solicitud. Si el correo no esta disponible, abriremos WhatsApp.";
   status.className = "form-status";
 
@@ -395,7 +581,7 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
     })
     .finally(() => {
       submitButton.disabled = false;
-      if (submitLabel) submitLabel.textContent = "Enviar solicitud";
+      if (submitLabel) submitLabel.textContent = translations[currentLanguage].submitRequest;
     });
 });
 
