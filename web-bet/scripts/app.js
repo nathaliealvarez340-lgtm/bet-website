@@ -11,13 +11,14 @@ const translations = {
     navContacto: "Contacto",
     whatsapp: "WhatsApp",
     heroKicker: "Precisión quirúrgica | Prótesis internas | Respaldo clínico",
+    heroMicrocopy: "Soluciones internas dise\u00f1adas para respaldar decisiones m\u00e9dicas cr\u00edticas.",
     heroPhrases: [
       {
         lines: ["HAY HISTORIAS QUE", "MERECEN SEGUIR"],
         highlight: "AVANZANDO",
       },
       {
-        lines: ["NUEVAS POSIBILIDADES"],
+        lines: ["NUEVAS", "POSIBILIDADES"],
         highlight: "COMIENZAN AQUÍ",
       },
     ],
@@ -39,13 +40,14 @@ const translations = {
     navContacto: "Contact",
     whatsapp: "WhatsApp",
     heroKicker: "Surgical precision | Internal prosthetics | Clinical support",
+    heroMicrocopy: "Internal solutions designed to support critical medical decisions.",
     heroPhrases: [
       {
         lines: ["SOME STORIES DESERVE", "TO KEEP MOVING"],
         highlight: "FORWARD",
       },
       {
-        lines: ["NEW POSSIBILITIES"],
+        lines: ["NEW", "POSSIBILITIES"],
         highlight: "BEGIN HERE",
       },
     ],
