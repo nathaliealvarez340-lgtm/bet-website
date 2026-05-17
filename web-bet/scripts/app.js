@@ -276,7 +276,7 @@ function applyLanguage(language) {
 }
 
 function startHeroRotation() {
-  if (!heroTitle) return;
+  if (!heroTitle || !heroTitleLines || !heroTitleHighlight) return;
   window.clearInterval(heroIntervalId);
   heroIntervalId = window.setInterval(() => {
     const phrases = translations[currentLanguage].heroEditorialPhrases || translations[currentLanguage].heroPhrases;
@@ -542,13 +542,19 @@ const criteriaPrev = document.querySelector(".criteria-prev");
 const criteriaNext = document.querySelector(".criteria-next");
 let activeCriterionIndex = 0;
 
+function formatCriteriaTitle(title) {
+  const words = String(title).trim().split(/\s+/).filter(Boolean);
+  if (words.length === 2) return `${escapeHtml(words[0])}<br>${escapeHtml(words[1])}`;
+  return escapeHtml(title);
+}
+
 function renderCriterion(index, animate = true) {
   const item = criteriaItems[index];
   if (!item || !criteriaCard || !criteriaNumber || !criteriaTitle || !criteriaDescription) return;
 
   const updateCriterion = () => {
     criteriaNumber.textContent = item.number;
-    criteriaTitle.textContent = item.title;
+    criteriaTitle.innerHTML = formatCriteriaTitle(item.title);
     criteriaDescription.textContent = item.description;
     criteriaCard.setAttribute("aria-label", `${item.number}. ${item.title}. ${item.description}`);
     criteriaCard.classList.remove("is-changing");
