@@ -245,13 +245,19 @@ applyLanguage(currentLanguage);
 startHeroRotation();
 
 const fallbackImages = {
-  cadera: "/assets/newsletter-images/cadera.jpg",
-  trauma: "/assets/newsletter-images/trauma.jpg",
-  implantes: "/assets/newsletter-images/implantes.jpg",
-  ortopedia: "/assets/newsletter-images/ortopedia.jpg",
-  innovacion: "/assets/newsletter-images/innovacion-medica.jpg",
-  regulacion: "/assets/newsletter-images/regulacion-medica.jpg",
-  default: "/assets/newsletter-images/default-medical.jpg",
+  CADERA: "assets/newsletter/fractura_cadera.webp",
+  RODILLA: "assets/newsletter/nuevas_superficies.webp",
+  TRAUMA: "assets/newsletter/placas.webp",
+  INVESTIGACION: "assets/newsletter/impresion.webp",
+  INVESTIGACIÓN: "assets/newsletter/impresion.webp",
+  NOVEDADES: "assets/newsletter/actualizacion.webp",
+  cadera: "assets/newsletter/fractura_cadera.webp",
+  trauma: "assets/newsletter/placas.webp",
+  implantes: "assets/newsletter/nuevas_superficies.webp",
+  ortopedia: "assets/newsletter/nuevas_superficies.webp",
+  innovacion: "assets/newsletter/impresion.webp",
+  regulacion: "assets/newsletter/actualizacion.webp",
+  default: "assets/newsletter/actualizacion.webp",
 };
 
 function getArticleImage(article) {
@@ -329,22 +335,23 @@ function renderNewsArticles(articles) {
     .map((article) => {
       const image = getArticleImage(article);
       const imageAlt = article.imageAlt || `Imagen medica relacionada con ${article.category || "BET"}`;
+      const category = article.category || "BET";
 
       return `
-        <article class="news-card glass">
+        <article class="news-card">
           <img src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${escapeHtml(fallbackImages.default)}';">
-          <div>
-            <span>${escapeHtml(article.source)} · ${escapeHtml(article.date)}</span>
+          <div class="news-card-body">
+            <span class="news-category">${escapeHtml(category)}</span>
             <h3>${escapeHtml(article.title)}</h3>
             <p>${escapeHtml(article.description)}</p>
+            <a class="news-link" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><span>Leer m&aacute;s</span><span aria-hidden="true">&rarr;</span></a>
           </div>
-          <a class="button glass-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><span>Ver mas</span></a>
         </article>
       `;
     })
     .join("");
 
-  carousel.innerHTML = cards ? `<div class="news-track">${cards}${cards}</div>` : "";
+  carousel.innerHTML = cards ? `<div class="news-track">${cards}</div>` : "";
 }
 
 function renderBone(boneId) {
