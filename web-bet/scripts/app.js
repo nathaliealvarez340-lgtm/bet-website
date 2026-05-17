@@ -5,12 +5,26 @@ const HERO_ROTATION_MS = 4000;
 
 const translations = {
   es: {
-    navEnfoque: "Enfoque",
-    navExplorador: "Explorador",
-    navProceso: "Proceso",
+    navEnfoque: "Productos",
+    navExplorador: "Soluciones",
+    navProceso: "Nosotros",
+    navEducacion: "Educaci\u00f3n",
     navContacto: "Contacto",
     whatsapp: "WhatsApp",
-    heroKicker: "Precisión quirúrgica | Prótesis internas | Respaldo clínico",
+    heroKicker: "TECNOLOG\u00cdA ORTOP\u00c9DICA AVANZADA",
+    heroTitleLineOne: "Precisi\u00f3n que",
+    heroTitleLineTwo: "transforma",
+    heroTitleAccentOne: "movilidad en",
+    heroTitleAccentTwo: "confianza.",
+    heroSubtitle: "Pr\u00f3tesis internas y soluciones ortop\u00e9dicas dise\u00f1adas para precisi\u00f3n, confianza y recuperaci\u00f3n duradera.",
+    heroProductsCta: "Explorar productos",
+    heroAdvisorCta: "Hablar con un asesor",
+    heroStatOneValue: "+500",
+    heroStatOneLabel: "procedimientos atendidos",
+    heroStatTwoValue: "Materiales",
+    heroStatTwoLabel: "certificados internacionalmente",
+    heroStatThreeValue: "Atenci\u00f3n",
+    heroStatThreeLabel: "especializada",
     heroMicrocopy: "Soluciones internas dise\u00f1adas para respaldar decisiones m\u00e9dicas cr\u00edticas.",
     heroPhrases: [
       {
@@ -34,12 +48,26 @@ const translations = {
     contactWhatsapp: "Contactar por WhatsApp",
   },
   en: {
-    navEnfoque: "Approach",
-    navExplorador: "Explorer",
-    navProceso: "Process",
+    navEnfoque: "Products",
+    navExplorador: "Solutions",
+    navProceso: "About",
+    navEducacion: "Education",
     navContacto: "Contact",
     whatsapp: "WhatsApp",
-    heroKicker: "Surgical precision | Internal prosthetics | Clinical support",
+    heroKicker: "ADVANCED ORTHOPEDIC TECHNOLOGY",
+    heroTitleLineOne: "Precision that",
+    heroTitleLineTwo: "turns",
+    heroTitleAccentOne: "mobility into",
+    heroTitleAccentTwo: "confidence.",
+    heroSubtitle: "Internal prosthetics and orthopedic solutions designed for precision, confidence and lasting recovery.",
+    heroProductsCta: "Explore products",
+    heroAdvisorCta: "Talk to an advisor",
+    heroStatOneValue: "+500",
+    heroStatOneLabel: "procedures supported",
+    heroStatTwoValue: "Materials",
+    heroStatTwoLabel: "internationally certified",
+    heroStatThreeValue: "Care",
+    heroStatThreeLabel: "specialized",
     heroMicrocopy: "Internal solutions designed to support critical medical decisions.",
     heroPhrases: [
       {
@@ -181,7 +209,7 @@ function applyLanguage(language) {
 }
 
 function startHeroRotation() {
-  if (!heroTitle) return;
+  if (!heroTitle || !heroTitleLines || !heroTitleHighlight) return;
   window.clearInterval(heroIntervalId);
   heroIntervalId = window.setInterval(() => {
     const phrases = translations[currentLanguage].heroPhrases;
