@@ -1,7 +1,7 @@
 const WHATSAPP_NUMBER = "525520810867";
 const WHATSAPP_MESSAGE = "Hola, me interesa uno de sus productos. Podrian darme mas detalles y precios?";
 const WHATSAPP_URL = "https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F";
-const HERO_ROTATION_MS = 4000;
+const HERO_ROTATION_MS = 5000;
 
 const translations = {
   es: {
@@ -16,6 +16,24 @@ const translations = {
     heroTitleLineTwo: "transforma",
     heroTitleAccentOne: "movilidad en",
     heroTitleAccentTwo: "confianza.",
+    heroEditorialPhrases: [
+      {
+        lines: [
+          { text: "Precisi\u00f3n" },
+          { text: "que transforma" },
+          { text: "movilidad en", accent: true },
+          { text: "confianza.", accent: true },
+        ],
+      },
+      {
+        lines: [
+          { text: "Historias que" },
+          { text: "merecen seguir" },
+          { text: "avanzando.", accent: true },
+        ],
+        isAlt: true,
+      },
+    ],
     heroSubtitle: "Pr\u00f3tesis internas y soluciones ortop\u00e9dicas dise\u00f1adas para precisi\u00f3n, confianza y recuperaci\u00f3n duradera.",
     heroProductsCta: "Explorar productos",
     heroAdvisorCta: "Hablar con un asesor",
@@ -59,6 +77,24 @@ const translations = {
     heroTitleLineTwo: "turns",
     heroTitleAccentOne: "mobility into",
     heroTitleAccentTwo: "confidence.",
+    heroEditorialPhrases: [
+      {
+        lines: [
+          { text: "Precision" },
+          { text: "that turns" },
+          { text: "mobility into", accent: true },
+          { text: "confidence.", accent: true },
+        ],
+      },
+      {
+        lines: [
+          { text: "Stories that" },
+          { text: "deserve to keep" },
+          { text: "moving forward.", accent: true },
+        ],
+        isAlt: true,
+      },
+    ],
     heroSubtitle: "Internal prosthetics and orthopedic solutions designed for precision, confidence and lasting recovery.",
     heroProductsCta: "Explore products",
     heroAdvisorCta: "Talk to an advisor",
@@ -172,6 +208,33 @@ function renderHeroPhrase(phrase, animate = true) {
   heroTransitionTimeout = window.setTimeout(updateTitle, 280);
 }
 
+function renderEditorialHeroPhrase(phrase, animate = true) {
+  if (!heroTitle || !phrase?.lines || heroTitleLines || heroTitleHighlight) return;
+  window.clearTimeout(heroTransitionTimeout);
+
+  const updateTitle = () => {
+    heroTitle.replaceChildren(
+      ...phrase.lines.map((line) => {
+        const span = document.createElement("span");
+        span.className = `line${line.accent ? " hero-accent" : ""}`;
+        span.textContent = line.text;
+        return span;
+      })
+    );
+    heroTitle.classList.toggle("is-alt", Boolean(phrase.isAlt));
+    heroTitle.setAttribute("aria-label", phrase.lines.map((line) => line.text).join(" "));
+    heroTitle.classList.remove("is-changing");
+  };
+
+  if (!animate) {
+    updateTitle();
+    return;
+  }
+
+  heroTitle.classList.add("is-changing");
+  heroTransitionTimeout = window.setTimeout(updateTitle, 280);
+}
+
 function updateLanguageButtons(language) {
   document.querySelectorAll("[data-lang]").forEach((button) => {
     const isActive = button.dataset.lang === language;
@@ -203,18 +266,26 @@ function applyLanguage(language) {
   });
 
   currentHeroPhraseIndex = 0;
-  renderHeroPhrase(dictionary.heroPhrases[currentHeroPhraseIndex], false);
+  if (dictionary.heroEditorialPhrases) {
+    renderEditorialHeroPhrase(dictionary.heroEditorialPhrases[currentHeroPhraseIndex], false);
+  } else {
+    renderHeroPhrase(dictionary.heroPhrases[currentHeroPhraseIndex], false);
+  }
   updateLanguageButtons(currentLanguage);
   storeLanguage(currentLanguage);
 }
 
 function startHeroRotation() {
-  if (!heroTitle || !heroTitleLines || !heroTitleHighlight) return;
+  if (!heroTitle) return;
   window.clearInterval(heroIntervalId);
   heroIntervalId = window.setInterval(() => {
-    const phrases = translations[currentLanguage].heroPhrases;
+    const phrases = translations[currentLanguage].heroEditorialPhrases || translations[currentLanguage].heroPhrases;
     currentHeroPhraseIndex = (currentHeroPhraseIndex + 1) % phrases.length;
-    renderHeroPhrase(phrases[currentHeroPhraseIndex]);
+    if (translations[currentLanguage].heroEditorialPhrases) {
+      renderEditorialHeroPhrase(phrases[currentHeroPhraseIndex]);
+    } else {
+      renderHeroPhrase(phrases[currentHeroPhraseIndex]);
+    }
   }, HERO_ROTATION_MS);
 }
 
@@ -351,7 +422,7 @@ function renderNewsArticles(articles) {
     })
     .join("");
 
-  carousel.innerHTML = cards ? `<div class="news-track">${cards}</div>` : "";
+  carousel.innerHTML = cards ? `<div class="news-track">${cards}${cards}</div>` : "";
 }
 
 function renderBone(boneId) {
@@ -435,6 +506,75 @@ valueAccordion?.addEventListener("click", (event) => {
   setActiveValuePanel(panel.dataset.valuePanel);
 });
 
+const criteriaItems = [
+  {
+    number: "01",
+    title: "Precisi\u00f3n cl\u00ednica",
+    description: "Cada soluci\u00f3n responde a requerimientos m\u00e9dicos espec\u00edficos, no a inventario gen\u00e9rico.",
+  },
+  {
+    number: "02",
+    title: "Confiabilidad",
+    description: "Disponibilidad y calidad en momentos donde el margen de error no existe.",
+  },
+  {
+    number: "03",
+    title: "Especializaci\u00f3n",
+    description: "Enfoque profundo en pr\u00f3tesis internas y soluciones quir\u00fargicas.",
+  },
+  {
+    number: "04",
+    title: "Respaldo profesional",
+    description: "Acompa\u00f1amiento a m\u00e9dicos y hospitales en la toma de decisiones.",
+  },
+  {
+    number: "05",
+    title: "Eficiencia operativa",
+    description: "Respuesta r\u00e1pida, procesos claros y entrega oportuna.",
+  },
+];
+
+const criteriaCard = document.querySelector(".criteria-card");
+const criteriaNumber = document.querySelector(".criteria-number");
+const criteriaTitle = document.querySelector(".criteria-content h3");
+const criteriaDescription = document.querySelector(".criteria-content p");
+const criteriaPrev = document.querySelector(".criteria-prev");
+const criteriaNext = document.querySelector(".criteria-next");
+let activeCriterionIndex = 0;
+
+function renderCriterion(index, animate = true) {
+  const item = criteriaItems[index];
+  if (!item || !criteriaCard || !criteriaNumber || !criteriaTitle || !criteriaDescription) return;
+
+  const updateCriterion = () => {
+    criteriaNumber.textContent = item.number;
+    criteriaTitle.textContent = item.title;
+    criteriaDescription.textContent = item.description;
+    criteriaCard.setAttribute("aria-label", `${item.number}. ${item.title}. ${item.description}`);
+    criteriaCard.classList.remove("is-changing");
+  };
+
+  if (!animate) {
+    updateCriterion();
+    return;
+  }
+
+  criteriaCard.classList.add("is-changing");
+  window.setTimeout(updateCriterion, 180);
+}
+
+criteriaPrev?.addEventListener("click", () => {
+  activeCriterionIndex = (activeCriterionIndex - 1 + criteriaItems.length) % criteriaItems.length;
+  renderCriterion(activeCriterionIndex);
+});
+
+criteriaNext?.addEventListener("click", () => {
+  activeCriterionIndex = (activeCriterionIndex + 1) % criteriaItems.length;
+  renderCriterion(activeCriterionIndex);
+});
+
+renderCriterion(activeCriterionIndex, false);
+
 const siteSections = [
   {
     title: "Soluciones medicas",
@@ -457,7 +597,7 @@ const siteSections = [
   {
     title: "Valores BET",
     description: "Precision clinica, confiabilidad, especializacion, respaldo profesional y eficiencia operativa.",
-    target: ".values-section",
+    target: "#criterios",
     keywords: "valores precision confiabilidad especializacion respaldo eficiencia",
   },
   {
