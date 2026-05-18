@@ -13,6 +13,8 @@
   --deep: #0f2f35;
   --shadow: 0 24px 70px rgba(34, 34, 34, 0.12);
   --soft-shadow: 0 14px 42px rgba(22, 147, 165, 0.13);
+  --page-x: clamp(2.5rem, 5vw, 5rem);
+  --page-max: 1380px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -28,11 +30,13 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: "Poppins", sans-serif;
-  background:
-    radial-gradient(circle at 84% 10%, rgba(126, 206, 202, 0.28), transparent 28rem),
-    radial-gradient(circle at 12% 36%, rgba(69, 181, 196, 0.12), transparent 24rem),
-    linear-gradient(180deg, #f8fcfc 0%, #ffffff 42%, #f2fbfb 100%);
+  background: #ffffff;
   overflow-x: hidden;
+}
+
+main,
+section {
+  background-color: #ffffff;
 }
 
 a {
@@ -3744,16 +3748,41 @@ h2,
 
 .section-inner,
 .section-header,
-.section-heading,
-.criteria-header,
-.criteria-layout,
+.hero-shell,
 .news-header,
-.value-section,
-.process-section {
-  width: min(92%, 1280px);
+.contact-layout {
+  width: calc(100% - (var(--page-x) * 2));
+  max-width: var(--page-max);
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+}
+
+.section-heading,
+.criteria-header,
+.criteria-layout {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.hero,
+.hero-editorial,
+.criteria-section,
+.anatomy-section,
+.section {
+  background: #ffffff;
+}
+
+.hero-editorial::before,
+.hero-spline-background::after {
+  display: none;
+}
+
+.hero-spline-background {
+  background: #ffffff;
 }
 
 .section-header h2,
@@ -3767,25 +3796,13 @@ h2,
   margin-left: 0;
 }
 
-@media (min-width: 1024px) {
-  .section-inner,
-  .section-header,
-  .section-heading,
-  .criteria-header,
-  .criteria-layout,
-  .news-header,
-  .value-section,
-  .process-section {
-    width: min(86%, 1280px);
-  }
-}
-
 .hero-shell {
-  width: min(92%, 1280px);
+  width: calc(100% - (var(--page-x) * 2));
+  max-width: 1380px;
   min-height: 100svh;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(520px, 0.92fr) minmax(420px, 1.08fr);
+  grid-template-columns: minmax(520px, 0.9fr) minmax(420px, 1.1fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 6rem);
   padding-top: 5.5rem;
@@ -3794,7 +3811,7 @@ h2,
 .hero-editorial .hero-copy {
   justify-self: start;
   max-width: 680px;
-  margin-left: clamp(0rem, 1.5vw, 2rem);
+  margin-left: 0 !important;
 }
 
 .hero-editorial .hero-title {
@@ -3893,8 +3910,12 @@ h2,
 }
 
 @media (max-width: 768px) {
+  :root {
+    --page-x: 1.25rem;
+  }
+
   .hero-shell {
-    width: calc(100% - 2rem);
+    width: calc(100% - (var(--page-x) * 2));
     min-height: auto;
     padding-top: 6.5rem;
   }
@@ -3928,9 +3949,9 @@ h2,
   background:
     linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.92) 0%,
-      rgba(255, 255, 255, 0.78) 42%,
-      rgba(255, 255, 255, 0.64) 100%
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.82) 38%,
+      rgba(255, 255, 255, 0.72) 100%
     ),
     url("assets/images/formulario.webp") center center / cover no-repeat;
 }
@@ -3940,19 +3961,18 @@ h2,
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(circle at 68% 50%, rgba(46, 146, 200, 0.16), transparent 38%),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.7));
+  background: rgba(255, 255, 255, 0.18);
   pointer-events: none;
 }
 
 .contact-layout {
   position: relative;
   z-index: 2;
-  width: min(92%, 1380px);
+  width: calc(100% - (var(--page-x) * 2));
+  max-width: 1380px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(380px, 0.9fr) minmax(420px, 0.72fr);
+  grid-template-columns: minmax(420px, 0.9fr) minmax(500px, 0.75fr);
   gap: clamp(3rem, 7vw, 8rem);
   align-items: center;
 }
@@ -3960,7 +3980,8 @@ h2,
 .contact-copy {
   position: relative;
   z-index: 2;
-  max-width: 560px;
+  max-width: 620px;
+  margin-left: 0;
   text-shadow: 0 1px 18px rgba(255, 255, 255, 0.75);
 }
 
@@ -3988,11 +4009,11 @@ h2,
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 10ch;
+  max-width: 11ch;
   margin: 0;
   color: #0f1720;
-  font-size: clamp(3.2rem, 5vw, 5.6rem);
-  line-height: 0.92;
+  font-size: clamp(3.6rem, 5.4vw, 6rem);
+  line-height: 0.94;
   letter-spacing: -0.06em;
 }
 
@@ -4087,22 +4108,20 @@ h2,
   position: relative;
   z-index: 4;
   justify-self: end;
-  width: min(100%, 440px);
+  width: min(100%, 560px);
   display: grid;
   gap: 0.7rem;
-  padding: 2.2rem;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  box-shadow:
-    0 32px 90px rgba(46, 146, 200, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(26px);
-  -webkit-backdrop-filter: blur(26px);
+  padding: clamp(2.4rem, 3.4vw, 3.4rem);
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(46, 146, 200, 0.18);
+  box-shadow: 0 34px 90px rgba(46, 146, 200, 0.18);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 .contact-form.glass {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .contact-field {
@@ -4140,21 +4159,22 @@ h2,
 .contact-form select,
 .contact-form textarea {
   width: 100%;
-  min-height: 3.15rem;
+  min-height: 58px;
   padding: 0.82rem 1rem 0.82rem 3rem;
   color: #0f1720;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(46, 146, 200, 0.16);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
   font: inherit;
+  font-size: 1rem;
   font-weight: 500;
   outline: 0;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .contact-form textarea {
-  min-height: 5.6rem;
+  min-height: 130px;
   resize: vertical;
 }
 
@@ -4205,7 +4225,7 @@ h2,
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  min-height: 3.15rem;
+  min-height: 56px;
   padding: 0.82rem 1.25rem;
   overflow: hidden;
   border-radius: 999px;
@@ -4332,7 +4352,9 @@ h2,
   .contact-section {
     min-height: auto;
     padding: clamp(4rem, 12vw, 5.5rem) 0;
-    background-position: center bottom;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
+      url("assets/images/formulario.webp") center bottom / cover no-repeat;
   }
 
   .contact-section::before {
@@ -4340,7 +4362,7 @@ h2,
   }
 
   .contact-layout {
-    width: calc(100% - 2rem);
+    width: calc(100% - (var(--page-x) * 2));
     grid-template-columns: 1fr;
     gap: 2.15rem;
   }
