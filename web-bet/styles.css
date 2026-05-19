@@ -808,6 +808,7 @@ p {
 .route-sticky {
   position: sticky;
   top: 0;
+  min-height: 100svh;
   height: 100svh;
   display: flex;
   align-items: center;
@@ -816,11 +817,12 @@ p {
 }
 
 .route-layout {
-  width: min(92%, 1380px);
+  width: min(94vw, 1500px);
+  height: calc(100svh - 110px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(520px, 0.95fr) minmax(520px, 1.05fr);
-  gap: clamp(3rem, 6vw, 7rem);
+  grid-template-columns: minmax(520px, 0.92fr) minmax(560px, 1.08fr);
+  gap: clamp(3rem, 5vw, 7rem);
   align-items: center;
 }
 
@@ -828,6 +830,8 @@ p {
   position: relative;
   display: grid;
   gap: 1.4rem;
+  width: 100%;
+  max-width: 720px;
   padding-left: 1.45rem;
 }
 
@@ -848,8 +852,8 @@ p {
   grid-template-columns: 60px 96px minmax(0, 1fr) 32px;
   align-items: center;
   gap: 1.2rem;
-  min-height: 132px;
-  padding: 1.35rem 1.45rem;
+  min-height: clamp(118px, 15vh, 156px);
+  padding: clamp(1.25rem, 2vh, 1.8rem) clamp(1.4rem, 2vw, 2rem);
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(46, 146, 200, 0.12);
@@ -959,19 +963,22 @@ p {
 
 .route-visual {
   position: relative;
-  min-height: 620px;
+  min-height: calc(100svh - 160px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .route-visual h2 {
   position: relative;
   z-index: 2;
-  max-width: 640px;
-  margin: 0;
+  max-width: 720px;
+  margin: 0 0 clamp(1rem, 2vh, 2rem);
   color: #0f1720;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3.6rem, 5.4vw, 6.3rem);
+  font-size: clamp(4rem, 5.6vw, 7rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 0.96;
   letter-spacing: -0.045em;
 }
 
@@ -982,11 +989,14 @@ p {
 
 .route-visual img {
   position: absolute;
-  right: -4%;
-  bottom: -8%;
+  right: clamp(-2rem, -2vw, -1rem);
+  bottom: clamp(-2rem, -4vh, -1rem);
   z-index: 1;
-  width: min(105%, 720px);
+  width: min(58vw, 820px);
   height: auto;
+  max-height: 62vh;
+  object-fit: contain;
+  object-position: right bottom;
   pointer-events: none;
 }
 
@@ -1007,6 +1017,53 @@ p {
   }
 }
 
+@media (max-height: 820px) and (min-width: 901px) {
+  .route-layout {
+    height: calc(100svh - 80px);
+    gap: 3rem;
+  }
+
+  .route-steps {
+    gap: 0.85rem;
+  }
+
+  .route-step {
+    grid-template-columns: 44px 68px minmax(0, 1fr) 26px;
+    gap: 0.85rem;
+    min-height: 110px;
+    padding: 0.9rem 1.2rem;
+  }
+
+  .route-icon {
+    width: 66px;
+    height: 66px;
+    border-width: 6px;
+  }
+
+  .route-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .route-step h3 {
+    font-size: 1.16rem;
+    margin-bottom: 0.32rem;
+  }
+
+  .route-step p {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .route-visual h2 {
+    font-size: clamp(3.4rem, 5vw, 5.8rem);
+  }
+
+  .route-visual img {
+    max-height: 54vh;
+  }
+}
+
 @media (max-width: 900px) {
   .route-section {
     height: auto;
@@ -1015,12 +1072,14 @@ p {
   .route-sticky {
     position: relative;
     height: auto;
+    min-height: auto;
     overflow: visible;
     padding: 5rem 0;
   }
 
   .route-layout {
-    width: min(92%, 1380px);
+    width: calc(100% - 2rem);
+    height: auto;
     grid-template-columns: 1fr;
   }
 
@@ -1042,6 +1101,7 @@ p {
     right: auto;
     bottom: auto;
     width: 100%;
+    max-height: none;
     margin-top: 2rem;
   }
 
