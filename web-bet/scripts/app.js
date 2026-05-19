@@ -587,6 +587,45 @@ criteriaNext?.addEventListener("click", () => {
 
 renderCriterion(activeCriterionIndex, false);
 
+function initRouteSection() {
+  const routeSection = document.querySelector(".route-section");
+  const routeSteps = routeSection ? [...routeSection.querySelectorAll(".route-step")] : [];
+  if (!routeSection || !routeSteps.length) return;
+
+  let routeFrame = 0;
+
+  function updateRouteSteps() {
+    routeFrame = 0;
+    const rect = routeSection.getBoundingClientRect();
+    const totalScrollable = routeSection.offsetHeight - window.innerHeight;
+    const scrolled = Math.min(Math.max(-rect.top, 0), totalScrollable);
+    const progress = totalScrollable > 0 ? scrolled / totalScrollable : 0;
+    const index = Math.min(routeSteps.length - 1, Math.floor(progress * routeSteps.length));
+
+    routeSteps.forEach((step, i) => {
+      step.classList.toggle("is-active", i === index);
+      step.classList.toggle("is-past", i < index);
+      step.classList.toggle("is-future", i > index);
+      if (i === index) {
+        step.setAttribute("aria-current", "step");
+      } else {
+        step.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function requestRouteUpdate() {
+    if (routeFrame) return;
+    routeFrame = window.requestAnimationFrame(updateRouteSteps);
+  }
+
+  window.addEventListener("scroll", requestRouteUpdate, { passive: true });
+  window.addEventListener("resize", requestRouteUpdate);
+  updateRouteSteps();
+}
+
+initRouteSection();
+
 const siteSections = [
   {
     title: "Soluciones medicas",
