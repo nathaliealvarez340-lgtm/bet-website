@@ -21,7 +21,7 @@
       <nav class="nav" aria-label="Navegacion principal">
         <a href="#explorador" data-i18n="navEnfoque">Productos</a>
         <a href="#enfoque" data-i18n="navExplorador">Soluciones</a>
-        <a href="#proceso" data-i18n="navProceso">Nosotros</a>
+        <a href="#proceso" data-i18n="navProceso">Ruta</a>
         <a href="#actualidad" data-i18n="navEducacion">Educaci&oacute;n</a>
         <a href="#contacto" data-i18n="navContacto">Contacto</a>
       </nav>
@@ -118,65 +118,58 @@
             </div>
           </div>
 
-          <div class="hero-visual-placeholder" aria-hidden="true">
-            <span class="visual-ring visual-ring-one"></span>
-            <span class="visual-ring visual-ring-two"></span>
-            <span class="visual-axis visual-axis-horizontal"></span>
-            <span class="visual-axis visual-axis-vertical"></span>
-            <span class="visual-dot"></span>
-          </div>
+          <figure class="hero-visual reveal" aria-hidden="true">
+            <div class="hero-visual-card hero-visual-abstract">
+              <span class="hero-orbit hero-orbit-one"></span>
+              <span class="hero-orbit hero-orbit-two"></span>
+              <span class="hero-orbit hero-orbit-three"></span>
+              <span class="hero-axis hero-axis-horizontal"></span>
+              <span class="hero-axis hero-axis-vertical"></span>
+              <span class="hero-dot hero-dot-one"></span>
+              <span class="hero-dot hero-dot-two"></span>
+            </div>
+          </figure>
         </div>
       </section>
 
       <section class="section focus-section" id="enfoque" aria-labelledby="focus-title">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Nuestro enfoque</span>
-          <h2 id="focus-title">Precision clinica traducida en disponibilidad real.</h2>
-        </div>
-        <div class="value-accordion reveal" data-value-accordion>
-          <button class="value-panel mission" type="button" data-value-panel="mision" aria-expanded="false">
-            <span class="value-panel-shell">
-              <span class="value-panel-title">Mision</span>
-              <span class="value-panel-content">
-                <span class="panel-index">01</span>
-                <strong>Mision</strong>
-                <p>Impulsar procedimientos quirurgicos de alta precision mediante soluciones medicas confiables, especializadas y clinicamente respaldadas.</p>
-              </span>
-            </span>
-          </button>
-          <button class="value-panel vision" type="button" data-value-panel="vision" aria-expanded="false">
-            <span class="value-panel-shell">
-              <span class="value-panel-title">Vision</span>
-              <span class="value-panel-content">
-                <span class="panel-index">02</span>
-                <strong>Vision</strong>
-                <p>Transformar la forma en que hospitales y especialistas acceden a soluciones quirurgicas, elevando los estandares de precision, disponibilidad y confianza en cada intervencion.</p>
-              </span>
-            </span>
-          </button>
-          <button class="value-panel bet is-active" type="button" data-value-panel="bet" aria-expanded="true">
-            <span class="value-panel-shell">
-              <span class="value-panel-title">BET</span>
-              <span class="value-panel-content">
-                <span class="panel-index">03</span>
-                <strong>BET</strong>
-                <p>En BET no solo suministramos protesis internas. Proveemos soluciones precisas que respaldan decisiones quirurgicas criticas, con disponibilidad, calidad y acompanamiento especializado.</p>
-              </span>
-            </span>
-          </button>
+        <div class="focus-layout">
+          <div class="focus-copy reveal">
+            <span class="section-kicker">NUESTRO ENFOQUE</span>
+            <h2 id="focus-title">Precisi&oacute;n cl&iacute;nica<br>traducida en<br>disponibilidad real.</h2>
+            <p>BET conecta criterio m&eacute;dico, tecnolog&iacute;a ortop&eacute;dica y respuesta operativa para respaldar procedimientos donde la exactitud importa.</p>
+
+            <div class="focus-actions" aria-label="Conoce nuestra mision, vision y propuesta BET">
+              <span class="focus-actions-label">Conoce nuestra:</span>
+              <div class="focus-action-buttons">
+                <button type="button" data-focus-option="mission" aria-pressed="false">Misi&oacute;n</button>
+                <button type="button" data-focus-option="vision" aria-pressed="false">Visi&oacute;n</button>
+                <button type="button" data-focus-option="bet" aria-pressed="false">BET</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="focus-visual reveal" data-focus-visual aria-live="polite">
+            <img class="focus-image" src="assets/images/precision.webp" alt="Especialista m&eacute;dico revisando informaci&oacute;n cl&iacute;nica" width="920" height="1120">
+            <div class="focus-card-content" aria-hidden="true">
+              <span class="focus-card-title" data-focus-card-title></span>
+              <p data-focus-card-text></p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section criteria-section reveal" id="criterios" aria-labelledby="criteria-title">
+      <section class="section criteria-section" id="criterios" aria-labelledby="criteria-title">
         <div class="criteria-header reveal">
-          <span class="section-kicker">VALORES</span>
+          <span class="eyebrow">Criterios BET</span>
           <h2 class="criteria-title" id="criteria-title">
             <span>Criterios que importan cuando</span>
             <span>el margen de error no existe.</span>
           </h2>
+          <p>Un sistema de decision pensado para cirugias donde la disponibilidad, la trazabilidad y el criterio tecnico deben sentirse claros desde el primer contacto.</p>
         </div>
 
-        <div class="criteria-layout">
+        <div class="criteria-layout reveal">
           <div class="criteria-video-card">
             <video src="assets/newsletter/criterios.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
@@ -188,8 +181,8 @@
               <p>Cada soluci&oacute;n responde a requerimientos m&eacute;dicos espec&iacute;ficos, no a inventario gen&eacute;rico.</p>
             </div>
             <div class="criteria-controls" aria-label="Controles de criterios">
-              <button class="criteria-prev" type="button" aria-label="Criterio anterior">‹</button>
-              <button class="criteria-next" type="button" aria-label="Siguiente criterio">›</button>
+              <button class="criteria-prev" type="button" aria-label="Criterio anterior">&lsaquo;</button>
+              <button class="criteria-next" type="button" aria-label="Siguiente criterio">&rsaquo;</button>
             </div>
           </article>
         </div>

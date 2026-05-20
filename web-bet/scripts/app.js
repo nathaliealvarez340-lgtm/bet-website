@@ -7,7 +7,7 @@ const translations = {
   es: {
     navEnfoque: "Productos",
     navExplorador: "Soluciones",
-    navProceso: "Nosotros",
+    navProceso: "Ruta",
     navEducacion: "Educaci\u00f3n",
     navContacto: "Contacto",
     whatsapp: "WhatsApp",
@@ -71,7 +71,7 @@ const translations = {
   en: {
     navEnfoque: "Products",
     navExplorador: "Solutions",
-    navProceso: "About",
+    navProceso: "Route",
     navEducacion: "Education",
     navContacto: "Contact",
     whatsapp: "WhatsApp",
@@ -512,6 +512,80 @@ valueAccordion?.addEventListener("click", (event) => {
   setActiveValuePanel(panel.dataset.valuePanel);
 });
 
+const focusSection = document.querySelector(".focus-section");
+const focusVisual = document.querySelector("[data-focus-visual]");
+const focusButtons = [...document.querySelectorAll("[data-focus-option]")];
+const focusCardTitle = document.querySelector("[data-focus-card-title]");
+const focusCardText = document.querySelector("[data-focus-card-text]");
+const focusCardContent = document.querySelector(".focus-card-content");
+let lastFocusScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+const focusStates = {
+  mission: {
+    title: "MISI\u00d3N",
+    text: "Impulsar procedimientos quir\u00fargicos de alta precisi\u00f3n mediante soluciones m\u00e9dicas confiables, especializadas y cl\u00ednicamente respaldadas.",
+  },
+  vision: {
+    title: "VISI\u00d3N",
+    text: "Transformar la forma en que hospitales y especialistas acceden a soluciones quir\u00fargicas, elevando los est\u00e1ndares de precisi\u00f3n y confianza.",
+  },
+  bet: {
+    title: "BET",
+    text: "Proveemos soluciones precisas que respaldan decisiones quir\u00fargicas cr\u00edticas, con disponibilidad, calidad y acompa\u00f1amiento especializado.",
+  },
+};
+
+function resetFocusSection() {
+  if (!focusVisual) return;
+
+  focusVisual.classList.remove("is-card");
+  focusVisual.removeAttribute("data-active-focus");
+  focusCardContent?.setAttribute("aria-hidden", "true");
+  focusButtons.forEach((button) => button.setAttribute("aria-pressed", "false"));
+}
+
+function setFocusSectionState(stateId) {
+  const state = focusStates[stateId];
+  if (!state || !focusVisual || !focusCardTitle || !focusCardText) return;
+
+  focusCardTitle.textContent = state.title;
+  focusCardText.textContent = state.text;
+  focusCardContent?.setAttribute("aria-hidden", "false");
+  focusVisual.classList.add("is-card");
+  focusVisual.dataset.activeFocus = stateId;
+  lastFocusScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+  focusButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.focusOption === stateId));
+  });
+}
+
+focusButtons.forEach((button) => {
+  button.addEventListener("click", () => setFocusSectionState(button.dataset.focusOption));
+});
+
+if (focusSection && focusVisual) {
+  let focusScrollFrame = 0;
+
+  window.addEventListener("scroll", () => {
+    if (!focusVisual.classList.contains("is-card")) return;
+    cancelAnimationFrame(focusScrollFrame);
+
+    focusScrollFrame = requestAnimationFrame(() => {
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const isScrollingDown = currentScrollY > lastFocusScrollY;
+      const rect = focusSection.getBoundingClientRect();
+      const hasAdvancedPastFocus = rect.top < -(rect.height * 0.6);
+      const isLeavingFocusDown = isScrollingDown && rect.top < 0 && rect.bottom < window.innerHeight * 0.85;
+      const isOutOfView = rect.bottom <= 0 || rect.top >= window.innerHeight;
+      lastFocusScrollY = currentScrollY;
+
+      if (hasAdvancedPastFocus || isLeavingFocusDown || isOutOfView) {
+        resetFocusSection();
+      }
+    });
+  }, { passive: true });
+}
+
 const criteriaItems = [
   {
     number: "01",
@@ -630,7 +704,7 @@ const siteSections = [
   {
     title: "Soluciones medicas",
     description: "Protesis internas, osteosintesis, trauma y soporte hospitalario especializado.",
-    target: "#soluciones",
+    target: "#enfoque",
     keywords: "protesis implantes osteosintesis trauma placas tornillos clavos instrumental",
   },
   {
