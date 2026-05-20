@@ -7051,3 +7051,75 @@ html {
     height: 390px;
   }
 }
+
+/* Final surgical pass: Ruta, Newsletter, Contacto */
+.route-section {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 42%, rgba(255, 255, 255, 0.58) 100%),
+    url("assets/images/ruta.webp") center center / cover no-repeat !important;
+}
+
+.route-sticky {
+  background: transparent !important;
+}
+
+.route-visual::before,
+.route-visual img {
+  display: none !important;
+}
+
+.news-section {
+  padding-block: 4rem !important;
+  overflow: hidden !important;
+}
+
+.news-carousel {
+  width: 100vw !important;
+  min-height: 0 !important;
+  margin-left: 50% !important;
+  transform: translateX(-50%) !important;
+  overflow: hidden !important;
+  contain: paint !important;
+}
+
+.news-track {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  display: flex !important;
+  width: max-content !important;
+  gap: 1.25rem !important;
+  padding-block: 1rem 1.8rem !important;
+}
+
+.news-card {
+  flex: 0 0 320px !important;
+}
+
+.contact-section {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.58) 45%, rgba(255, 255, 255, 0.34) 100%),
+    url("assets/images/formulario.webp") center center / cover no-repeat !important;
+}
+
+.contact-section::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    radial-gradient(circle at 72% 54%, rgba(46, 146, 200, 0.08), transparent 36%) !important;
+}
+
+@media (max-width: 760px) {
+  .news-track {
+    animation: newsletterLoop 44s linear infinite !important;
+  }
+
+  .news-card {
+    flex-basis: min(82vw, 320px) !important;
+  }
+
+  .contact-section {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)),
+      url("assets/images/formulario.webp") center bottom / cover no-repeat !important;
+  }
+}
