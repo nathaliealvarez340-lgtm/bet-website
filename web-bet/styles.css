@@ -7325,3 +7325,638 @@ html {
     height: 42px !important;
   }
 }
+
+/* Final pass: requested product-led hero and technology section */
+.hero-section {
+  min-height: 100svh !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-section .hero-spline-background,
+.hero-section .hero-overlay {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.hero-focus-transition .focus-section {
+  margin-top: 0 !important;
+}
+
+.hero-section .hero-shell {
+  width: min(92vw, 1440px) !important;
+  min-height: 100svh !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(420px, 0.85fr) minmax(560px, 1.15fr) !important;
+  align-items: center !important;
+  gap: clamp(3rem, 6vw, 7rem) !important;
+  padding: clamp(7.25rem, 13vh, 9rem) 0 clamp(3rem, 7vh, 5rem) !important;
+}
+
+.hero-section .hero-copy {
+  width: 100% !important;
+  max-width: 680px !important;
+  margin: 0 !important;
+  justify-self: start !important;
+}
+
+.hero-section .hero-title {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0.02em !important;
+  min-height: auto !important;
+  max-width: 760px !important;
+  margin: 0 !important;
+  font-family: "Inter", "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: clamp(4rem, 6.4vw, 7.4rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.055em !important;
+  text-transform: none !important;
+  color: #071629 !important;
+  text-align: left !important;
+}
+
+.hero-section .hero-title .line {
+  display: block !important;
+  white-space: nowrap !important;
+  color: inherit !important;
+}
+
+.hero-section .hero-title .hero-accent,
+.hero-section .hero-copy .blue {
+  color: #0878c9 !important;
+}
+
+.hero-section .hero-subtitle {
+  max-width: 540px !important;
+  margin: clamp(1.4rem, 2.2vw, 2rem) 0 0 !important;
+  font-family: "Open Sans", "Poppins", system-ui, sans-serif !important;
+  font-size: clamp(1.15rem, 1.45vw, 1.55rem) !important;
+  line-height: 1.7 !important;
+  color: rgba(7, 22, 41, 0.68) !important;
+}
+
+.hero-section .hero-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.9rem !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: clamp(2rem, 3.4vw, 3rem) 0 0 !important;
+}
+
+.hero-section .hero-cta,
+.hero-section .hero-cta:visited {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  min-height: 56px !important;
+  padding: 0 1.45rem 0 1.65rem !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(7, 22, 41, 0.12) !important;
+  background: #071629 !important;
+  box-shadow: 0 18px 42px rgba(7, 22, 41, 0.14) !important;
+  color: #ffffff !important;
+  font-family: "Poppins", system-ui, sans-serif !important;
+  font-size: 0.98rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+}
+
+.hero-section .hero-cta::before {
+  content: none !important;
+}
+
+.hero-section .hero-cta:hover {
+  transform: translateY(-2px);
+  background: #0f1720 !important;
+  box-shadow: 0 24px 56px rgba(7, 22, 41, 0.18) !important;
+}
+
+.hero-section .hero-cta:focus-visible {
+  outline: 3px solid rgba(8, 120, 201, 0.34);
+  outline-offset: 4px;
+}
+
+.hero-section .hero-cta-arrow {
+  font-size: 1.15em;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.hero-section .hero-visual {
+  position: relative !important;
+  width: 100% !important;
+  height: min(76vh, 760px) !important;
+  min-height: 520px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  isolation: isolate;
+}
+
+.hero-section .hero-visual::before {
+  content: "";
+  position: absolute;
+  right: clamp(0rem, 3vw, 3rem);
+  top: 50%;
+  width: min(44vw, 660px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(8, 120, 201, 0.08), transparent 64%),
+    linear-gradient(135deg, rgba(126, 206, 202, 0.12), rgba(255, 255, 255, 0));
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.hero-section .hero-visual img {
+  position: relative !important;
+  inset: auto !important;
+  width: min(62vw, 900px) !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: 86% !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: right center !important;
+  border-radius: 0 !important;
+  filter: drop-shadow(0 28px 60px rgba(7, 22, 41, 0.12)) !important;
+  transform: none !important;
+}
+
+.tech-section {
+  position: relative;
+  z-index: 3;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.tech-layout {
+  width: min(92vw, 1440px);
+  min-height: 100svh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(480px, 0.85fr) minmax(620px, 1.15fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+  padding: clamp(6rem, 10vh, 9rem) 0;
+}
+
+.tech-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.tech-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: clamp(1.35rem, 2.6vw, 2.4rem);
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: #0878c9;
+}
+
+.tech-kicker::before {
+  content: "";
+  width: 42px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.tech-copy h2 {
+  margin: 0;
+  font-family: "Inter", "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: clamp(3.8rem, 5.7vw, 6.8rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  color: #071629;
+  text-align: left;
+}
+
+.tech-copy .blue {
+  color: #0878c9;
+}
+
+.tech-copy > p {
+  max-width: 560px;
+  margin: clamp(1.3rem, 2.4vw, 2rem) 0 0;
+  font-family: "Open Sans", "Poppins", system-ui, sans-serif;
+  font-size: clamp(1.05rem, 1.28vw, 1.32rem);
+  line-height: 1.72;
+  color: rgba(7, 22, 41, 0.66);
+}
+
+.tech-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.4rem, 3vw, 3.5rem);
+  margin-top: clamp(3rem, 6vh, 5rem);
+}
+
+.tech-value {
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(8, 120, 201, 0.18);
+}
+
+.tech-value h3 {
+  margin: 0;
+  font-family: "Inter", "Poppins", system-ui, sans-serif;
+  font-size: clamp(1rem, 1.08vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #071629;
+}
+
+.tech-value p {
+  margin: 0.65rem 0 0;
+  font-family: "Open Sans", "Poppins", system-ui, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(7, 22, 41, 0.68);
+}
+
+.tech-visual {
+  position: relative;
+  height: min(82vh, 820px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: visible;
+}
+
+.tech-visual::before {
+  content: "";
+  position: absolute;
+  right: 1%;
+  top: 50%;
+  width: min(46vw, 700px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(8, 120, 201, 0.08), transparent 65%),
+    radial-gradient(circle at 70% 35%, rgba(81, 193, 166, 0.1), transparent 42%);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.tech-visual img {
+  position: relative;
+  z-index: 1;
+  width: min(62vw, 880px);
+  height: auto;
+  max-height: 92%;
+  display: block;
+  object-fit: contain;
+  object-position: right center;
+  filter: drop-shadow(0 28px 70px rgba(7, 22, 41, 0.12));
+}
+
+@media (max-width: 1180px) {
+  .hero-section .hero-shell,
+  .tech-layout {
+    grid-template-columns: minmax(360px, 0.9fr) minmax(420px, 1.1fr) !important;
+    gap: clamp(2rem, 4vw, 4rem) !important;
+  }
+
+  .hero-section .hero-title {
+    font-size: clamp(3.45rem, 6vw, 5.8rem) !important;
+  }
+
+  .tech-copy h2 {
+    font-size: clamp(3.35rem, 5.6vw, 5.8rem);
+  }
+
+  .tech-values {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    gap: 1.1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-section .hero-shell,
+  .tech-layout {
+    width: min(92vw, 720px) !important;
+    min-height: auto !important;
+    grid-template-columns: 1fr !important;
+    padding-block: 7rem 4rem !important;
+  }
+
+  .hero-section .hero-copy,
+  .tech-copy {
+    max-width: 100% !important;
+  }
+
+  .hero-section .hero-title {
+    font-size: clamp(3rem, 12vw, 5rem) !important;
+    letter-spacing: -0.05em !important;
+  }
+
+  .hero-section .hero-title .line {
+    white-space: normal !important;
+  }
+
+  .hero-section .hero-visual,
+  .tech-visual {
+    height: auto !important;
+    min-height: 0 !important;
+    justify-content: center !important;
+  }
+
+  .hero-section .hero-visual::before,
+  .tech-visual::before {
+    width: min(86vw, 560px);
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .hero-section .hero-visual img,
+  .tech-visual img {
+    width: 100% !important;
+    max-width: 620px !important;
+    max-height: none !important;
+    object-position: center !important;
+  }
+
+  .tech-section {
+    min-height: auto;
+  }
+
+  .tech-layout {
+    min-height: auto;
+  }
+
+  .tech-copy h2 {
+    font-size: clamp(3rem, 11vw, 4.8rem);
+  }
+
+  .tech-values {
+    grid-template-columns: 1fr;
+    margin-top: 2.6rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-section .hero-shell,
+  .tech-layout {
+    width: calc(100% - 2rem) !important;
+    padding-block: 6.5rem 3.5rem !important;
+  }
+
+  .hero-section .hero-title,
+  .tech-copy h2 {
+    font-size: clamp(2.65rem, 13vw, 3.75rem) !important;
+    line-height: 1.04 !important;
+  }
+
+  .hero-section .hero-subtitle,
+  .tech-copy > p {
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-section .hero-actions {
+    width: 100% !important;
+  }
+
+  .hero-section .hero-cta {
+    width: 100% !important;
+  }
+}
+
+/* Experience BET section */
+.experience-section {
+  position: relative;
+  z-index: 3;
+  min-height: 72svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.experience-layout {
+  position: relative;
+  width: min(92vw, 1440px);
+  min-height: 72svh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(420px, 0.82fr) minmax(620px, 1.18fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+  padding: clamp(5rem, 8vh, 7rem) 0;
+}
+
+.experience-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+}
+
+.experience-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: clamp(1.25rem, 2.4vw, 2.2rem);
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: #0878c9;
+}
+
+.experience-kicker::before {
+  content: "";
+  width: 42px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.experience-copy h2 {
+  margin: 0;
+  font-family: "Inter", "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: clamp(3.2rem, 5.2vw, 6rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+  color: #071629;
+  text-align: left;
+}
+
+.experience-copy .blue {
+  color: #0878c9;
+}
+
+.experience-copy p {
+  max-width: 520px;
+  margin: clamp(1.25rem, 2.4vw, 2rem) 0 0;
+  font-family: "Open Sans", "Poppins", system-ui, sans-serif;
+  font-size: clamp(1.05rem, 1.25vw, 1.28rem);
+  line-height: 1.65;
+  color: rgba(7, 22, 41, 0.68);
+}
+
+.experience-stats {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: clamp(1.5rem, 3vw, 3.2rem);
+  margin-top: clamp(2.5rem, 5vh, 4rem);
+}
+
+.experience-stat {
+  min-width: 0;
+}
+
+.experience-stat strong {
+  display: block;
+  min-height: 1.2em;
+  color: #0878c9;
+  font-family: "Inter", "Poppins", system-ui, sans-serif;
+  font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.experience-stat strong.is-counting {
+  transform: translateY(-2px);
+}
+
+.experience-stat span {
+  display: block;
+  max-width: 10.5rem;
+  margin-top: 0.45rem;
+  color: rgba(7, 22, 41, 0.68);
+  font-family: "Open Sans", "Poppins", system-ui, sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.experience-visual {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 62%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 50%, rgba(8, 120, 201, 0.08), transparent 38%),
+    url("assets/images/experiencia-bet.png") right center / contain no-repeat;
+}
+
+.experience-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 18%, rgba(255, 255, 255, 0) 48%);
+}
+
+@media (max-width: 1180px) {
+  .experience-layout {
+    grid-template-columns: minmax(360px, 0.92fr) minmax(460px, 1.08fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .experience-copy h2 {
+    font-size: clamp(3rem, 5.5vw, 5rem);
+  }
+
+  .experience-stats {
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+@media (max-width: 900px) {
+  .experience-section {
+    min-height: auto;
+    padding-block: 5rem;
+  }
+
+  .experience-layout {
+    width: min(92vw, 720px);
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  .experience-copy {
+    max-width: 100%;
+  }
+
+  .experience-visual {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 320px;
+    order: 2;
+    background:
+      radial-gradient(circle at 50% 48%, rgba(8, 120, 201, 0.08), transparent 46%),
+      url("assets/images/experiencia-bet.png") center / contain no-repeat;
+  }
+
+  .experience-visual::before {
+    content: none;
+  }
+
+  .experience-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.4rem 1.8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .experience-section {
+    padding-block: 4rem;
+  }
+
+  .experience-layout {
+    width: calc(100% - 2rem);
+  }
+
+  .experience-copy h2 {
+    font-size: clamp(2.65rem, 13vw, 3.75rem);
+    line-height: 1.04;
+  }
+
+  .experience-copy p {
+    font-size: 1rem;
+  }
+
+  .experience-stats {
+    gap: 1.25rem;
+  }
+
+  .experience-stat span {
+    max-width: none;
+  }
+}

@@ -11,7 +11,7 @@ const translations = {
     navEducacion: "Educaci\u00f3n",
     navContacto: "Contacto",
     whatsapp: "WhatsApp",
-    heroKicker: "TECNOLOG\u00cdA ORTOP\u00c9DICA AVANZADA",
+    heroKicker: "",
     heroTitleLineOne: "Precisi\u00f3n que",
     heroTitleLineTwo: "transforma",
     heroTitleAccentOne: "movilidad en",
@@ -19,23 +19,14 @@ const translations = {
     heroEditorialPhrases: [
       {
         lines: [
-          { text: "Precisi\u00f3n" },
-          { text: "que transforma" },
-          { text: "movilidad en", accent: true },
-          { text: "confianza.", accent: true },
+          { text: "Precisi\u00f3n cl\u00ednica" },
+          { text: "traducida en" },
+          { text: "disponibilidad real.", accent: true },
         ],
-      },
-      {
-        lines: [
-          { text: "Historias que" },
-          { text: "merecen seguir" },
-          { text: "avanzando.", accent: true },
-        ],
-        isAlt: true,
       },
     ],
-    heroSubtitle: "Pr\u00f3tesis internas y soluciones ortop\u00e9dicas dise\u00f1adas para precisi\u00f3n, confianza y recuperaci\u00f3n duradera.",
-    heroProductsCta: "Explorar productos",
+    heroSubtitle: "Pr\u00f3tesis internas y soluciones m\u00e9dicas dise\u00f1adas para responder con velocidad, confianza y exactitud.",
+    heroProductsCta: "Conoce m\u00e1s",
     heroAdvisorCta: "Hablar con un asesor",
     heroStatOneValue: "+500",
     heroStatOneLabel: "procedimientos atendidos",
@@ -75,7 +66,7 @@ const translations = {
     navEducacion: "Education",
     navContacto: "Contact",
     whatsapp: "WhatsApp",
-    heroKicker: "ADVANCED ORTHOPEDIC TECHNOLOGY",
+    heroKicker: "",
     heroTitleLineOne: "Precision that",
     heroTitleLineTwo: "turns",
     heroTitleAccentOne: "mobility into",
@@ -83,23 +74,14 @@ const translations = {
     heroEditorialPhrases: [
       {
         lines: [
-          { text: "Precision" },
-          { text: "that turns" },
-          { text: "mobility into", accent: true },
-          { text: "confidence.", accent: true },
+          { text: "Clinical precision" },
+          { text: "translated into" },
+          { text: "real availability.", accent: true },
         ],
-      },
-      {
-        lines: [
-          { text: "Stories that" },
-          { text: "deserve to keep" },
-          { text: "moving forward.", accent: true },
-        ],
-        isAlt: true,
       },
     ],
-    heroSubtitle: "Internal prosthetics and orthopedic solutions designed for precision, confidence and lasting recovery.",
-    heroProductsCta: "Explore products",
+    heroSubtitle: "Internal prosthetics and medical solutions designed to respond with speed, confidence and accuracy.",
+    heroProductsCta: "Learn more",
     heroAdvisorCta: "Talk to an advisor",
     heroStatOneValue: "+500",
     heroStatOneLabel: "procedures supported",
@@ -282,10 +264,14 @@ function applyLanguage(language) {
 }
 
 function startHeroRotation() {
-  if (!heroTitle || !heroTitleLines || !heroTitleHighlight) return;
   window.clearInterval(heroIntervalId);
+  if (!heroTitle) return;
+
+  const phrases = translations[currentLanguage].heroEditorialPhrases || translations[currentLanguage].heroPhrases;
+  if (!phrases || phrases.length <= 1) return;
+  if (!translations[currentLanguage].heroEditorialPhrases && (!heroTitleLines || !heroTitleHighlight)) return;
+
   heroIntervalId = window.setInterval(() => {
-    const phrases = translations[currentLanguage].heroEditorialPhrases || translations[currentLanguage].heroPhrases;
     currentHeroPhraseIndex = (currentHeroPhraseIndex + 1) % phrases.length;
     if (translations[currentLanguage].heroEditorialPhrases) {
       renderEditorialHeroPhrase(phrases[currentHeroPhraseIndex]);
@@ -368,6 +354,72 @@ const revealObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+function initExperienceCounters() {
+  const experienceSection = document.querySelector(".experience-section");
+  const counters = experienceSection ? [...experienceSection.querySelectorAll(".count-up")] : [];
+  if (!experienceSection || !counters.length) return;
+
+  const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let hasAnimated = false;
+
+  const setCounterValue = (counter, value) => {
+    const prefix = counter.dataset.prefix || "";
+    const suffix = counter.dataset.suffix || "";
+    counter.textContent = `${prefix}${formatter.format(Math.round(value))}${suffix}`;
+  };
+
+  const animateCounter = (counter) => {
+    const target = Number(counter.dataset.target || 0);
+    const duration = 1400;
+    const start = performance.now();
+    counter.classList.add("is-counting");
+
+    const tick = (time) => {
+      const elapsed = Math.min((time - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+      setCounterValue(counter, target * eased);
+
+      if (elapsed < 1) {
+        requestAnimationFrame(tick);
+        return;
+      }
+
+      setCounterValue(counter, target);
+      counter.classList.remove("is-counting");
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const runCounters = () => {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    counters.forEach((counter) => {
+      if (prefersReducedMotion) {
+        setCounterValue(counter, Number(counter.dataset.target || 0));
+        return;
+      }
+
+      animateCounter(counter);
+    });
+  };
+
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      runCounters();
+      counterObserver.disconnect();
+    },
+    { threshold: 0.35 }
+  );
+
+  counterObserver.observe(experienceSection);
+}
+
+initExperienceCounters();
 
 const header = document.querySelector("[data-elevate]");
 window.addEventListener("scroll", () => {
