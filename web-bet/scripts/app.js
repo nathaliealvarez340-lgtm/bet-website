@@ -157,6 +157,7 @@ document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
 });
 
 let newsletterArticles = [];
+const newsViewportQuery = window.matchMedia("(max-width: 768px)");
 const storedLanguage = getStoredLanguage();
 let currentLanguage = translations[storedLanguage] ? storedLanguage : "es";
 let currentHeroPhraseIndex = 0;
@@ -480,7 +481,19 @@ function renderNewsArticles(articles) {
     })
     .join("");
 
-  carousel.innerHTML = cards ? `<div class="news-track">${cards}${cards}</div>` : "";
+  const loopCards = newsViewportQuery.matches ? "" : cards;
+  carousel.innerHTML = cards ? `<div class="news-track">${cards}${loopCards}</div>` : "";
+}
+
+function rerenderNewsForViewport() {
+  if (!newsletterArticles.length) return;
+  renderNewsArticles(newsletterArticles);
+}
+
+if (newsViewportQuery.addEventListener) {
+  newsViewportQuery.addEventListener("change", rerenderNewsForViewport);
+} else {
+  newsViewportQuery.addListener(rerenderNewsForViewport);
 }
 
 function renderBone(boneId) {

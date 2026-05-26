@@ -8627,3 +8627,459 @@ body .focus-section {
     min-height: auto !important;
   }
 }
+
+/* Performance and mobile hierarchy pass */
+@media (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  .site-header.navbar.site-nav {
+    top: 0.55rem !important;
+    width: calc(100% - 1rem) !important;
+    min-height: 54px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    gap: 0.45rem !important;
+    padding: 0.42rem 0.5rem !important;
+    border-radius: 1.45rem !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    box-shadow:
+      0 12px 32px rgba(46, 146, 200, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.74) !important;
+    backdrop-filter: blur(10px) saturate(1.05) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(1.05) !important;
+  }
+
+  .site-header.navbar.site-nav .brand {
+    grid-column: auto !important;
+    min-width: max-content;
+  }
+
+  .site-header.navbar.site-nav .brand img {
+    height: 32px !important;
+    max-width: 104px !important;
+  }
+
+  .site-header.navbar.site-nav .nav {
+    grid-column: auto !important;
+    order: 0 !important;
+    min-width: 0;
+    justify-content: flex-start !important;
+    gap: 0.25rem !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .site-header.navbar.site-nav .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-header.navbar.site-nav .nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0.4rem 0.52rem !important;
+    font-size: 0.72rem !important;
+    line-height: 1;
+  }
+
+  .nav-actions {
+    grid-column: auto !important;
+    gap: 0.32rem !important;
+    min-width: max-content;
+  }
+
+  .site-header.navbar.site-nav .nav-whatsapp {
+    min-height: 34px !important;
+    padding: 0 0.64rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .site-header.navbar.site-nav .language-toggle {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .language-menu {
+    right: 0 !important;
+  }
+
+  .hero-section > .hero-shell {
+    min-height: auto !important;
+    padding-top: clamp(6.5rem, 18vh, 8rem) !important;
+    padding-bottom: clamp(3rem, 8vh, 4.5rem) !important;
+  }
+
+  .hero-section .hero-title,
+  .hero-editorial .hero-title {
+    font-size: clamp(3rem, 12vw, 5rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.052em !important;
+    max-width: 9ch !important;
+  }
+
+  .section-title,
+  .focus-copy h2,
+  .tech-copy h2,
+  .criteria-header h2,
+  .criteria-title,
+  .experience-copy h2,
+  .section-heading h2,
+  .anatomy-section .section-heading h2,
+  .news-header h2,
+  .final-cta-content h2,
+  .route-visual h2,
+  .differentials-section .section-heading h2 {
+    font-size: clamp(2.6rem, 10vw, 4rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.05em !important;
+  }
+
+  .hero-subtitle,
+  .focus-copy p,
+  .tech-copy > p,
+  .criteria-header p,
+  .experience-copy p,
+  .section-heading p,
+  .news-header p,
+  .final-cta-content p,
+  .route-step p,
+  .tech-value p,
+  .diff-item span,
+  .anatomy-panel p {
+    font-size: clamp(1rem, 3.6vw, 1.15rem) !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-cta,
+  .button,
+  .glass-button,
+  .final-cta-button {
+    min-height: 44px !important;
+    padding: 0 1rem !important;
+  }
+
+  .hero-section::after {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 48%, rgba(255, 255, 255, 0.4) 76%, rgba(255, 255, 255, 0.08) 100%),
+      url("assets/images/hero-bet.png") center bottom / cover no-repeat !important;
+  }
+
+  .tech-section {
+    min-height: 88svh !important;
+    padding-top: clamp(4rem, 8vh, 5.5rem) !important;
+    padding-bottom: clamp(4rem, 8vh, 5.5rem) !important;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.94) 48%, rgba(255, 255, 255, 0.55) 100%),
+      url("assets/images/bet-images.png") right center / cover no-repeat !important;
+  }
+
+  .experience-section {
+    min-height: 82svh !important;
+    padding-top: clamp(4rem, 8vh, 5.5rem) !important;
+    padding-bottom: clamp(4rem, 8vh, 5.5rem) !important;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.92) 48%, rgba(255, 255, 255, 0.5) 100%),
+      url("assets/images/experiencia-bet.png") center bottom / cover no-repeat !important;
+  }
+
+  .final-cta-section {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  .focus-visual,
+  .criteria-video-card,
+  .criteria-card,
+  .anatomy-map,
+  .anatomy-panel,
+  .route-step,
+  .news-card,
+  .diff-item,
+  .tech-value,
+  .experience-stat {
+    border-radius: 1.25rem !important;
+    box-shadow: 0 12px 28px rgba(15, 23, 32, 0.08) !important;
+  }
+
+  .focus-visual,
+  .criteria-card,
+  .anatomy-panel,
+  .news-card,
+  .site-header.navbar.site-nav,
+  .final-cta-button {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .tech-values,
+  .experience-stats,
+  .diff-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .tech-value,
+  .experience-stat,
+  .diff-item,
+  .product-mini {
+    padding: 1rem !important;
+  }
+
+  .tech-value h3,
+  .diff-item strong {
+    font-size: 0.98rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .experience-stat strong {
+    font-size: clamp(1.2rem, 5vw, 1.7rem) !important;
+  }
+
+  .criteria-layout,
+  .anatomy-workbench {
+    gap: 1rem !important;
+  }
+
+  .criteria-video-card,
+  .criteria-card {
+    height: auto !important;
+    min-height: 300px !important;
+  }
+
+  .criteria-video-card video {
+    min-height: 300px !important;
+    object-fit: cover !important;
+  }
+
+  .criteria-card {
+    padding: 1.25rem !important;
+  }
+
+  .criteria-content {
+    padding-right: 3.15rem !important;
+  }
+
+  .criteria-card h3 {
+    font-size: clamp(1.7rem, 7vw, 2.45rem) !important;
+  }
+
+  .route-section {
+    height: auto !important;
+  }
+
+  .route-sticky {
+    position: relative !important;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding-block: 4rem !important;
+  }
+
+  .route-layout {
+    height: auto !important;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .route-steps {
+    gap: 0.85rem !important;
+  }
+
+  .route-step {
+    min-height: auto !important;
+    grid-template-columns: 42px 54px minmax(0, 1fr) 18px !important;
+    gap: 0.7rem !important;
+    padding: 0.9rem !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .route-icon {
+    width: 52px !important;
+    height: 52px !important;
+    border-width: 4px !important;
+  }
+
+  .route-step h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .route-step p {
+    font-size: 0.84rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .anatomy-workbench {
+    grid-template-columns: 1fr !important;
+  }
+
+  .anatomy-map {
+    min-height: 430px !important;
+    padding: 1rem !important;
+  }
+
+  .anatomy-panel {
+    padding: 1.1rem !important;
+  }
+
+  .news-section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  .news-carousel {
+    width: 100vw !important;
+    margin-left: 50% !important;
+    transform: translateX(-50%) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .news-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-track {
+    gap: 0.85rem !important;
+    width: max-content !important;
+    padding-inline: 1rem !important;
+    animation: none !important;
+  }
+
+  .news-card {
+    flex: 0 0 min(78vw, 280px) !important;
+    scroll-snap-align: center;
+  }
+
+  .news-card:hover {
+    transform: translateY(-4px) scale(1.012) !important;
+  }
+
+  .news-card img {
+    height: 150px !important;
+  }
+
+  .news-card-body {
+    padding: 1rem !important;
+  }
+
+  .news-card h3 {
+    font-size: 1rem !important;
+    line-height: 1.22 !important;
+  }
+
+  .news-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .reveal,
+  .route-step,
+  .criteria-card,
+  .news-card {
+    transition-duration: 0.22s !important;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 768px) {
+  .criteria-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+  }
+
+  .criteria-video-card,
+  .criteria-card {
+    min-height: 340px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header.navbar.site-nav {
+    width: calc(100% - 0.75rem) !important;
+    padding: 0.38rem 0.44rem !important;
+  }
+
+  .site-header.navbar.site-nav .brand img {
+    height: 30px !important;
+    max-width: 96px !important;
+  }
+
+  .site-header.navbar.site-nav .nav-whatsapp {
+    min-height: 32px !important;
+    padding: 0 0.52rem !important;
+  }
+
+  .site-header.navbar.site-nav .language-toggle {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .hero-section .hero-title,
+  .hero-editorial .hero-title {
+    font-size: clamp(2.75rem, 12vw, 4.2rem) !important;
+  }
+
+  .section-title,
+  .focus-copy h2,
+  .tech-copy h2,
+  .criteria-header h2,
+  .criteria-title,
+  .experience-copy h2,
+  .section-heading h2,
+  .anatomy-section .section-heading h2,
+  .news-header h2,
+  .final-cta-content h2,
+  .route-visual h2,
+  .differentials-section .section-heading h2 {
+    font-size: clamp(2.35rem, 11vw, 3.35rem) !important;
+  }
+
+  .hero-subtitle {
+    max-width: 23rem !important;
+  }
+
+  .route-step {
+    grid-template-columns: 36px minmax(0, 1fr) 18px !important;
+  }
+
+  .route-icon {
+    display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .tech-values,
+  .experience-stats,
+  .diff-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .site-header.navbar.site-nav .brand img {
+    max-width: 88px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-track {
+    animation: none !important;
+  }
+
+  .hero-spline-background {
+    display: none !important;
+  }
+}
