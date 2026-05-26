@@ -7054,13 +7054,11 @@ html {
 
 /* Final surgical pass: Ruta, Newsletter, Contacto */
 .route-section {
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 42%, rgba(255, 255, 255, 0.58) 100%),
-    url("assets/images/ruta.webp") center center / cover no-repeat !important;
+  background: #ffffff !important;
 }
 
 .route-sticky {
-  background: transparent !important;
+  background: #ffffff !important;
 }
 
 .route-visual::before,
@@ -8121,5 +8119,234 @@ html {
 
   .final-cta-content h2 {
     font-size: clamp(2.2rem, 10vw, 3.25rem);
+  }
+}
+
+/* Surgical correction: section backgrounds, tighter page axis, and hero-to-focus cover */
+.hero-shell,
+.focus-layout,
+.tech-layout,
+.experience-layout,
+.route-layout,
+.criteria-layout,
+.news-header,
+.final-cta-content {
+  width: min(96vw, 1560px) !important;
+  max-width: 1560px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: clamp(20px, 3vw, 48px) !important;
+  padding-right: clamp(20px, 3vw, 48px) !important;
+  box-sizing: border-box;
+}
+
+.hero-focus-transition {
+  position: relative;
+  overflow: clip;
+  background: #ffffff;
+}
+
+.hero-focus-transition .hero-section,
+.hero-section {
+  position: sticky !important;
+  top: 0 !important;
+  min-height: 100svh !important;
+  z-index: 1 !important;
+  overflow: hidden !important;
+}
+
+.hero-focus-transition .focus-section,
+.focus-section {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 100svh !important;
+  margin-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: clamp(3rem, 5vh, 4.5rem) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+}
+
+.focus-section::before {
+  content: none !important;
+}
+
+.tech-section {
+  position: relative !important;
+  min-height: 100svh !important;
+  overflow: hidden !important;
+  padding-top: clamp(3rem, 5vh, 4.5rem) !important;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.94) 38%, rgba(255, 255, 255, 0.35) 66%, rgba(255, 255, 255, 0) 100%),
+    url("assets/images/bet-images.png") right center / contain no-repeat !important;
+}
+
+.tech-layout,
+.tech-copy {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.tech-layout {
+  min-height: calc(100svh - clamp(3rem, 5vh, 4.5rem)) !important;
+}
+
+.tech-visual,
+.tech-visual img,
+.tech-section img[src*="bet-images"] {
+  display: none !important;
+}
+
+.experience-section {
+  position: relative !important;
+  min-height: 72svh !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.93) 38%, rgba(255, 255, 255, 0.34) 66%, rgba(255, 255, 255, 0) 100%),
+    url("assets/images/experiencia-bet.png") right center / contain no-repeat !important;
+}
+
+.experience-layout,
+.experience-copy {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.experience-visual,
+.experience-section img[src*="experiencia-bet"] {
+  display: none !important;
+}
+
+.route-section,
+.route-sticky {
+  background: #ffffff !important;
+  background-image: none !important;
+}
+
+.route-visual::before,
+.route-visual img,
+.route-section img[src*="ruta"] {
+  display: none !important;
+}
+
+.final-cta-content {
+  padding-right: clamp(20px, 3vw, 48px) !important;
+}
+
+@media (max-width: 900px) {
+  .hero-shell,
+  .focus-layout,
+  .tech-layout,
+  .experience-layout,
+  .route-layout,
+  .criteria-layout,
+  .news-header,
+  .final-cta-content {
+    width: min(96vw, 720px) !important;
+    padding-left: clamp(16px, 4vw, 28px) !important;
+    padding-right: clamp(16px, 4vw, 28px) !important;
+  }
+
+  .tech-section {
+    min-height: auto !important;
+    padding-top: 4rem !important;
+    padding-bottom: clamp(20rem, 62vw, 34rem) !important;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 48%, rgba(255, 255, 255, 0.34) 76%, rgba(255, 255, 255, 0) 100%),
+      url("assets/images/bet-images.png") center bottom / min(112vw, 720px) auto no-repeat !important;
+  }
+
+  .tech-layout {
+    min-height: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .experience-section {
+    min-height: auto !important;
+    padding-block: 5rem clamp(19rem, 58vw, 32rem) !important;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.92) 46%, rgba(255, 255, 255, 0.34) 76%, rgba(255, 255, 255, 0) 100%),
+      url("assets/images/experiencia-bet.png") center bottom / min(112vw, 680px) auto no-repeat !important;
+  }
+
+  .experience-layout {
+    min-height: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-focus-transition .hero-section,
+  .hero-section {
+    position: relative !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-shell,
+  .focus-layout,
+  .tech-layout,
+  .experience-layout,
+  .route-layout,
+  .criteria-layout,
+  .news-header,
+  .final-cta-content {
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+.hero-section > .hero-shell,
+.focus-section > .focus-layout,
+.tech-section > .tech-layout,
+.experience-section > .experience-layout,
+.route-section .route-layout,
+.criteria-section > .criteria-layout,
+.criteria-section > .criteria-header,
+.news-section > .news-header,
+.final-cta-section > .final-cta-content {
+  width: min(96vw, 1560px) !important;
+  max-width: 1560px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: clamp(20px, 3vw, 48px) !important;
+  padding-right: clamp(20px, 3vw, 48px) !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 900px) {
+  .hero-section > .hero-shell,
+  .focus-section > .focus-layout,
+  .tech-section > .tech-layout,
+  .experience-section > .experience-layout,
+  .route-section .route-layout,
+  .criteria-section > .criteria-layout,
+  .criteria-section > .criteria-header,
+  .news-section > .news-header,
+  .final-cta-section > .final-cta-content {
+    width: min(96vw, 720px) !important;
+    padding-left: clamp(16px, 4vw, 28px) !important;
+    padding-right: clamp(16px, 4vw, 28px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-section > .hero-shell,
+  .focus-section > .focus-layout,
+  .tech-section > .tech-layout,
+  .experience-section > .experience-layout,
+  .route-section .route-layout,
+  .criteria-section > .criteria-layout,
+  .criteria-section > .criteria-header,
+  .news-section > .news-header,
+  .final-cta-section > .final-cta-content {
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 }
