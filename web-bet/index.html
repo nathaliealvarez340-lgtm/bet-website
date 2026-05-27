@@ -6,7 +6,8 @@
     <title>BET | Soluciones medicas quirurgicas de precision</title>
     <meta name="description" content="BET provee protesis internas y soluciones quirurgicas confiables para procedimientos de alta precision.">
     <link rel="preload" href="assets/logo-bet.webp" as="image">
-    <link rel="preload" href="assets/images/hero-bet.png" as="image" fetchpriority="high">
+    <link rel="preload" href="assets/images/hero-bet.png" as="image" fetchpriority="high" media="(min-width: 769px)">
+    <link rel="preload" href="assets/images%20cel/hero-cel.png" as="image" fetchpriority="high" media="(max-width: 768px)">
     <link rel="icon" href="assets/logo-bet.webp" type="image/webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,16 +137,25 @@
       <section class="section criteria-section" id="criterios" aria-labelledby="criteria-title">
         <div class="criteria-header reveal">
           <span class="eyebrow">Criterios BET</span>
-          <h2 class="criteria-title" id="criteria-title">
-            <span>Criterios que importan cuando</span>
-            <span>el margen de error no existe.</span>
+          <h2 class="criteria-title" id="criteria-title" aria-label="Criterios que importan cuando el margen de error no existe.">
+            <span class="criteria-title-desktop-line" aria-hidden="true">Criterios que importan cuando</span>
+            <span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">Criterios que importan</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">cuando el margen</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">de error no existe.</span>
           </h2>
-          <p>Un sistema de decision pensado para cirugias donde la disponibilidad, la trazabilidad y el criterio tecnico deben sentirse claros desde el primer contacto.</p>
+          <p>Un sistema de decisi&oacute;n pensado para cirug&iacute;as donde la disponibilidad, la trazabilidad y el criterio t&eacute;cnico deben sentirse claros desde el primer contacto.</p>
         </div>
 
         <div class="criteria-layout reveal">
           <div class="criteria-video-card">
-            <video src="assets/newsletter/criterios.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="assets/newsletter/criterios.mp4" type="video/mp4" media="(min-width: 769px)">
+            </video>
+            <picture class="criteria-mobile-media" aria-hidden="true">
+              <source media="(max-width: 768px)" srcset="assets/newsletter/medical-premium-6.jpg">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" loading="lazy" decoding="async">
+            </picture>
           </div>
 
           <article class="criteria-card" aria-live="polite">

@@ -9083,3 +9083,176 @@ body .focus-section {
     display: none !important;
   }
 }
+
+.criteria-title-mobile-line,
+.criteria-mobile-media {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero-section::after {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.88) 46%, rgba(255, 255, 255, 0.38) 72%, rgba(255, 255, 255, 0.06) 100%),
+      url("assets/images%20cel/hero-cel.png") center bottom / cover no-repeat !important;
+  }
+
+  .tech-section {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.92) 42%, rgba(255, 255, 255, 0.5) 100%),
+      url("assets/images%20cel/tecnologia-precisi%C3%B3n.png") center bottom / cover no-repeat !important;
+  }
+
+  .experience-section {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 44%, rgba(255, 255, 255, 0.48) 100%),
+      url("assets/images%20cel/confianza-medica.png") center bottom / cover no-repeat !important;
+  }
+
+  .criteria-section {
+    min-height: auto !important;
+    padding: 4rem 0 !important;
+    background: #ffffff !important;
+  }
+
+  .criteria-section > .criteria-header,
+  .criteria-section > .criteria-layout {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  .criteria-header {
+    margin-bottom: 0 !important;
+  }
+
+  .criteria-header .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #168bd1 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.22em !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+  }
+
+  .criteria-header .eyebrow::before {
+    content: "";
+    width: 2.1rem;
+    height: 2px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: #168bd1;
+  }
+
+  .criteria-title {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1.8rem !important;
+    color: #06142b !important;
+    font-size: clamp(2.65rem, 9.8vw, 4.2rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.065em !important;
+  }
+
+  .criteria-title-desktop-line {
+    display: none !important;
+  }
+
+  .criteria-title-mobile-line {
+    display: block !important;
+    white-space: nowrap !important;
+  }
+
+  .criteria-header p {
+    max-width: 100% !important;
+    margin-top: 1.5rem !important;
+    color: #5f6673 !important;
+    font-size: clamp(1rem, 4vw, 1.25rem) !important;
+    line-height: 1.55 !important;
+  }
+
+  .criteria-layout {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    margin-top: 2rem !important;
+  }
+
+  .criteria-video-card,
+  .criteria-card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 1 / 1.35 !important;
+    border-radius: 1.25rem !important;
+    overflow: hidden !important;
+  }
+
+  .criteria-video-card {
+    background: #eef7fb !important;
+    box-shadow: none !important;
+  }
+
+  .criteria-video-card::after,
+  .criteria-video-card video {
+    display: none !important;
+  }
+
+  .criteria-mobile-media {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+  }
+
+  .criteria-mobile-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .criteria-card {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    background:
+      linear-gradient(145deg, rgba(22, 147, 165, 0.96), rgba(81, 193, 166, 0.92)) !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .criteria-number,
+  .criteria-controls {
+    display: none !important;
+  }
+
+  .criteria-content {
+    position: relative;
+    z-index: 2;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .criteria-card h3 {
+    margin: 0 0 0.75rem !important;
+    color: #ffffff !important;
+    font-size: clamp(1.45rem, 5.6vw, 2.25rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .criteria-card p {
+    margin: 0 !important;
+    color: rgba(255, 255, 255, 0.86) !important;
+    font-size: clamp(0.82rem, 2.9vw, 0.98rem) !important;
+    line-height: 1.45 !important;
+  }
+}
