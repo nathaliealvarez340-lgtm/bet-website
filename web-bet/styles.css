@@ -9256,3 +9256,105 @@ body .focus-section {
     line-height: 1.45 !important;
   }
 }
+
+/* Ruta step refinement */
+.route-steps {
+  padding-left: 1.6rem;
+}
+
+.route-step {
+  grid-template-columns: 54px 92px minmax(0, 1fr) !important;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    background 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.route-step::before {
+  display: block !important;
+  left: -0.25rem !important;
+  width: 0.9rem !important;
+  height: 0.9rem !important;
+  border-radius: 999px !important;
+  background: var(--bet-blue, #2e92c8) !important;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 0 0 7px rgba(46, 146, 200, 0.16) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.route-step::after,
+.route-arrow {
+  display: none !important;
+  content: none !important;
+}
+
+.route-step.is-active {
+  color: #ffffff;
+  background: var(--bet-blue, #2e92c8) !important;
+  border-color: rgba(46, 146, 200, 0.32);
+  box-shadow: 0 28px 76px rgba(46, 146, 200, 0.22);
+}
+
+.route-step.is-active::before {
+  background: var(--bet-blue, #2e92c8) !important;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 0 0 8px rgba(46, 146, 200, 0.2) !important;
+}
+
+.route-step.is-active .route-number,
+.route-step.is-active .route-icon,
+.route-step.is-active h3,
+.route-step.is-active p {
+  color: #ffffff !important;
+}
+
+.route-step.is-active .route-icon {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: none;
+}
+
+.route-step.is-active p {
+  opacity: 0.86;
+}
+
+.route-step.is-future {
+  background: rgba(255, 255, 255, 0.94) !important;
+}
+
+.route-step.is-past {
+  background: rgba(255, 255, 255, 0.88) !important;
+}
+
+@media (max-width: 1180px) {
+  .route-step {
+    grid-template-columns: 48px 78px minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 901px) {
+  .route-step {
+    grid-template-columns: 44px 68px minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .route-step {
+    grid-template-columns: auto minmax(0, 1fr) !important;
+  }
+
+  .route-copy {
+    grid-column: 2 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .route-step {
+    grid-template-columns: 36px minmax(0, 1fr) !important;
+  }
+}
