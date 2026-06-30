@@ -9358,3 +9358,92 @@ body .focus-section {
     grid-template-columns: 36px minmax(0, 1fr) !important;
   }
 }
+
+/* Newsletter and Contact shared background */
+main {
+  position: relative;
+  isolation: isolate;
+  background: #ffffff;
+}
+
+.anatomy-section {
+  position: relative !important;
+  top: auto !important;
+  z-index: 6 !important;
+  overflow: hidden !important;
+  background-color: #ffffff !important;
+  transform: translateZ(0);
+}
+
+.differentials-section {
+  position: relative !important;
+  z-index: 7 !important;
+  background: #ffffff !important;
+}
+
+.route-section {
+  position: relative !important;
+  z-index: 8 !important;
+  background: #ffffff !important;
+}
+
+.route-sticky {
+  z-index: 1 !important;
+  background: #ffffff !important;
+}
+
+.news-section,
+.final-cta-section {
+  position: relative !important;
+  z-index: 9 !important;
+  overflow: hidden !important;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(255, 255, 255, 0.72) 44%,
+      rgba(255, 255, 255, 0.38) 100%
+    ),
+    url("assets/images/fondo-bet.png") center center / cover no-repeat !important;
+}
+
+.news-section {
+  z-index: 9 !important;
+  background-attachment: fixed !important;
+}
+
+.final-cta-section {
+  z-index: 10 !important;
+  background-attachment: fixed !important;
+}
+
+.news-section::before,
+.news-section::after,
+.final-cta-section::before,
+.final-cta-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+.news-section > .news-header,
+.news-section > .news-carousel,
+.final-cta-section > .final-cta-content {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 768px) {
+  .news-section,
+  .final-cta-section {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.76) 48%,
+        rgba(255, 255, 255, 0.52) 100%
+      ),
+      url("assets/images/fondo-bet.png") center center / cover no-repeat !important;
+    background-attachment: scroll !important;
+  }
+}
