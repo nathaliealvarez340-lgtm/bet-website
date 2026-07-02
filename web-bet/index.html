@@ -210,45 +210,28 @@
         <div class="anatomy-workbench reveal">
           <div class="anatomy-map" aria-label="Mapa anatomico interactivo">
             <div class="map-toolbar">
-              <span>Vista clinica</span>
-              <small>Seleccion anatomica interactiva</small>
+              <div>
+                <span>Vista clinica</span>
+                <small>Selecciona una zona anatomica</small>
+              </div>
+              <div class="anatomy-view-toggle" aria-label="Cambiar vista anatomica">
+                <button class="is-active" type="button" data-anatomy-view="front" aria-pressed="true">Frontal</button>
+                <button type="button" data-anatomy-view="back" aria-pressed="false">Posterior</button>
+              </div>
             </div>
-            <svg viewBox="0 0 360 760" role="img" aria-labelledby="skeleton-title skeleton-desc">
-              <title id="skeleton-title">Estructura anatomica interactiva</title>
-              <desc id="skeleton-desc">Esqueleto simplificado con regiones seleccionables.</desc>
-              <g class="skeleton-lines">
-                <path d="M180 82 L180 630" />
-                <path d="M118 178 C148 154 212 154 242 178" />
-                <path d="M132 210 C122 280 102 338 78 394" />
-                <path d="M228 210 C238 280 258 338 282 394" />
-                <path d="M132 382 L148 610" />
-                <path d="M228 382 L212 610" />
-              </g>
-              <g class="bone-target" data-bone="craneo" data-label="Craneo" role="button" tabindex="0" aria-label="Craneo">
-                <circle cx="180" cy="72" r="44"></circle>
-              </g>
-              <g class="bone-target" data-bone="clavicula" data-label="Clavicula" role="button" tabindex="0" aria-label="Clavicula">
-                <path d="M118 168 C150 143 210 143 242 168"></path>
-              </g>
-              <g class="bone-target" data-bone="humerus" data-label="Humero" role="button" tabindex="0" aria-label="Humero">
-                <path d="M104 214 C92 276 80 328 62 382"></path>
-                <path d="M256 214 C268 276 280 328 298 382"></path>
-              </g>
-              <g class="bone-target" data-bone="columna" data-label="Columna" role="button" tabindex="0" aria-label="Columna vertebral">
-                <path d="M180 132 C168 190 169 248 180 306 C191 365 190 430 180 488"></path>
-              </g>
-              <g class="bone-target" data-bone="pelvis" data-label="Pelvis" role="button" tabindex="0" aria-label="Pelvis">
-                <path d="M124 360 C142 330 218 330 236 360 C226 416 202 445 180 448 C158 445 134 416 124 360Z"></path>
-              </g>
-              <g class="bone-target" data-bone="femur" data-label="Femur" role="button" tabindex="0" aria-label="Femur">
-                <path d="M145 434 C132 500 126 558 118 632"></path>
-                <path d="M215 434 C228 500 234 558 242 632"></path>
-              </g>
-              <g class="bone-target" data-bone="tibia" data-label="Tibia" role="button" tabindex="0" aria-label="Tibia">
-                <path d="M118 632 L104 724"></path>
-                <path d="M242 632 L256 724"></path>
-              </g>
-            </svg>
+            <div class="anatomy-skeleton-stage" data-skeleton-stage>
+              <img
+                id="anatomy-skeleton-image"
+                class="anatomy-skeleton-image"
+                src="assets/images/esqueleto-frontal.png"
+                alt="Esqueleto en vista frontal"
+                width="1341"
+                height="1029"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="anatomy-hotspots" data-anatomy-hotspots aria-label="Zonas anatomicas disponibles"></div>
+            </div>
           </div>
           <aside class="anatomy-panel glass" aria-live="polite">
             <span class="eyebrow" id="bone-category">Miembro inferior</span>

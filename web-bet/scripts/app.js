@@ -427,23 +427,180 @@ window.addEventListener("scroll", () => {
   header?.classList.toggle("is-elevated", window.scrollY > 20);
 });
 
-const fallbackProducts = [
-  {
-    id: "femur",
-    label: "Femur",
-    nombre: "Femur",
-    categoria: "Miembro inferior",
-    descripcion: "Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.",
-    productos: [
+const skeletonData = {
+  front: {
+    label: "Vista frontal",
+    image: "assets/images/esqueleto-frontal.png",
+    alt: "Esqueleto en vista frontal",
+    initialZone: "femur",
+    zones: [
       {
-        nombre: "Protesis femoral",
-        descripcion: "Solucion disenada para procedimientos de reconstruccion o reemplazo en la zona femoral.",
-        uso: "Traumatologia y ortopedia",
+        id: "skull",
+        label: "Cr\u00e1neo",
+        nombre: "Cr\u00e1neo",
+        categoria: "Cabeza y cuello",
+        descripcion:
+          "Estructura \u00f3sea que protege el enc\u00e9falo y sirve como base anat\u00f3mica para procedimientos especializados de reconstrucci\u00f3n y fijaci\u00f3n.",
+        x: "50%",
+        y: "11%",
+        productos: [
+          { nombre: "Placas craneales", descripcion: "Sistemas de soporte para reconstrucci\u00f3n craneal.", uso: "Reconstrucci\u00f3n y fijaci\u00f3n" },
+          { nombre: "Sistemas de fijaci\u00f3n", descripcion: "Dispositivos internos para estabilizaci\u00f3n \u00f3sea.", uso: "Trauma especializado" },
+        ],
+        aplicaciones: ["Reconstrucci\u00f3n craneal", "Fijaci\u00f3n interna", "Trauma especializado"],
+      },
+      {
+        id: "shoulder",
+        label: "Hombro",
+        nombre: "Hombro",
+        categoria: "Miembro superior",
+        descripcion:
+          "Articulaci\u00f3n clave para movilidad superior, estabilidad y funci\u00f3n del brazo en procedimientos ortop\u00e9dicos especializados.",
+        x: "42%",
+        y: "25%",
+        productos: [
+          { nombre: "Pr\u00f3tesis de hombro", descripcion: "Soluciones internas para soporte y movilidad articular.", uso: "Artroplastia" },
+          { nombre: "Sistemas de fijaci\u00f3n", descripcion: "Implantes para estabilidad en trauma ortop\u00e9dico.", uso: "Reconstrucci\u00f3n articular" },
+        ],
+        aplicaciones: ["Artroplastia", "Reconstrucci\u00f3n articular", "Trauma ortop\u00e9dico"],
+      },
+      {
+        id: "spine",
+        label: "Columna",
+        nombre: "Columna",
+        categoria: "Columna vertebral",
+        descripcion: "Eje estructural del cuerpo humano, esencial para soporte, alineaci\u00f3n y protecci\u00f3n neurol\u00f3gica.",
+        x: "50%",
+        y: "36%",
+        productos: [
+          { nombre: "Sistemas de estabilizaci\u00f3n", descripcion: "Implantes para soporte y alineaci\u00f3n vertebral.", uso: "Cirug\u00eda de columna" },
+          { nombre: "Implantes para columna", descripcion: "Soluciones internas para fijaci\u00f3n de alta precisi\u00f3n.", uso: "Fijaci\u00f3n interna" },
+        ],
+        aplicaciones: ["Estabilizaci\u00f3n vertebral", "Correcci\u00f3n estructural", "Fijaci\u00f3n interna"],
+      },
+      {
+        id: "hip",
+        label: "Cadera",
+        nombre: "Cadera",
+        categoria: "Pelvis y cadera",
+        descripcion: "Articulaci\u00f3n de carga fundamental para movilidad, equilibrio y soporte corporal.",
+        x: "50%",
+        y: "54%",
+        productos: [
+          { nombre: "Pr\u00f3tesis de cadera", descripcion: "Implantes internos para restaurar movilidad y funci\u00f3n.", uso: "Reemplazo articular" },
+          { nombre: "Componentes acetabulares", descripcion: "Sistemas para soporte y reconstrucci\u00f3n de cadera.", uso: "Artroplastia" },
+        ],
+        aplicaciones: ["Artroplastia", "Reemplazo articular", "Reconstrucci\u00f3n de cadera"],
+      },
+      {
+        id: "femur",
+        label: "F\u00e9mur",
+        nombre: "F\u00e9mur",
+        categoria: "Miembro inferior",
+        descripcion: "Hueso largo del muslo que cumple una funci\u00f3n clave en movilidad, soporte de peso y estabilidad estructural.",
+        x: "46%",
+        y: "69%",
+        productos: [
+          { nombre: "Pr\u00f3tesis femoral", descripcion: "Soluci\u00f3n dise\u00f1ada para reconstrucci\u00f3n o reemplazo en la zona femoral.", uso: "Traumatolog\u00eda y ortopedia" },
+          { nombre: "Clavo intramedular femoral", descripcion: "Sistema para estabilizaci\u00f3n interna en fracturas de f\u00e9mur.", uso: "Trauma ortop\u00e9dico" },
+        ],
+        aplicaciones: ["Artroplastia", "Fijaci\u00f3n interna", "Reconstrucci\u00f3n femoral"],
+      },
+      {
+        id: "knee",
+        label: "Rodilla",
+        nombre: "Rodilla",
+        categoria: "Miembro inferior",
+        descripcion: "Articulaci\u00f3n esencial para marcha, flexi\u00f3n, estabilidad y transferencia de carga.",
+        x: "50%",
+        y: "78%",
+        productos: [
+          { nombre: "Pr\u00f3tesis de rodilla", descripcion: "Soluciones para estabilidad, resistencia y recuperaci\u00f3n funcional.", uso: "Reemplazo articular" },
+          { nombre: "Sistemas de reemplazo articular", descripcion: "Componentes internos para reconstrucci\u00f3n de rodilla.", uso: "Reconstrucci\u00f3n" },
+        ],
+        aplicaciones: ["Reemplazo articular", "Reconstrucci\u00f3n", "Trauma ortop\u00e9dico"],
       },
     ],
-    aplicaciones: ["Artroplastia", "Fijacion interna", "Reconstruccion femoral"],
   },
-];
+  back: {
+    label: "Vista posterior",
+    image: "assets/images/esqueleto-reverso.png",
+    alt: "Esqueleto en vista posterior",
+    initialZone: "posterior-spine",
+    zones: [
+      {
+        id: "posterior-spine",
+        label: "Columna posterior",
+        nombre: "Columna posterior",
+        categoria: "Columna vertebral",
+        descripcion: "Vista posterior de la estructura vertebral, clave para soporte, alineaci\u00f3n y estabilizaci\u00f3n quir\u00fargica.",
+        x: "50%",
+        y: "35%",
+        productos: [
+          { nombre: "Sistemas de estabilizaci\u00f3n vertebral", descripcion: "Implantes para soporte estructural posterior.", uso: "Fijaci\u00f3n posterior" },
+          { nombre: "Implantes posteriores", descripcion: "Soluciones internas para alineaci\u00f3n y estabilizaci\u00f3n.", uso: "Correcci\u00f3n estructural" },
+        ],
+        aplicaciones: ["Fijaci\u00f3n posterior", "Estabilizaci\u00f3n", "Correcci\u00f3n estructural"],
+      },
+      {
+        id: "scapula",
+        label: "Esc\u00e1pula",
+        nombre: "Esc\u00e1pula",
+        categoria: "Miembro superior",
+        descripcion: "Estructura posterior del hombro que participa en movilidad, soporte y estabilidad escapular.",
+        x: "42%",
+        y: "27%",
+        productos: [
+          { nombre: "Sistemas de fijaci\u00f3n", descripcion: "Dispositivos para soporte y estabilidad escapular.", uso: "Trauma" },
+          { nombre: "Placas anat\u00f3micas", descripcion: "Implantes para reconstrucci\u00f3n y fijaci\u00f3n interna.", uso: "Reconstrucci\u00f3n" },
+        ],
+        aplicaciones: ["Trauma", "Reconstrucci\u00f3n", "Fijaci\u00f3n interna"],
+      },
+      {
+        id: "posterior-pelvis",
+        label: "Pelvis posterior",
+        nombre: "Pelvis posterior",
+        categoria: "Pelvis y cadera",
+        descripcion: "Regi\u00f3n \u00f3sea fundamental para transmisi\u00f3n de carga, estabilidad p\u00e9lvica y soporte de extremidades inferiores.",
+        x: "50%",
+        y: "55%",
+        productos: [
+          { nombre: "Sistemas p\u00e9lvicos", descripcion: "Soluciones para soporte y reconstrucci\u00f3n p\u00e9lvica.", uso: "Estabilizaci\u00f3n p\u00e9lvica" },
+          { nombre: "Implantes de fijaci\u00f3n", descripcion: "Dispositivos internos para trauma ortop\u00e9dico.", uso: "Trauma ortop\u00e9dico" },
+        ],
+        aplicaciones: ["Estabilizaci\u00f3n p\u00e9lvica", "Trauma ortop\u00e9dico", "Reconstrucci\u00f3n"],
+      },
+      {
+        id: "posterior-femur",
+        label: "F\u00e9mur posterior",
+        nombre: "F\u00e9mur posterior",
+        categoria: "Miembro inferior",
+        descripcion: "Vista posterior del hueso femoral, relevante en procedimientos de fijaci\u00f3n, reemplazo y reconstrucci\u00f3n estructural.",
+        x: "54%",
+        y: "69%",
+        productos: [
+          { nombre: "Clavo intramedular femoral", descripcion: "Sistema para estabilizaci\u00f3n interna del f\u00e9mur.", uso: "Fijaci\u00f3n interna" },
+          { nombre: "Pr\u00f3tesis femoral", descripcion: "Soluci\u00f3n para reemplazo o reconstrucci\u00f3n estructural.", uso: "Reconstrucci\u00f3n femoral" },
+        ],
+        aplicaciones: ["Fijaci\u00f3n interna", "Reconstrucci\u00f3n femoral", "Trauma ortop\u00e9dico"],
+      },
+      {
+        id: "posterior-knee",
+        label: "Rodilla posterior",
+        nombre: "Rodilla posterior",
+        categoria: "Miembro inferior",
+        descripcion: "Regi\u00f3n posterior de la articulaci\u00f3n de rodilla, importante para estabilidad, movilidad y soporte funcional.",
+        x: "50%",
+        y: "78%",
+        productos: [
+          { nombre: "Sistemas de rodilla", descripcion: "Componentes internos orientados a estabilidad y funci\u00f3n.", uso: "Reemplazo articular" },
+          { nombre: "Componentes articulares", descripcion: "Soluciones para recuperaci\u00f3n del movimiento.", uso: "Reconstrucci\u00f3n" },
+        ],
+        aplicaciones: ["Reemplazo articular", "Reconstrucci\u00f3n", "Estabilizaci\u00f3n"],
+      },
+    ],
+  },
+};
 
 const selectors = {
   category: document.querySelector("#bone-category"),
@@ -451,10 +608,15 @@ const selectors = {
   description: document.querySelector("#bone-description"),
   products: document.querySelector("#bone-products"),
   applications: document.querySelector("#bone-applications"),
-  targets: document.querySelectorAll(".bone-target"),
+  image: document.querySelector("#anatomy-skeleton-image"),
+  hotspots: document.querySelector("[data-anatomy-hotspots]"),
+  stage: document.querySelector("[data-skeleton-stage]"),
+  viewButtons: document.querySelectorAll("[data-anatomy-view]"),
 };
 
-let anatomyProducts = fallbackProducts;
+let activeAnatomyView = "front";
+let activeBoneId = skeletonData.front.initialZone;
+let anatomyProducts = Object.values(skeletonData).flatMap((view) => view.zones);
 
 function renderNewsArticles(articles) {
   const carousel = document.querySelector("[data-news-carousel]");
@@ -496,15 +658,65 @@ if (newsViewportQuery.addEventListener) {
   newsViewportQuery.addListener(rerenderNewsForViewport);
 }
 
-function renderBone(boneId) {
-  const bone = anatomyProducts.find((item) => item.id === boneId) || anatomyProducts[0];
-  if (!bone) return;
+function getActiveViewData() {
+  return skeletonData[activeAnatomyView] || skeletonData.front;
+}
 
-  selectors.targets.forEach((target) => {
-    const isActive = target.dataset.bone === bone.id;
-    target.classList.toggle("is-active", isActive);
-    target.setAttribute("aria-pressed", String(isActive));
+function renderAnatomyHotspots() {
+  if (!selectors.hotspots) return;
+  const viewData = getActiveViewData();
+
+  selectors.hotspots.innerHTML = viewData.zones
+    .map(
+      (zone) => `
+        <button
+          class="bone-target${zone.id === activeBoneId ? " is-active" : ""}"
+          type="button"
+          data-bone="${escapeHtml(zone.id)}"
+          aria-label="${escapeHtml(zone.label)}"
+          aria-pressed="${zone.id === activeBoneId}"
+          style="--bone-x: ${escapeHtml(zone.x)}; --bone-y: ${escapeHtml(zone.y)};"
+        >
+          <span class="sr-only">${escapeHtml(zone.label)}</span>
+        </button>
+      `
+    )
+    .join("");
+}
+
+function setAnatomyView(viewKey) {
+  if (!skeletonData[viewKey]) return;
+  activeAnatomyView = viewKey;
+  const viewData = getActiveViewData();
+  activeBoneId = viewData.zones.some((zone) => zone.id === activeBoneId) ? activeBoneId : viewData.initialZone;
+
+  selectors.viewButtons.forEach((button) => {
+    const isActive = button.dataset.anatomyView === activeAnatomyView;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
   });
+
+  if (selectors.image) {
+    selectors.image.src = viewData.image;
+    selectors.image.alt = viewData.alt;
+  }
+
+  if (selectors.stage) {
+    selectors.stage.classList.remove("is-rotating");
+    void selectors.stage.offsetWidth;
+    selectors.stage.classList.add("is-rotating");
+  }
+
+  renderBone(activeBoneId);
+}
+
+function renderBone(boneId) {
+  const viewData = getActiveViewData();
+  const bone = viewData.zones.find((item) => item.id === boneId) || viewData.zones[0];
+  if (!bone) return;
+  activeBoneId = bone.id;
+
+  renderAnatomyHotspots();
 
   selectors.category.textContent = bone.categoria;
   selectors.name.textContent = bone.nombre;
@@ -514,8 +726,8 @@ function renderBone(boneId) {
       (product) => `
         <article class="product-mini">
           <strong>${escapeHtml(product.nombre)}</strong>
-          <span>${escapeHtml(product.descripcion)}</span>
-          <small>${escapeHtml(product.uso)}</small>
+          ${product.descripcion ? `<span>${escapeHtml(product.descripcion)}</span>` : ""}
+          ${product.uso ? `<small>${escapeHtml(product.uso)}</small>` : ""}
         </article>
       `
     )
@@ -523,18 +735,17 @@ function renderBone(boneId) {
   selectors.applications.innerHTML = bone.aplicaciones.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 }
 
-fetch("data/anatomicalProducts.json")
-  .then((response) => {
-    if (!response.ok) throw new Error("No se pudo cargar anatomicalProducts.json");
-    return response.json();
-  })
-  .then((data) => {
-    anatomyProducts = data;
-    renderBone("femur");
-  })
-  .catch(() => {
-    renderBone("femur");
-  });
+selectors.hotspots?.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-bone]");
+  if (!target) return;
+  renderBone(target.dataset.bone);
+});
+
+selectors.viewButtons.forEach((button) => {
+  button.addEventListener("click", () => setAnatomyView(button.dataset.anatomyView));
+});
+
+renderBone(activeBoneId);
 
 fetch("/api/news")
   .then((response) => {
@@ -549,15 +760,6 @@ fetch("/api/news")
   .catch(() => {
     document.querySelector("[data-news-carousel]")?.replaceChildren();
   });
-
-selectors.targets.forEach((target) => {
-  target.addEventListener("click", () => renderBone(target.dataset.bone));
-  target.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    renderBone(target.dataset.bone);
-  });
-});
 
 const valueAccordion = document.querySelector("[data-value-accordion]");
 
