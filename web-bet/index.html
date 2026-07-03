@@ -218,12 +218,13 @@
                 <button class="is-active" type="button" data-anatomy-view="front" aria-pressed="true">Frontal</button>
                 <button type="button" data-anatomy-view="back" aria-pressed="false">Posterior</button>
               </div>
+              <a class="anatomy-care-link" href="/cuidado-protesis" target="_blank" rel="noopener noreferrer">Cuidados y seguimiento</a>
             </div>
             <div class="anatomy-skeleton-stage" data-skeleton-stage>
               <img
                 id="anatomy-skeleton-image"
                 class="anatomy-skeleton-image"
-                src="assets/images/esqueleto-frontal.png"
+                src="/images/esqueleto-frontal.png"
                 alt="Esqueleto en vista frontal"
                 width="1341"
                 height="1029"
@@ -236,15 +237,22 @@
           <aside class="anatomy-panel glass" aria-live="polite">
             <span class="eyebrow" id="bone-category">Miembro inferior</span>
             <h3 id="bone-name">Femur</h3>
+            <span class="anatomy-area" id="bone-area">Cadera / region trocanterica</span>
             <p id="bone-description">Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.</p>
+            <img class="anatomy-product-image" id="bone-product-image" alt="" loading="lazy" decoding="async" hidden>
             <div class="panel-block">
               <h4>Productos relacionados</h4>
               <div id="bone-products"></div>
             </div>
             <div class="panel-block">
-              <h4>Aplicaciones quirurgicas</h4>
+              <h4>Beneficios clave</h4>
+              <ul id="bone-benefits"></ul>
+            </div>
+            <div class="panel-block">
+              <h4>Aplicaciones</h4>
               <ul id="bone-applications"></ul>
             </div>
+            <a class="button glass-button full anatomy-document-link" id="bone-document" href="#" target="_blank" rel="noopener noreferrer" hidden><span>Ver ficha tecnica</span></a>
             <a class="button glass-button primary full" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Solicitar informacion</span></a>
           </aside>
         </div>
@@ -392,6 +400,7 @@
       <a class="button glass-button full assistant-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Hablar por WhatsApp</span></a>
     </section>
 
+    <script src="data/anatomyProducts.js" defer></script>
     <script src="scripts/app.js" defer></script>
   </body>
 </html>

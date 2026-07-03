@@ -427,7 +427,42 @@ window.addEventListener("scroll", () => {
   header?.classList.toggle("is-elevated", window.scrollY > 20);
 });
 
-const skeletonData = {
+const anatomyZonesSource = Array.isArray(window.BET_ANATOMY_ZONES) && window.BET_ANATOMY_ZONES.length ? window.BET_ANATOMY_ZONES : [];
+
+function buildSkeletonDataFromZones(zones) {
+  const normalizeZone = (zone) => ({
+    ...zone,
+    label: zone.title,
+    nombre: zone.title,
+    categoria: zone.category,
+    descripcion: zone.description,
+    productos: (zone.products || []).map((product) => ({
+      nombre: product.name,
+      descripcion: product.description,
+      uso: product.type,
+    })),
+    aplicaciones: zone.applications || [],
+  });
+
+  return {
+    front: {
+      label: "Vista frontal",
+      image: "/images/esqueleto-frontal.png",
+      alt: "Esqueleto en vista frontal",
+      initialZone: "proximal-femur",
+      zones: zones.filter((zone) => zone.view === "front").map(normalizeZone),
+    },
+    back: {
+      label: "Vista posterior",
+      image: "/images/esqueleto-reverso.png",
+      alt: "Esqueleto en vista posterior",
+      initialZone: "posterior-spine",
+      zones: zones.filter((zone) => zone.view === "back").map(normalizeZone),
+    },
+  };
+}
+
+const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anatomyZonesSource) : {
   front: {
     label: "Vista frontal",
     image: "assets/images/esqueleto-frontal.png",
@@ -605,9 +640,13 @@ const skeletonData = {
 const selectors = {
   category: document.querySelector("#bone-category"),
   name: document.querySelector("#bone-name"),
+  area: document.querySelector("#bone-area"),
   description: document.querySelector("#bone-description"),
   products: document.querySelector("#bone-products"),
+  benefits: document.querySelector("#bone-benefits"),
   applications: document.querySelector("#bone-applications"),
+  productImage: document.querySelector("#bone-product-image"),
+  document: document.querySelector("#bone-document"),
   image: document.querySelector("#anatomy-skeleton-image"),
   hotspots: document.querySelector("[data-anatomy-hotspots]"),
   stage: document.querySelector("[data-skeleton-stage]"),
@@ -617,6 +656,7 @@ const selectors = {
 let activeAnatomyView = "front";
 let activeBoneId = skeletonData.front.initialZone;
 let anatomyProducts = Object.values(skeletonData).flatMap((view) => view.zones);
+const availableProductImages = new Set([]);
 
 function renderNewsArticles(articles) {
   const carousel = document.querySelector("[data-news-carousel]");
@@ -688,7 +728,7 @@ function setAnatomyView(viewKey) {
   if (!skeletonData[viewKey]) return;
   activeAnatomyView = viewKey;
   const viewData = getActiveViewData();
-  activeBoneId = viewData.zones.some((zone) => zone.id === activeBoneId) ? activeBoneId : viewData.initialZone;
+  activeBoneId = viewData.initialZone;
 
   selectors.viewButtons.forEach((button) => {
     const isActive = button.dataset.anatomyView === activeAnatomyView;
@@ -720,7 +760,22 @@ function renderBone(boneId) {
 
   selectors.category.textContent = bone.categoria;
   selectors.name.textContent = bone.nombre;
+  if (selectors.area) selectors.area.textContent = bone.anatomicalArea || "";
   selectors.description.textContent = bone.descripcion;
+  if (selectors.productImage) {
+    if (bone.image && availableProductImages.has(bone.image)) {
+      selectors.productImage.hidden = false;
+      selectors.productImage.src = bone.image;
+      selectors.productImage.alt = `Producto relacionado con ${bone.nombre}`;
+      selectors.productImage.onerror = () => {
+        selectors.productImage.hidden = true;
+        selectors.productImage.removeAttribute("src");
+      };
+    } else {
+      selectors.productImage.hidden = true;
+      selectors.productImage.removeAttribute("src");
+    }
+  }
   selectors.products.innerHTML = bone.productos
     .map(
       (product) => `
@@ -732,7 +787,20 @@ function renderBone(boneId) {
       `
     )
     .join("");
+  if (selectors.benefits) {
+    selectors.benefits.innerHTML = (bone.benefits || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  }
   selectors.applications.innerHTML = bone.aplicaciones.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  if (selectors.document) {
+    if (bone.document?.href) {
+      selectors.document.hidden = false;
+      selectors.document.href = bone.document.href;
+      selectors.document.querySelector("span").textContent = bone.document.label || "Ver ficha tecnica";
+    } else {
+      selectors.document.hidden = true;
+      selectors.document.href = "#";
+    }
+  }
 }
 
 selectors.hotspots?.addEventListener("click", (event) => {

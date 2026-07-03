@@ -12,6 +12,9 @@ const types = {
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".png": "image/png",
+  ".webp": "image/webp",
+  ".mp4": "video/mp4",
+  ".pdf": "application/pdf",
   ".svg": "image/svg+xml; charset=utf-8",
 };
 
@@ -85,22 +88,31 @@ createServer(async (request, response) => {
   }
 
   const requested = pathname === "/" ? "/index.html" : pathname;
-  const filePath = normalize(join(root, requested));
+  const candidates = [
+    normalize(join(root, requested)),
+    normalize(join(root, `${requested}.html`)),
+    normalize(join(root, "public", requested)),
+  ];
 
-  if (!filePath.startsWith(root)) {
+  if (candidates.some((filePath) => !filePath.startsWith(root))) {
     response.writeHead(403);
     response.end("Forbidden");
     return;
   }
 
-  try {
-    const body = await readFile(filePath);
-    response.writeHead(200, { "Content-Type": types[extname(filePath)] || "application/octet-stream" });
-    response.end(body);
-  } catch {
-    response.writeHead(404);
-    response.end("Not found");
+  for (const filePath of candidates) {
+    try {
+      const body = await readFile(filePath);
+      response.writeHead(200, { "Content-Type": types[extname(filePath)] || "application/octet-stream" });
+      response.end(body);
+      return;
+    } catch {
+      // Try the next static candidate.
+    }
   }
+
+  response.writeHead(404);
+  response.end("Not found");
 }).listen(port, "127.0.0.1", () => {
   console.log(`BET site on http://127.0.0.1:${port}`);
 });
