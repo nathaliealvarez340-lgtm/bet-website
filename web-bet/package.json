@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node dev-server.mjs",
     "start": "node dev-server.mjs",
-    "preview": "node dev-server.mjs"
+    "preview": "node dev-server.mjs",
+    "build": "node --check scripts/app.js && node --check data/anatomyProducts.js && node --check dev-server.mjs"
   },
   "engines": {
     "node": ">=18"
