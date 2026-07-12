@@ -638,6 +638,7 @@ const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anat
 };
 
 const selectors = {
+  workbench: document.querySelector(".anatomy-workbench"),
   category: document.querySelector("#bone-category"),
   name: document.querySelector("#bone-name"),
   area: document.querySelector("#bone-area"),
@@ -651,12 +652,15 @@ const selectors = {
   hotspots: document.querySelector("[data-anatomy-hotspots]"),
   stage: document.querySelector("[data-skeleton-stage]"),
   viewButtons: document.querySelectorAll("[data-anatomy-view]"),
+  backButton: document.querySelector("[data-anatomy-back]"),
 };
 
 let activeAnatomyView = "front";
 let activeBoneId = skeletonData.front.initialZone;
 let anatomyProducts = Object.values(skeletonData).flatMap((view) => view.zones);
 const availableProductImages = new Set([]);
+const anatomyMobileQuery = window.matchMedia("(max-width: 767px)");
+let mobileAnatomyPanel = "skeleton";
 
 function renderNewsArticles(articles) {
   const carousel = document.querySelector("[data-news-carousel]");
@@ -700,6 +704,12 @@ if (newsViewportQuery.addEventListener) {
 
 function getActiveViewData() {
   return skeletonData[activeAnatomyView] || skeletonData.front;
+}
+
+function setMobileAnatomyPanel(panel) {
+  mobileAnatomyPanel = panel === "details" ? "details" : "skeleton";
+  if (selectors.workbench) selectors.workbench.dataset.mobilePanel = mobileAnatomyPanel;
+  selectors.backButton?.toggleAttribute("hidden", mobileAnatomyPanel !== "details");
 }
 
 function renderAnatomyHotspots() {
@@ -807,12 +817,24 @@ selectors.hotspots?.addEventListener("click", (event) => {
   const target = event.target.closest("[data-bone]");
   if (!target) return;
   renderBone(target.dataset.bone);
+  if (anatomyMobileQuery.matches) setMobileAnatomyPanel("details");
 });
 
 selectors.viewButtons.forEach((button) => {
   button.addEventListener("click", () => setAnatomyView(button.dataset.anatomyView));
 });
 
+selectors.backButton?.addEventListener("click", () => {
+  setMobileAnatomyPanel("skeleton");
+});
+
+if (anatomyMobileQuery.addEventListener) {
+  anatomyMobileQuery.addEventListener("change", () => setMobileAnatomyPanel("skeleton"));
+} else {
+  anatomyMobileQuery.addListener(() => setMobileAnatomyPanel("skeleton"));
+}
+
+setMobileAnatomyPanel("skeleton");
 renderBone(activeBoneId);
 
 fetch("/api/news")

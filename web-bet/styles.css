@@ -9436,6 +9436,15 @@ main {
 @media (max-width: 768px) {
   .bet-parallax-gap {
     height: clamp(240px, 36vh, 380px);
+    background: transparent !important;
+    clip-path: inset(0);
+  }
+
+  .bet-parallax-gap::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
     background:
       linear-gradient(
         180deg,
@@ -9444,7 +9453,7 @@ main {
         rgba(255, 255, 255, 0.16) 100%
       ),
       url("assets/images/fondo-bet.png") center center / cover no-repeat;
-    background-attachment: scroll !important;
+    pointer-events: none;
   }
 }
 
@@ -9944,5 +9953,220 @@ main {
 
   .care-shell {
     grid-template-columns: 1fr;
+  }
+}
+
+/* BET responsive stabilization: anatomy mobile flow and compact mobile rhythm */
+.anatomy-back-button {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  main > section:not(.hero-section):not(.hero-editorial):not(.route-section) {
+    padding-block: clamp(3rem, 10vw, 4.8rem) !important;
+  }
+
+  .section-heading,
+  .news-header,
+  .criteria-header {
+    width: min(100% - 2rem, 680px) !important;
+    margin-inline: auto !important;
+    gap: 0.8rem !important;
+  }
+
+  .section-heading h2,
+  .anatomy-section .section-heading h2,
+  .criteria-title,
+  .differentials-section .section-heading h2,
+  .news-header h2 {
+    font-size: clamp(1.9rem, 8vw, 2.75rem) !important;
+    line-height: 0.98 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .section-heading p,
+  .news-header p,
+  .criteria-header p,
+  .anatomy-section .section-heading p {
+    max-width: 38rem !important;
+    font-size: 0.95rem !important;
+    line-height: 1.62 !important;
+  }
+
+  .anatomy-workbench {
+    width: min(100% - 2rem, 620px) !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-inline: auto !important;
+  }
+
+  .anatomy-workbench[data-mobile-panel="skeleton"] .anatomy-panel {
+    display: none !important;
+  }
+
+  .anatomy-workbench[data-mobile-panel="details"] .anatomy-map {
+    display: none !important;
+  }
+
+  .anatomy-map,
+  .anatomy-panel {
+    min-height: auto !important;
+    width: 100% !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+  }
+
+  .map-toolbar {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  .anatomy-skeleton-stage {
+    min-height: clamp(430px, 68vh, 540px) !important;
+    margin-top: 0.25rem !important;
+  }
+
+  .anatomy-skeleton-stage::before {
+    inset: 0.6rem 0.25rem !important;
+  }
+
+  .anatomy-skeleton-image {
+    height: clamp(390px, 58vh, 500px) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  .anatomy-hotspots {
+    z-index: 2 !important;
+  }
+
+  .bone-target {
+    z-index: 2 !important;
+  }
+
+  .anatomy-back-button {
+    width: 100%;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(76, 185, 211, 0.34);
+    border-radius: 999px;
+    color: #ffffff;
+    background: rgba(11, 136, 166, 0.38);
+    font: 800 0.9rem var(--bet-sans, "Poppins", sans-serif);
+    cursor: pointer;
+  }
+
+  .anatomy-back-button[hidden] {
+    display: none !important;
+  }
+
+  .anatomy-panel h3 {
+    font-size: clamp(1.85rem, 8vw, 2.45rem) !important;
+    line-height: 1 !important;
+  }
+
+  .anatomy-panel p,
+  .product-mini span,
+  .product-mini small,
+  #bone-benefits,
+  #bone-applications li {
+    font-size: 0.93rem !important;
+    line-height: 1.58 !important;
+  }
+
+  .panel-block {
+    margin: 1.2rem 0 !important;
+  }
+
+  .product-mini {
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 0.95rem 1rem !important;
+    border-radius: 0.85rem !important;
+    content-visibility: visible !important;
+  }
+
+  #bone-applications {
+    align-items: stretch !important;
+  }
+
+  #bone-applications li {
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+
+  .anatomy-panel .button,
+  .anatomy-document-link,
+  .anatomy-care-link {
+    width: 100% !important;
+    min-height: 44px !important;
+  }
+
+  .diff-grid,
+  .tech-values,
+  .experience-stats {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .diff-item,
+  .tech-value,
+  .experience-stat,
+  .news-card {
+    min-height: auto !important;
+    border-radius: 1rem !important;
+  }
+
+  .button,
+  .glass-button,
+  .final-cta-button {
+    min-height: 44px !important;
+    max-width: 100% !important;
+  }
+
+  .news-section,
+  .final-cta-section {
+    z-index: 10 !important;
+    background: #ffffff !important;
+  }
+
+  .bet-parallax-gap {
+    min-height: clamp(240px, 38vh, 400px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-heading h2,
+  .anatomy-section .section-heading h2,
+  .criteria-title,
+  .differentials-section .section-heading h2,
+  .news-header h2 {
+    font-size: clamp(1.65rem, 9vw, 2.35rem) !important;
+  }
+
+  .anatomy-workbench {
+    width: min(100% - 1.25rem, 620px) !important;
+  }
+
+  .anatomy-skeleton-stage {
+    min-height: clamp(390px, 64vh, 500px) !important;
+  }
+
+  .anatomy-skeleton-image {
+    height: clamp(360px, 56vh, 460px) !important;
   }
 }
