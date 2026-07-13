@@ -26,7 +26,7 @@ const translations = {
       },
     ],
     heroSubtitle: "Pr\u00f3tesis internas y soluciones m\u00e9dicas dise\u00f1adas para responder con velocidad, confianza y exactitud.",
-    heroProductsCta: "Conoce m\u00e1s",
+    heroProductsCta: "Cont\u00e1ctanos",
     heroAdvisorCta: "Hablar con un asesor",
     heroStatOneValue: "+500",
     heroStatOneLabel: "procedimientos atendidos",
@@ -81,7 +81,7 @@ const translations = {
       },
     ],
     heroSubtitle: "Internal prosthetics and medical solutions designed to respond with speed, confidence and accuracy.",
-    heroProductsCta: "Learn more",
+    heroProductsCta: "Contact us",
     heroAdvisorCta: "Talk to an advisor",
     heroStatOneValue: "+500",
     heroStatOneLabel: "procedures supported",
@@ -170,6 +170,11 @@ const heroTitleHighlight = document.querySelector(".hero-title-highlight");
 const languageSwitcher = document.querySelector("[data-language-switcher]");
 const languageToggle = document.querySelector(".language-toggle");
 const languageMenu = document.querySelector(".language-menu");
+const languageCurrent = document.querySelector("[data-language-current]");
+const languageLabels = {
+  es: "Espa\u00f1ol",
+  en: "English",
+};
 
 function renderHeroPhrase(phrase, animate = true) {
   if (!heroTitle || !heroTitleLines || !heroTitleHighlight) return;
@@ -227,9 +232,11 @@ function renderEditorialHeroPhrase(phrase, animate = true) {
 function updateLanguageButtons(language) {
   document.querySelectorAll("[data-lang]").forEach((button) => {
     const isActive = button.dataset.lang === language;
+    button.textContent = languageLabels[button.dataset.lang] || button.textContent;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
+  if (languageCurrent) languageCurrent.textContent = languageLabels[language] || languageLabels.es;
 }
 
 function closeLanguageMenu() {
