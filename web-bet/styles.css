@@ -10400,3 +10400,441 @@ main {
     padding-top: clamp(3.4rem, 11vw, 5rem) !important;
   }
 }
+
+/* BET mobile refinement pass */
+.mobile-menu-toggle,
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  .site-header.navbar.site-nav {
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    top: calc(0.5rem + env(safe-area-inset-top)) !important;
+    width: calc(100% - 1rem) !important;
+    min-height: 64px !important;
+    padding: 0.55rem 0.65rem !important;
+    border-radius: 22px !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    gap: 0.55rem !important;
+    align-items: center !important;
+    overflow: visible !important;
+    z-index: 120 !important;
+  }
+
+  .site-header.navbar.site-nav .brand img {
+    width: 92px !important;
+    height: auto !important;
+  }
+
+  .site-header.navbar.site-nav > .nav {
+    display: none !important;
+  }
+
+  .nav-actions {
+    justify-content: flex-end !important;
+    gap: 0.38rem !important;
+    min-width: 0 !important;
+  }
+
+  .site-header.navbar.site-nav .nav-whatsapp {
+    min-height: 38px !important;
+    padding: 0 0.7rem !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+
+  .site-header.navbar.site-nav .language-toggle {
+    min-width: 84px !important;
+    min-height: 38px !important;
+    padding: 0 0.48rem !important;
+  }
+
+  .language-current {
+    font-size: 0.72rem !important;
+  }
+
+  .mobile-menu-toggle {
+    width: 38px;
+    height: 38px;
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: 1px solid rgba(6, 47, 58, 0.12);
+    border-radius: 999px;
+    color: #062f3a;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 8px 22px rgba(6, 47, 58, 0.08);
+    cursor: pointer;
+  }
+
+  .mobile-menu-toggle span {
+    width: 16px;
+    height: 2px;
+    display: block;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .mobile-menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .mobile-menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    grid-column: 1 / -1;
+    width: 100%;
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.55rem;
+    border: 1px solid rgba(6, 47, 58, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 16px 34px rgba(6, 47, 58, 0.1);
+  }
+
+  .mobile-nav[hidden] {
+    display: none !important;
+  }
+
+  .mobile-nav a {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #062f3a;
+    font: 800 0.86rem var(--bet-sans, "Poppins", sans-serif);
+    text-decoration: none;
+    background: rgba(76, 185, 211, 0.08);
+  }
+
+  .hero-section {
+    min-height: 100svh !important;
+    padding: 96px 1.1rem 2rem !important;
+    overflow: hidden !important;
+  }
+
+  .hero-section::after {
+    opacity: 0.72 !important;
+    background-size: min(118vw, 560px) auto !important;
+    background-position: center bottom !important;
+  }
+
+  .hero-section .hero-shell {
+    min-height: calc(100svh - 128px) !important;
+    width: min(100%, 620px) !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .hero-section .hero-copy {
+    max-width: 100% !important;
+    gap: 1rem !important;
+  }
+
+  .hero-section .hero-title {
+    max-width: 8.8ch !important;
+    font-size: clamp(2.7rem, 11vw, 4.35rem) !important;
+    line-height: 0.94 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .hero-section .hero-subtitle {
+    max-width: 30ch !important;
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-section .hero-cta {
+    min-height: 50px !important;
+    padding-inline: 1.15rem !important;
+  }
+
+  .hero-focus-transition .hero-section,
+  .hero-focus-transition .focus-section,
+  .tech-section,
+  .criteria-section,
+  .experience-section,
+  .anatomy-section,
+  .differentials-section {
+    position: sticky !important;
+    top: 0 !important;
+    min-height: 100svh !important;
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    box-shadow: 0 -18px 54px rgba(6, 47, 58, 0.1) !important;
+  }
+
+  .hero-focus-transition .focus-section,
+  .tech-section,
+  .criteria-section,
+  .experience-section,
+  .anatomy-section,
+  .differentials-section {
+    padding-top: clamp(5.15rem, 17vw, 6.25rem) !important;
+    padding-bottom: clamp(2rem, 8vw, 3.5rem) !important;
+  }
+
+  .focus-layout,
+  .tech-layout,
+  .criteria-layout,
+  .experience-layout,
+  .route-layout {
+    width: min(100% - 2rem, 620px) !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-inline: auto !important;
+  }
+
+  .section-heading,
+  .news-header,
+  .criteria-header,
+  .tech-copy,
+  .experience-copy,
+  .route-visual,
+  .final-cta-content {
+    width: min(100% - 2rem, 620px) !important;
+    margin-inline: auto !important;
+  }
+
+  .section-heading h2,
+  .anatomy-section .section-heading h2,
+  .criteria-title,
+  .differentials-section .section-heading h2,
+  .news-header h2,
+  .tech-copy h2,
+  .experience-copy h2,
+  .route-visual h2,
+  .final-cta-content h2 {
+    font-size: clamp(1.75rem, 8vw, 2.65rem) !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .section-heading p,
+  .news-header p,
+  .criteria-header p,
+  .tech-copy p,
+  .experience-copy p {
+    font-size: 0.94rem !important;
+    line-height: 1.58 !important;
+  }
+
+  .focus-visual,
+  .focus-image {
+    max-height: 260px !important;
+  }
+
+  .focus-image {
+    height: 260px !important;
+    object-fit: cover !important;
+  }
+
+  .tech-values,
+  .experience-stats,
+  .diff-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .tech-value,
+  .experience-stat,
+  .diff-item,
+  .route-step,
+  .product-mini {
+    min-height: auto !important;
+    padding: 0.9rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  .experience-stat strong {
+    font-size: clamp(2rem, 9vw, 2.8rem) !important;
+    line-height: 0.95 !important;
+  }
+
+  .criteria-video-card {
+    min-height: 220px !important;
+  }
+
+  .anatomy-workbench {
+    width: min(100% - 1rem, 620px) !important;
+  }
+
+  .anatomy-skeleton-stage {
+    min-height: clamp(420px, 60svh, 500px) !important;
+  }
+
+  .anatomy-skeleton-image {
+    height: clamp(360px, 54svh, 460px) !important;
+  }
+
+  .anatomy-panel h3 {
+    font-size: clamp(1.7rem, 7vw, 2.25rem) !important;
+  }
+
+  .route-section {
+    padding-block: 3.5rem !important;
+  }
+
+  .route-layout {
+    min-height: auto !important;
+  }
+
+  .route-visual {
+    order: -1;
+  }
+
+  .route-steps {
+    gap: 0.75rem !important;
+  }
+
+  .news-section {
+    padding-block: 3.5rem !important;
+    background: #ffffff !important;
+  }
+
+  .news-carousel {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .news-track {
+    display: flex !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-inline: 1rem !important;
+    padding: 0 1rem 1rem !important;
+    transform: none !important;
+    animation: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .news-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-card {
+    flex: 0 0 calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    scroll-snap-align: center !important;
+  }
+
+  .news-card img {
+    height: 180px !important;
+  }
+
+  .bet-parallax-gap {
+    min-height: clamp(260px, 42vh, 460px) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .bet-parallax-gap::before,
+  .bet-parallax-gap::after {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .final-cta-section {
+    min-height: auto !important;
+    padding: 3rem 1rem 2.4rem !important;
+    background: #ffffff !important;
+  }
+
+  .final-cta-implant {
+    width: min(70vw, 300px) !important;
+    top: 1rem !important;
+    opacity: 0.48 !important;
+  }
+
+  .final-cta-content {
+    padding-top: 9.5rem !important;
+  }
+
+  .site-footer {
+    padding: 2rem 1.25rem calc(5.8rem + env(safe-area-inset-bottom)) !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    text-align: center !important;
+  }
+
+  .site-footer span {
+    font-size: 0.78rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .chat-float-btn {
+    width: 52px !important;
+    height: 52px !important;
+    right: 14px !important;
+    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    z-index: 80 !important;
+  }
+
+  .assistant-panel {
+    width: min(calc(100% - 1.5rem), 360px) !important;
+    right: 0.75rem !important;
+    bottom: calc(76px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header.navbar.site-nav {
+    padding-inline: 0.55rem !important;
+  }
+
+  .site-header.navbar.site-nav .brand img {
+    width: 84px !important;
+  }
+
+  .site-header.navbar.site-nav .nav-whatsapp {
+    padding-inline: 0.6rem !important;
+    font-size: 0.74rem !important;
+  }
+
+  .site-header.navbar.site-nav .language-toggle {
+    min-width: 78px !important;
+  }
+
+  .language-current {
+    font-size: 0.68rem !important;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero-section .hero-title {
+    font-size: clamp(2.45rem, 11.5vw, 3.6rem) !important;
+  }
+}

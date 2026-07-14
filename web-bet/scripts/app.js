@@ -171,6 +171,9 @@ const languageSwitcher = document.querySelector("[data-language-switcher]");
 const languageToggle = document.querySelector(".language-toggle");
 const languageMenu = document.querySelector(".language-menu");
 const languageCurrent = document.querySelector("[data-language-current]");
+const mobileMenuToggle = document.querySelector("[data-mobile-menu-toggle]");
+const mobileNav = document.querySelector("#mobile-nav");
+const mobileNavQuery = window.matchMedia("(max-width: 767px)");
 const languageLabels = {
   es: "Espa\u00f1ol",
   en: "English",
@@ -311,6 +314,36 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeLanguageMenu();
 });
+
+function setMobileMenuOpen(isOpen) {
+  if (!mobileMenuToggle || !mobileNav) return;
+  mobileMenuToggle.classList.toggle("is-open", isOpen);
+  mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+  mobileNav.hidden = !isOpen;
+  document.body.classList.toggle("is-mobile-menu-open", isOpen);
+}
+
+mobileMenuToggle?.addEventListener("click", () => {
+  setMobileMenuOpen(Boolean(mobileNav?.hidden));
+});
+
+mobileNav?.addEventListener("click", (event) => {
+  if (event.target.closest("a")) setMobileMenuOpen(false);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMobileMenuOpen(false);
+});
+
+const closeMobileMenuOnDesktop = (event) => {
+  if (!event.matches) setMobileMenuOpen(false);
+};
+
+if (mobileNavQuery.addEventListener) {
+  mobileNavQuery.addEventListener("change", closeMobileMenuOnDesktop);
+} else if (mobileNavQuery.addListener) {
+  mobileNavQuery.addListener(closeMobileMenuOnDesktop);
+}
 
 applyLanguage(currentLanguage);
 startHeroRotation();
