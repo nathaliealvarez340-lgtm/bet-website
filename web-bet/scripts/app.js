@@ -1067,9 +1067,9 @@ function initRouteSection() {
 
   function updateRouteSteps() {
     routeFrame = 0;
-    const rect = routeSection.getBoundingClientRect();
     const totalScrollable = routeSection.offsetHeight - window.innerHeight;
-    const scrolled = Math.min(Math.max(-rect.top, 0), totalScrollable);
+    const sectionTop = routeSection.offsetTop;
+    const scrolled = Math.min(Math.max(window.scrollY - sectionTop, 0), totalScrollable);
     const progress = totalScrollable > 0 ? scrolled / totalScrollable : 0;
     const index = Math.min(routeSteps.length - 1, Math.floor(progress * routeSteps.length));
 
