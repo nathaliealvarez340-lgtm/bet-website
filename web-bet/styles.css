@@ -18,6 +18,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+:root {
+  --bet-title-accent: #0878c9;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11542,5 +11546,135 @@ main {
     width: 18px;
     height: 18px;
     display: block;
+  }
+}
+
+/* BET visual alignment pass: title accents and desktop section grid */
+.title-accent,
+.criteria-accent,
+.hero-section .hero-title .hero-accent,
+.hero-section .hero-copy .blue,
+.tech-copy .blue,
+.experience-copy .blue,
+.news-header h2 span,
+.final-cta-content h2 span {
+  color: var(--bet-title-accent) !important;
+}
+
+@media (min-width: 1024px) {
+  .focus-section > .focus-layout,
+  .tech-section > .tech-layout,
+  .experience-section > .experience-layout,
+  .criteria-section > .criteria-header,
+  .criteria-section > .criteria-layout,
+  .anatomy-section > .section-heading,
+  .differentials-section > .section-heading,
+  .differentials-section > .diff-grid,
+  .news-section > .news-header,
+  .final-cta-grid {
+    width: min(100% - 3rem, 1180px) !important;
+    max-width: 1180px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .final-cta-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .final-cta-content h2 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .focus-copy,
+  .tech-copy,
+  .experience-copy,
+  .criteria-section > .criteria-header,
+  .anatomy-section > .section-heading,
+  .differentials-section > .section-heading,
+  .news-section > .news-header,
+  .final-cta-content {
+    text-align: left !important;
+  }
+
+  .criteria-section > .criteria-header,
+  .anatomy-section > .section-heading,
+  .differentials-section > .section-heading,
+  .news-section > .news-header {
+    justify-self: stretch !important;
+  }
+
+  .criteria-section > .criteria-layout {
+    width: min(100% - 3rem, 1080px) !important;
+    max-width: 1080px !important;
+  }
+
+  .anatomy-section > .anatomy-workbench,
+  .anatomy-workbench {
+    width: min(100% - 3rem, 1320px) !important;
+    max-width: 1320px !important;
+    grid-template-columns: minmax(520px, 1fr) minmax(560px, 1.05fr) !important;
+    gap: clamp(1.75rem, 2.6vw, 2.25rem) !important;
+    align-items: start !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .anatomy-map,
+  .anatomy-panel {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  .anatomy-map {
+    min-height: 560px !important;
+    padding: 3rem 1.1rem 1rem !important;
+  }
+
+  .anatomy-panel {
+    padding: clamp(1.35rem, 2.4vw, 2rem) !important;
+  }
+
+  .anatomy-skeleton-stage {
+    min-height: 520px !important;
+  }
+
+  .anatomy-skeleton-image {
+    height: clamp(460px, 52vh, 540px) !important;
+  }
+
+  .anatomy-panel .panel-block {
+    margin: 1.15rem 0 !important;
+  }
+
+  .anatomy-panel .product-mini {
+    padding: 0.82rem 0.9rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  #bone-products {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.55rem !important;
+  }
+
+  #bone-products .product-mini {
+    margin-bottom: 0 !important;
+  }
+
+  #bone-benefits,
+  #bone-applications {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.45rem 0.75rem !important;
+  }
+
+  #bone-benefits li,
+  #bone-applications li {
+    font-size: 0.9rem !important;
+    line-height: 1.38 !important;
   }
 }
