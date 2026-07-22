@@ -11678,3 +11678,154 @@ main {
     line-height: 1.38 !important;
   }
 }
+
+/* BET interaction refinement: technology and anatomy cards */
+@media (min-width: 1024px) {
+  .tech-section {
+    min-height: 100svh !important;
+    padding-top: 0 !important;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.94) 38%, rgba(255, 255, 255, 0.28) 66%, rgba(255, 255, 255, 0) 100%),
+      url("assets/images/bet-images.png") right center / auto 100% no-repeat !important;
+  }
+
+  .tech-layout {
+    min-height: 100svh !important;
+    align-items: center !important;
+    padding-top: clamp(5.5rem, 8vh, 7.5rem) !important;
+    padding-bottom: clamp(4.5rem, 7vh, 6.5rem) !important;
+  }
+
+  .tech-value {
+    min-height: 11rem;
+    padding: 1.15rem 1rem 1.05rem !important;
+    border: 1px solid rgba(8, 120, 201, 0.16) !important;
+    border-radius: 1.1rem !important;
+    background: rgba(255, 255, 255, 0.44) !important;
+    color: #071629;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition:
+      transform 300ms ease,
+      background 300ms ease,
+      color 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease,
+      backdrop-filter 300ms ease !important;
+  }
+
+  .tech-value h3 {
+    color: var(--bet-title-accent) !important;
+    transition: color 240ms ease;
+  }
+
+  .tech-value p {
+    transition: color 240ms ease;
+  }
+
+  .tech-value:hover,
+  .tech-value:focus-within {
+    color: #ffffff !important;
+    background: rgba(8, 120, 201, 0.9) !important;
+    border-color: rgba(8, 120, 201, 0.72) !important;
+    box-shadow: 0 28px 70px rgba(6, 47, 58, 0.16) !important;
+    transform: scale(1.035);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .tech-value:hover h3,
+  .tech-value:hover p,
+  .tech-value:focus-within h3,
+  .tech-value:focus-within p {
+    color: #ffffff !important;
+  }
+
+  .anatomy-section > .anatomy-workbench,
+  .anatomy-workbench {
+    grid-template-columns: minmax(460px, 0.85fr) minmax(650px, 1.15fr) !important;
+    align-items: stretch !important;
+  }
+
+  .anatomy-map,
+  .anatomy-panel {
+    min-height: 620px !important;
+    height: 100% !important;
+  }
+
+  .anatomy-map {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .anatomy-panel {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .anatomy-panel h3 {
+    margin: 0.22rem 0 0.55rem !important;
+    font-size: clamp(2.05rem, 2.7vw, 3.25rem) !important;
+    line-height: 0.98 !important;
+  }
+
+  .anatomy-area {
+    margin-bottom: 0.62rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  #bone-description {
+    font-size: 0.94rem !important;
+    line-height: 1.52 !important;
+  }
+
+  .anatomy-panel .panel-block h4 {
+    font-size: 0.9rem !important;
+  }
+
+  .anatomy-actions {
+    display: flex !important;
+    gap: 0.75rem !important;
+    align-items: center !important;
+    margin-top: auto !important;
+    padding-top: 1rem !important;
+  }
+
+  .anatomy-actions .button,
+  .anatomy-actions .glass-button,
+  .anatomy-document-link,
+  .anatomy-request-link {
+    width: auto !important;
+    flex: 1 1 0 !important;
+    min-height: 42px !important;
+    padding: 0 1rem !important;
+    border: 1px solid rgba(8, 120, 201, 0.26) !important;
+    border-radius: 999px !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    transition:
+      background 240ms ease,
+      color 240ms ease,
+      border-color 240ms ease,
+      transform 240ms ease,
+      box-shadow 240ms ease !important;
+  }
+
+  .anatomy-actions .button:hover,
+  .anatomy-actions .button:focus-visible,
+  .anatomy-actions .glass-button:hover,
+  .anatomy-actions .glass-button:focus-visible,
+  .anatomy-document-link:hover,
+  .anatomy-document-link:focus-visible,
+  .anatomy-request-link:hover,
+  .anatomy-request-link:focus-visible {
+    color: #ffffff !important;
+    background: var(--bet-title-accent) !important;
+    border-color: var(--bet-title-accent) !important;
+    box-shadow: 0 16px 34px rgba(8, 120, 201, 0.22) !important;
+    transform: translateY(-1px);
+  }
+}
