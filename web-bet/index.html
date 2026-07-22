@@ -98,7 +98,7 @@
         <div class="focus-layout">
           <div class="focus-copy reveal">
             <span class="section-kicker">NUESTRO ENFOQUE</span>
-            <h2 id="focus-title">Precisi&oacute;n cl&iacute;nica<br>traducida en<br>disponibilidad real.</h2>
+            <h2 id="focus-title" data-i18n-html="focusTitle">Tecnolog&iacute;a m&eacute;dica.<br>Respuesta precisa.</h2>
             <p>BET conecta criterio m&eacute;dico, tecnolog&iacute;a ortop&eacute;dica y respuesta operativa para respaldar procedimientos donde la exactitud importa.</p>
 
             <div class="focus-actions" aria-label="Conoce nuestra mision, vision y propuesta BET">
@@ -150,10 +150,10 @@
       <section class="section criteria-section" id="criterios" aria-labelledby="criteria-title">
         <div class="criteria-header reveal">
           <span class="eyebrow">Criterios BET</span>
-          <h2 class="criteria-title" id="criteria-title" aria-label="Criterios que importan cuando el margen de error no existe.">
-            <span class="criteria-title-desktop-line" aria-hidden="true">Criterios que importan cuando</span>
+          <h2 class="criteria-title" id="criteria-title" aria-label="Criterios que importan cuando el margen de error no existe." data-i18n-aria-label="criteriaTitleAria" data-i18n-html="criteriaTitleHtml">
+            <span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent" data-i18n="criteriaWordOne">Criterios</span> que <span class="criteria-accent" data-i18n="criteriaWordTwo">importan</span> cuando</span>
             <span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span>
-            <span class="criteria-title-mobile-line" aria-hidden="true">Criterios que importan</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent" data-i18n="criteriaWordOne">Criterios</span> que <span class="criteria-accent" data-i18n="criteriaWordTwo">importan</span></span>
             <span class="criteria-title-mobile-line" aria-hidden="true">cuando el margen</span>
             <span class="criteria-title-mobile-line" aria-hidden="true">de error no existe.</span>
           </h2>
@@ -216,8 +216,8 @@
 
       <section class="section anatomy-section" id="explorador" aria-labelledby="anatomy-title">
         <div class="section-heading reveal">
-          <span class="eyebrow">Areas anatomicas</span>
-          <h2 id="anatomy-title">Explorador anatomico interactivo.</h2>
+          <span class="eyebrow" data-i18n="anatomyEyebrow">&Aacute;REAS ANAT&Oacute;MICAS</span>
+          <h2 id="anatomy-title" data-i18n="anatomyTitle">Explorador anat&oacute;mico interactivo.</h2>
           <p>Selecciona una zona para consultar soluciones relacionadas, aplicaciones quirurgicas y datos clinicos editables desde JSON.</p>
         </div>
         <div class="anatomy-workbench reveal">
@@ -249,7 +249,7 @@
           </div>
           <aside class="anatomy-panel glass" aria-live="polite">
             <button class="anatomy-back-button" type="button" data-anatomy-back hidden>Ver esqueleto</button>
-            <span class="eyebrow" id="bone-category">Miembro inferior</span>
+            <span class="eyebrow" id="bone-category" data-i18n="anatomyModelEyebrow">MODELO INTERACTIVO</span>
             <h3 id="bone-name">Femur</h3>
             <span class="anatomy-area" id="bone-area">Cadera / region trocanterica</span>
             <p id="bone-description">Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.</p>
@@ -370,19 +370,36 @@
       <section class="bet-parallax-gap" aria-hidden="true"></section>
 
       <section id="contacto" class="final-cta-section" aria-labelledby="final-cta-title">
-        <div class="final-cta-implant" aria-hidden="true">
-          <img src="/images/implant-hip.png" alt="" width="640" height="640" loading="lazy" decoding="async">
-        </div>
-        <div class="final-cta-content reveal">
-          <h2 id="final-cta-title">
-            Tecnolog&iacute;a m&eacute;dica<br>
-            dise&ntilde;ada para elevar<br>
-            la <span>precisi&oacute;n humana.</span>
-          </h2>
-          <a class="final-cta-button" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">
-            <span>Conversemos</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
+        <div class="final-cta-grid reveal">
+          <div class="final-cta-content">
+            <h2 id="final-cta-title" data-i18n-html="finalCtaTitle">
+              Tecnolog&iacute;a m&eacute;dica<br>
+              dise&ntilde;ada para elevar<br>
+              la <span>precisi&oacute;n humana.</span>
+            </h2>
+          </div>
+          <div class="final-contact-panel">
+            <a class="final-cta-button" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="finalCtaButton">Conversemos</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <form class="contact-form final-contact-form" aria-label="Formulario de contacto BET">
+              <label>
+                <span data-i18n="contactName">Nombre</span>
+                <input name="name" type="text" autocomplete="name" required data-i18n-placeholder="contactName">
+              </label>
+              <label>
+                <span data-i18n="contactEmail">Correo</span>
+                <input name="email" type="email" autocomplete="email" required data-i18n-placeholder="contactEmail">
+              </label>
+              <label>
+                <span data-i18n="contactRequest">Solicitud</span>
+                <textarea name="request" rows="4" required data-i18n-placeholder="contactRequest"></textarea>
+              </label>
+              <button class="button glass-button primary" type="submit"><span data-i18n="contactSend">Enviar</span></button>
+              <p class="form-status" aria-live="polite"></p>
+            </form>
+          </div>
         </div>
       </section>
     </main>

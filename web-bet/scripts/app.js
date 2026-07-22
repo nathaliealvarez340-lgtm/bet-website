@@ -27,6 +27,25 @@ const translations = {
     ],
     heroSubtitle: "Pr\u00f3tesis internas y soluciones m\u00e9dicas dise\u00f1adas para responder con velocidad, confianza y exactitud.",
     heroProductsCta: "Cont\u00e1ctanos",
+    focusTitle: "Tecnolog\u00eda m\u00e9dica.<br>Respuesta precisa.",
+    criteriaTitleAria: "Criterios que importan cuando el margen de error no existe.",
+    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span> cuando</span><span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span></span><span class="criteria-title-mobile-line" aria-hidden="true">cuando el margen</span><span class="criteria-title-mobile-line" aria-hidden="true">de error no existe.</span>',
+    criteriaWordOne: "Criterios",
+    criteriaWordTwo: "importan",
+    anatomyEyebrow: "\u00c1REAS ANAT\u00d3MICAS",
+    anatomyTitle: "Explorador anat\u00f3mico interactivo.",
+    anatomyModelEyebrow: "MODELO INTERACTIVO",
+    finalCtaTitle: "Tecnolog\u00eda m\u00e9dica<br>dise\u00f1ada para elevar<br>la <span>precisi\u00f3n humana.</span>",
+    finalCtaButton: "Conversemos",
+    contactName: "Nombre",
+    contactEmail: "Correo",
+    contactRequest: "Solicitud",
+    contactSend: "Enviar",
+    contactSending: "Enviando...",
+    contactSuccess: "Solicitud enviada correctamente.",
+    contactError: "No se pudo enviar. Intenta nuevamente.",
+    contactValidation: "Completa los campos requeridos para enviar la solicitud.",
+    contactEmailValidation: "Ingresa un correo v\u00e1lido.",
     heroAdvisorCta: "Hablar con un asesor",
     heroStatOneValue: "+500",
     heroStatOneLabel: "procedimientos atendidos",
@@ -82,6 +101,25 @@ const translations = {
     ],
     heroSubtitle: "Internal prosthetics and medical solutions designed to respond with speed, confidence and accuracy.",
     heroProductsCta: "Contact us",
+    focusTitle: "Medical technology.<br>Precise response.",
+    criteriaTitleAria: "Criteria that matter when the margin for error does not exist.",
+    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span> when</span><span class="criteria-title-desktop-line" aria-hidden="true">the margin for error does not exist.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span></span><span class="criteria-title-mobile-line" aria-hidden="true">when the margin</span><span class="criteria-title-mobile-line" aria-hidden="true">for error does not exist.</span>',
+    criteriaWordOne: "Criteria",
+    criteriaWordTwo: "matter",
+    anatomyEyebrow: "ANATOMICAL AREAS",
+    anatomyTitle: "Interactive anatomical explorer.",
+    anatomyModelEyebrow: "INTERACTIVE MODEL",
+    finalCtaTitle: "Medical technology<br>designed to elevate<br><span>human precision.</span>",
+    finalCtaButton: "Contact us",
+    contactName: "Name",
+    contactEmail: "Email",
+    contactRequest: "Request",
+    contactSend: "Send",
+    contactSending: "Sending...",
+    contactSuccess: "Request sent successfully.",
+    contactError: "Could not send. Please try again.",
+    contactValidation: "Complete the required fields to send the request.",
+    contactEmailValidation: "Enter a valid email address.",
     heroAdvisorCta: "Talk to an advisor",
     heroStatOneValue: "+500",
     heroStatOneLabel: "procedures supported",
@@ -257,6 +295,24 @@ function applyLanguage(language) {
     const key = element.dataset.i18n;
     if (dictionary[key]) element.textContent = dictionary[key];
   });
+
+  document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+    const key = element.dataset.i18nHtml;
+    if (dictionary[key]) element.innerHTML = dictionary[key];
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    const key = element.dataset.i18nPlaceholder;
+    if (dictionary[key]) element.placeholder = dictionary[key];
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    const key = element.dataset.i18nAriaLabel;
+    if (dictionary[key]) element.setAttribute("aria-label", dictionary[key]);
+  });
+
+  const anatomyPanelEyebrow = document.querySelector("#bone-category");
+  if (anatomyPanelEyebrow) anatomyPanelEyebrow.textContent = dictionary.anatomyModelEyebrow;
 
   dictionary.benefits.forEach((benefit, index) => {
     const key = ["benefitOne", "benefitTwo", "benefitThree"][index];
@@ -808,7 +864,7 @@ function renderBone(boneId) {
 
   renderAnatomyHotspots();
 
-  selectors.category.textContent = bone.categoria;
+  selectors.category.textContent = translations[currentLanguage].anatomyModelEyebrow;
   selectors.name.textContent = bone.nombre;
   if (selectors.area) selectors.area.textContent = bone.anatomicalArea || "";
   selectors.description.textContent = bone.descripcion;
@@ -1229,6 +1285,7 @@ document.addEventListener("keydown", (event) => {
 document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   event.preventDefault();
   const form = event.currentTarget;
+  const dictionary = translations[currentLanguage] || translations.es;
   const status = form.querySelector(".form-status");
   const submitButton = form.querySelector("button[type='submit']");
   const submitLabel = submitButton?.querySelector("span");
@@ -1239,7 +1296,7 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
 
   if (invalidFields.length > 0) {
     invalidFields.forEach((field) => field.classList.add("is-invalid"));
-    status.textContent = "Completa los campos requeridos para preparar la solicitud.";
+    status.textContent = dictionary.contactValidation;
     status.className = "form-status is-error";
     invalidFields[0].focus();
     return;
@@ -1248,17 +1305,25 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   const formData = new FormData(form);
   const payload = {
     name: String(formData.get("name")).trim(),
-    area: String(formData.get("area")).trim(),
-    contact: String(formData.get("contact")).trim(),
-    message: String(formData.get("message")).trim(),
+    email: String(formData.get("email")).trim(),
+    request: String(formData.get("request")).trim(),
   };
-  const message = `Hola BET, soy ${payload.name}. Me interesa recibir informacion sobre ${payload.area}. Mi contacto es ${payload.contact}. ${payload.message}`;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+    const emailField = form.querySelector('[name="email"]');
+    emailField?.classList.add("is-invalid");
+    status.textContent = dictionary.contactEmailValidation;
+    status.className = "form-status is-error";
+    emailField?.focus();
+    return;
+  }
+
+  const message = `Hola BET, soy ${payload.name}. Mi correo es ${payload.email}. Solicitud: ${payload.request}`;
   const whatsappLink = form.querySelector("[data-whatsapp-link]");
-  whatsappLink.href = createWhatsAppUrl(message);
+  if (whatsappLink) whatsappLink.href = createWhatsAppUrl(message);
 
   submitButton.disabled = true;
-  if (submitLabel) submitLabel.textContent = translations[currentLanguage].preparingRequest;
-  status.textContent = "Intentando enviar la solicitud. Si el correo no esta disponible, abriremos WhatsApp.";
+  if (submitLabel) submitLabel.textContent = dictionary.contactSending;
+  status.textContent = dictionary.contactSending;
   status.className = "form-status";
 
   fetch("/api/contact", {
@@ -1268,19 +1333,19 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   })
     .then(async (response) => {
       const data = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(data.error || "No se pudo enviar la solicitud.");
-      status.textContent = "Solicitud enviada. El equipo de BET dara seguimiento con la informacion proporcionada.";
+      if (!response.ok) throw new Error(data.error || dictionary.contactError);
+      status.textContent = dictionary.contactSuccess;
       status.className = "form-status is-success";
       form.reset();
     })
     .catch((error) => {
-      status.textContent = `${error.message} Abrimos WhatsApp con el mensaje prellenado para que no pierdas la solicitud.`;
+      status.textContent = error.message || dictionary.contactError;
       status.className = "form-status is-error";
       window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
     })
     .finally(() => {
       submitButton.disabled = false;
-      if (submitLabel) submitLabel.textContent = translations[currentLanguage].submitRequest;
+      if (submitLabel) submitLabel.textContent = translations[currentLanguage].contactSend;
     });
 });
 

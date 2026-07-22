@@ -1,4 +1,4 @@
-const requiredFields = ["name", "area", "contact", "message"];
+const requiredFields = ["name", "email", "request"];
 
 function sanitize(value = "") {
   return String(value).trim().slice(0, 2000);
@@ -9,10 +9,9 @@ function buildEmailHtml(data) {
     <div style="font-family:Arial,sans-serif;color:#222;line-height:1.55">
       <h2 style="color:#1693a5;margin:0 0 16px">Nueva solicitud desde BET</h2>
       <p><strong>Nombre:</strong> ${data.name}</p>
-      <p><strong>Área de interés:</strong> ${data.area}</p>
-      <p><strong>Correo o teléfono:</strong> ${data.contact}</p>
-      <p><strong>Mensaje:</strong></p>
-      <p style="white-space:pre-line">${data.message}</p>
+      <p><strong>Correo:</strong> ${data.email}</p>
+      <p><strong>Solicitud:</strong></p>
+      <p style="white-space:pre-line">${data.request}</p>
     </div>
   `;
 }
@@ -20,7 +19,7 @@ function buildEmailHtml(data) {
 module.exports = async function handler(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
-    return response.status(405).json({ error: "Método no permitido." });
+    return response.status(405).json({ error: "Metodo no permitido." });
   }
 
   const data = Object.fromEntries(
@@ -32,13 +31,17 @@ module.exports = async function handler(request, response) {
     return response.status(400).json({ error: "Completa todos los campos requeridos." });
   }
 
-  const contactEmail = process.env.CONTACT_EMAIL;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    return response.status(400).json({ error: "Ingresa un correo valido." });
+  }
+
+  const contactEmail = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "nathaliealvarez340@gmail.com";
   const resendApiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.FROM_EMAIL || "BET <noreply@bodyedge.mx>";
 
-  if (!contactEmail || !resendApiKey) {
+  if (!resendApiKey) {
     return response.status(503).json({
-      error: "El envío por correo aún no está configurado. Define CONTACT_EMAIL y RESEND_API_KEY en Vercel.",
+      error: "El envio por correo aun no esta configurado. Define RESEND_API_KEY en Vercel.",
     });
   }
 
@@ -51,14 +54,14 @@ module.exports = async function handler(request, response) {
     body: JSON.stringify({
       from: fromEmail,
       to: [contactEmail],
-      subject: `Solicitud BET: ${data.area}`,
+      subject: `Solicitud BET: ${data.name}`,
       html: buildEmailHtml(data),
-      reply_to: data.contact.includes("@") ? data.contact : undefined,
+      reply_to: data.email,
     }),
   });
 
   if (!resendResponse.ok) {
-    return response.status(502).json({ error: "No se pudo enviar el correo. Inténtalo nuevamente." });
+    return response.status(502).json({ error: "No se pudo enviar el correo. Intentalo nuevamente." });
   }
 
   return response.status(200).json({ ok: true });

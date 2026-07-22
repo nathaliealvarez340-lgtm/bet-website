@@ -80,10 +80,34 @@ createServer(async (request, response) => {
   }
 
   if (pathname === "/api/contact" && request.method === "POST") {
-    response.writeHead(503, { "Content-Type": "application/json; charset=utf-8" });
-    response.end(JSON.stringify({
-      error: "El envio por correo aun no esta disponible en este entorno local. Abriremos WhatsApp como respaldo.",
-    }));
+    let rawBody = "";
+    request.on("data", (chunk) => {
+      rawBody += chunk;
+    });
+    request.on("end", () => {
+      const payload = rawBody ? JSON.parse(rawBody) : {};
+      const name = String(payload.name || "").trim();
+      const email = String(payload.email || "").trim();
+      const requestText = String(payload.request || "").trim();
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!name || !email || !requestText) {
+        response.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
+        response.end(JSON.stringify({ error: "Completa todos los campos requeridos." }));
+        return;
+      }
+
+      if (!isValidEmail) {
+        response.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
+        response.end(JSON.stringify({ error: "Ingresa un correo valido." }));
+        return;
+      }
+
+      response.writeHead(503, { "Content-Type": "application/json; charset=utf-8" });
+      response.end(JSON.stringify({
+        error: "El envio por correo aun no esta configurado. Define RESEND_API_KEY en Vercel.",
+      }));
+    });
     return;
   }
 
