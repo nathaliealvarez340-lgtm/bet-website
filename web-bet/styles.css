@@ -11357,3 +11357,190 @@ main {
     margin-right: auto !important;
   }
 }
+
+/* BET desktop refinement pass: spacing, compact cards and contact polish */
+@media (min-width: 1024px) {
+  .criteria-section,
+  .anatomy-section,
+  .differentials-section {
+    scroll-margin-top: 120px !important;
+  }
+
+  .criteria-section {
+    padding: clamp(7rem, 9vw, 8.25rem) clamp(1.25rem, 5vw, 5rem) clamp(5.5rem, 8vw, 7rem) !important;
+    min-height: auto !important;
+  }
+
+  .criteria-section > .criteria-header {
+    width: min(100%, 1080px) !important;
+    margin: 0 auto 2.75rem !important;
+  }
+
+  .criteria-section > .criteria-layout,
+  .criteria-layout {
+    width: min(100%, 1080px) !important;
+    max-width: 1080px !important;
+    margin-inline: auto !important;
+    grid-template-columns: minmax(340px, 0.9fr) minmax(390px, 1fr) !important;
+    gap: clamp(2rem, 4vw, 3rem) !important;
+    align-items: center !important;
+  }
+
+  .criteria-video-card,
+  .criteria-card {
+    min-height: 360px !important;
+    max-height: 430px !important;
+    border-radius: 1.75rem !important;
+  }
+
+  .criteria-video-card video,
+  .criteria-video-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .criteria-card {
+    padding: clamp(2rem, 3.6vw, 3rem) !important;
+  }
+
+  .criteria-card h3 {
+    font-size: clamp(2rem, 3vw, 3.15rem) !important;
+  }
+
+  .anatomy-section {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding: clamp(7rem, 9vw, 8.25rem) clamp(1.25rem, 5vw, 5rem) clamp(6rem, 8vw, 7.5rem) !important;
+  }
+
+  .anatomy-section > .section-heading {
+    width: min(100%, 1180px) !important;
+    margin: 0 auto 2.25rem !important;
+  }
+
+  .anatomy-section > .anatomy-workbench,
+  .anatomy-workbench {
+    width: min(100%, 1180px) !important;
+    margin-inline: auto !important;
+    margin-top: 0 !important;
+    overflow: visible !important;
+    align-items: stretch !important;
+  }
+
+  .anatomy-map,
+  .anatomy-panel {
+    min-height: 38rem !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .differentials-section {
+    padding: clamp(7rem, 9vw, 8.25rem) clamp(1.25rem, 5vw, 5rem) clamp(5.5rem, 8vw, 7rem) !important;
+    min-height: auto !important;
+    display: grid !important;
+    align-content: start !important;
+    justify-items: center !important;
+  }
+
+  .differentials-section > .section-heading {
+    width: min(100%, 1180px) !important;
+    margin: 0 auto 3rem !important;
+  }
+
+  .differentials-section > .diff-grid,
+  .differentials-section .diff-grid {
+    width: min(100%, 1180px) !important;
+    max-width: 1180px !important;
+    margin: 0 auto !important;
+  }
+
+  .final-cta-section {
+    padding: clamp(7rem, 9vw, 8rem) 1.5rem clamp(5.5rem, 7vw, 6rem) !important;
+  }
+
+  .final-cta-grid {
+    max-width: 1120px !important;
+    grid-template-columns: minmax(420px, 0.95fr) minmax(380px, 0.75fr) !important;
+    gap: clamp(3rem, 6vw, 4.5rem) !important;
+  }
+
+  .final-cta-content h2 {
+    max-width: 9.2ch !important;
+    font-size: clamp(3.4rem, 5vw, 5.55rem) !important;
+    line-height: 0.94 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .final-cta-support {
+    max-width: 32rem;
+    margin: 1.55rem 0 0;
+    color: #4d6670;
+    font-size: 1.04rem;
+    line-height: 1.65;
+  }
+
+  .final-contact-panel {
+    width: min(100%, 25rem) !important;
+    padding: 1.6rem !important;
+    border: 1px solid rgba(11, 136, 166, 0.18);
+    border-radius: 1.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 28px 80px rgba(6, 47, 58, 0.08);
+  }
+
+  .final-contact-form {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .final-contact-form input,
+  .final-contact-form textarea {
+    min-height: 50px;
+    border-radius: 1rem;
+    padding: 0.82rem 0.95rem;
+  }
+
+  .final-contact-form textarea {
+    min-height: 112px;
+  }
+
+  .final-cta-button,
+  .final-cta-button:visited {
+    gap: 0.65rem !important;
+    min-height: 52px !important;
+    padding-inline: 1.15rem !important;
+  }
+
+  .final-cta-button img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    flex: 0 0 auto;
+  }
+
+  .final-contact-form .button,
+  .final-contact-form .button span {
+    color: #ffffff !important;
+  }
+
+  .final-contact-form .button {
+    border: 0 !important;
+    background: #0b88a6 !important;
+    box-shadow: 0 14px 30px rgba(11, 136, 166, 0.2) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .final-cta-button img {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+}
