@@ -137,6 +137,4 @@ createServer(async (request, response) => {
 
   response.writeHead(404);
   response.end("Not found");
-}).listen(port, "127.0.0.1", () => {
-  console.log(`BET site on http://127.0.0.1:${port}`);
-});
+}).listen(port, "127.0.0.1");
