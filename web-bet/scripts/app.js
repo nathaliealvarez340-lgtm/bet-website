@@ -198,6 +198,8 @@ document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
 
 let newsletterArticles = [];
 const newsViewportQuery = window.matchMedia("(max-width: 768px)");
+const mobileViewportQuery = window.matchMedia("(max-width: 767px)");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const storedLanguage = getStoredLanguage();
 let currentLanguage = translations[storedLanguage] ? storedLanguage : "es";
 let currentHeroPhraseIndex = 0;
@@ -759,6 +761,123 @@ let anatomyProducts = Object.values(skeletonData).flatMap((view) => view.zones);
 const availableProductImages = new Set([]);
 const anatomyMobileQuery = window.matchMedia("(max-width: 767px)");
 let mobileAnatomyPanel = "skeleton";
+let newsAutoFrame = 0;
+let newsResumeTimeout = 0;
+let newsAutoTrack = null;
+let newsAutoObserver = null;
+let newsAutoIsVisible = false;
+let newsAutoPosition = 0;
+let newsAutoViewportListeners = false;
+
+function stopNewsletterAutoScroll() {
+  if (newsAutoFrame) {
+    window.clearInterval(newsAutoFrame);
+    newsAutoFrame = 0;
+  }
+  newsAutoTrack?.classList.remove("is-auto-scrolling");
+}
+
+function canAutoScrollNewsletter() {
+  return mobileViewportQuery.matches && !reducedMotionQuery.matches;
+}
+
+function runNewsletterAutoScroll() {
+  if (!newsAutoTrack || !newsAutoIsVisible || !canAutoScrollNewsletter()) {
+    stopNewsletterAutoScroll();
+    return;
+  }
+
+  const maxScroll = newsAutoTrack.scrollWidth - newsAutoTrack.clientWidth;
+  if (maxScroll > 1) {
+    if (newsAutoTrack.scrollLeft >= maxScroll - 1) {
+      newsAutoPosition = 0;
+      newsAutoTrack.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      newsAutoPosition = Math.max(newsAutoPosition, newsAutoTrack.scrollLeft) + 0.55;
+      newsAutoTrack.scrollLeft = newsAutoPosition;
+    }
+  }
+
+}
+
+function startNewsletterAutoScroll() {
+  stopNewsletterAutoScroll();
+  if (!newsAutoTrack || !newsAutoIsVisible || !canAutoScrollNewsletter()) return;
+  newsAutoPosition = newsAutoTrack.scrollLeft;
+  newsAutoTrack.classList.add("is-auto-scrolling");
+  runNewsletterAutoScroll();
+  newsAutoFrame = window.setInterval(runNewsletterAutoScroll, 50);
+}
+
+function pauseNewsletterAutoScroll() {
+  stopNewsletterAutoScroll();
+  window.clearTimeout(newsResumeTimeout);
+  if (newsAutoTrack) newsAutoPosition = newsAutoTrack.scrollLeft;
+  if (!canAutoScrollNewsletter()) return;
+  newsResumeTimeout = window.setTimeout(startNewsletterAutoScroll, 3000);
+}
+
+function updateNewsletterAutoVisibility() {
+  const section = document.querySelector(".news-section");
+  if (!section || !newsAutoTrack || !canAutoScrollNewsletter()) {
+    newsAutoIsVisible = false;
+    stopNewsletterAutoScroll();
+    return;
+  }
+
+  const rect = section.getBoundingClientRect();
+  const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
+  newsAutoIsVisible = isVisible;
+
+  if (isVisible) {
+    startNewsletterAutoScroll();
+  } else {
+    stopNewsletterAutoScroll();
+  }
+}
+
+function initNewsletterMobileAutoScroll() {
+  stopNewsletterAutoScroll();
+  window.clearTimeout(newsResumeTimeout);
+  if (newsAutoObserver) {
+    newsAutoObserver.disconnect();
+    newsAutoObserver = null;
+  }
+
+  const section = document.querySelector(".news-section");
+  const track = document.querySelector(".news-track");
+  newsAutoTrack = track;
+  newsAutoIsVisible = false;
+  newsAutoPosition = 0;
+
+  if (!section || !track || !canAutoScrollNewsletter()) return;
+
+  if (!newsAutoViewportListeners) {
+    window.addEventListener("scroll", updateNewsletterAutoVisibility, { passive: true });
+    window.addEventListener("resize", updateNewsletterAutoVisibility);
+    newsAutoViewportListeners = true;
+  }
+
+  if (!track.dataset.newsAutoListeners) {
+    ["pointerdown", "touchstart", "wheel"].forEach((eventName) => {
+      track.addEventListener(eventName, pauseNewsletterAutoScroll, { passive: true });
+    });
+    track.dataset.newsAutoListeners = "true";
+  }
+
+  newsAutoObserver = new IntersectionObserver((entries) => {
+    const [entry] = entries;
+    newsAutoIsVisible = Boolean(entry?.isIntersecting);
+    if (newsAutoIsVisible) {
+      startNewsletterAutoScroll();
+    } else {
+      stopNewsletterAutoScroll();
+    }
+  }, { threshold: 0.35 });
+
+  newsAutoObserver.observe(section);
+  updateNewsletterAutoVisibility();
+}
 
 function renderNewsArticles(articles) {
   const carousel = document.querySelector("[data-news-carousel]");
@@ -787,6 +906,7 @@ function renderNewsArticles(articles) {
 
   const loopCards = newsViewportQuery.matches ? "" : cards;
   carousel.innerHTML = cards ? `<div class="news-track">${cards}${loopCards}</div>` : "";
+  initNewsletterMobileAutoScroll();
 }
 
 function rerenderNewsForViewport() {
@@ -798,6 +918,22 @@ if (newsViewportQuery.addEventListener) {
   newsViewportQuery.addEventListener("change", rerenderNewsForViewport);
 } else {
   newsViewportQuery.addListener(rerenderNewsForViewport);
+}
+
+function handleNewsletterAutoQueryChange() {
+  initNewsletterMobileAutoScroll();
+}
+
+if (mobileViewportQuery.addEventListener) {
+  mobileViewportQuery.addEventListener("change", handleNewsletterAutoQueryChange);
+} else {
+  mobileViewportQuery.addListener(handleNewsletterAutoQueryChange);
+}
+
+if (reducedMotionQuery.addEventListener) {
+  reducedMotionQuery.addEventListener("change", handleNewsletterAutoQueryChange);
+} else {
+  reducedMotionQuery.addListener(handleNewsletterAutoQueryChange);
 }
 
 function getActiveViewData() {
@@ -1076,6 +1212,32 @@ const criteriaDescription = document.querySelector(".criteria-content p");
 const criteriaPrev = document.querySelector(".criteria-prev");
 const criteriaNext = document.querySelector(".criteria-next");
 let activeCriterionIndex = 0;
+let criteriaAutoTimer = 0;
+
+function shouldAutoRotateCriteria() {
+  return mobileViewportQuery.matches && !reducedMotionQuery.matches && criteriaItems.length > 1;
+}
+
+function stopCriteriaAutoRotate() {
+  if (criteriaAutoTimer) {
+    window.clearInterval(criteriaAutoTimer);
+    criteriaAutoTimer = 0;
+  }
+}
+
+function startCriteriaAutoRotate() {
+  stopCriteriaAutoRotate();
+  if (!shouldAutoRotateCriteria()) return;
+  criteriaAutoTimer = window.setInterval(() => {
+    activeCriterionIndex = (activeCriterionIndex + 1) % criteriaItems.length;
+    renderCriterion(activeCriterionIndex);
+  }, 3000);
+}
+
+function resetCriteriaAutoRotate() {
+  stopCriteriaAutoRotate();
+  startCriteriaAutoRotate();
+}
 
 function formatCriteriaTitle(title) {
   const words = String(title).trim().split(/\s+/).filter(Boolean);
@@ -1107,14 +1269,34 @@ function renderCriterion(index, animate = true) {
 criteriaPrev?.addEventListener("click", () => {
   activeCriterionIndex = (activeCriterionIndex - 1 + criteriaItems.length) % criteriaItems.length;
   renderCriterion(activeCriterionIndex);
+  resetCriteriaAutoRotate();
 });
 
 criteriaNext?.addEventListener("click", () => {
   activeCriterionIndex = (activeCriterionIndex + 1) % criteriaItems.length;
   renderCriterion(activeCriterionIndex);
+  resetCriteriaAutoRotate();
 });
 
 renderCriterion(activeCriterionIndex, false);
+
+function handleCriteriaAutoQueryChange() {
+  startCriteriaAutoRotate();
+}
+
+if (mobileViewportQuery.addEventListener) {
+  mobileViewportQuery.addEventListener("change", handleCriteriaAutoQueryChange);
+} else {
+  mobileViewportQuery.addListener(handleCriteriaAutoQueryChange);
+}
+
+if (reducedMotionQuery.addEventListener) {
+  reducedMotionQuery.addEventListener("change", handleCriteriaAutoQueryChange);
+} else {
+  reducedMotionQuery.addListener(handleCriteriaAutoQueryChange);
+}
+
+startCriteriaAutoRotate();
 
 function initRouteSection() {
   const routeSection = document.querySelector(".route-section");

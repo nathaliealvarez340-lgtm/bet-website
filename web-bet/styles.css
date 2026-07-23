@@ -11946,3 +11946,98 @@ main {
     box-shadow: 0 28px 80px rgba(6, 47, 58, 0.08) !important;
   }
 }
+
+.route-title-mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .site-header.navbar.site-nav .language-current {
+    display: none !important;
+  }
+
+  .site-header.navbar.site-nav .language-toggle {
+    width: 44px !important;
+    min-width: 44px !important;
+    padding-inline: 0 !important;
+    justify-content: center !important;
+  }
+
+  .site-header.navbar.site-nav .language-menu {
+    right: 0 !important;
+    left: auto !important;
+    max-width: calc(100vw - 1rem) !important;
+  }
+
+  .route-title-desktop {
+    display: none !important;
+  }
+
+  .route-title-mobile {
+    display: block !important;
+  }
+
+  .route-title-mobile span {
+    color: var(--bet-title-accent) !important;
+  }
+
+  .route-step {
+    position: relative !important;
+    padding: 0.86rem 3.75rem 1.2rem 0.95rem !important;
+  }
+
+  .route-number {
+    position: absolute !important;
+    top: auto !important;
+    right: 1rem !important;
+    bottom: 0.82rem !important;
+    left: auto !important;
+    z-index: 2 !important;
+    font-size: clamp(1.35rem, 7vw, 2.15rem) !important;
+    line-height: 1 !important;
+    opacity: 0.9 !important;
+    pointer-events: none !important;
+  }
+
+  .route-copy {
+    padding-right: 2.8rem !important;
+  }
+
+  .criteria-controls {
+    display: flex !important;
+    gap: 0.55rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 0.85rem !important;
+  }
+
+  .criteria-controls button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+  }
+
+  .news-track {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .news-track.is-auto-scrolling {
+    scroll-snap-type: none !important;
+  }
+
+  .news-card {
+    scroll-snap-align: start !important;
+  }
+
+  .news-track::-webkit-scrollbar {
+    display: none;
+  }
+}
