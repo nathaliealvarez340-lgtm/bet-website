@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="bet-welcome-active">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BET | Soluciones medicas quirurgicas de precision</title>
     <meta name="description" content="BET provee protesis internas y soluciones quirurgicas confiables para procedimientos de alta precision.">
+    <link rel="preload" href="/images/inicio_horizontal.png" as="image" fetchpriority="high" media="(min-width: 768px)">
+    <link rel="preload" href="/images/inicio_vertical.png" as="image" fetchpriority="high" media="(max-width: 767px)">
     <link rel="preload" href="assets/logo-bet.webp" as="image">
     <link rel="preload" href="assets/images/hero-bet.png" as="image" fetchpriority="high" media="(min-width: 769px)">
     <link rel="preload" href="assets/images%20cel/hero-cel.png" as="image" fetchpriority="high" media="(max-width: 768px)">
@@ -15,11 +17,36 @@
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
   </head>
-  <body class="welcome-active">
-    <div class="welcome-overlay" data-welcome-overlay role="status" aria-live="polite" aria-label="Bienvenido a BET">
-      <div class="welcome-overlay-sheen" aria-hidden="true"></div>
-      <p>Bienvenido a BET</p>
+  <body>
+    <div class="bet-welcome-screen" id="betWelcomeScreen" data-welcome-screen role="status" aria-live="polite" aria-label="Cargando sitio BET">
+      <picture class="bet-welcome-media" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="/images/inicio_vertical.png">
+        <img class="bet-welcome-background" src="/images/inicio_horizontal.png" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
+      </picture>
+
+      <div class="bet-welcome-overlay" aria-hidden="true"></div>
+
+      <div class="bet-welcome-content">
+        <p class="bet-welcome-title">
+          <span>Bienvenido a</span>
+          <span class="bet-welcome-title-accent">BET</span>
+        </p>
+        <span class="bet-welcome-divider" aria-hidden="true"></span>
+        <p class="bet-welcome-subtitle">Soluciones e innovaci&oacute;n en ortopedia<br>para transformar la vida de los pacientes.</p>
+
+        <div class="bet-welcome-loader" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="bet-welcome-brand">
+          <img class="bet-welcome-logo" src="assets/logo-bet.webp" alt="BET" width="1536" height="1024">
+          <p>MEJOR DECISI&Oacute;N, MEJORES RESULTADOS.</p>
+        </div>
+      </div>
     </div>
+    <script src="scripts/welcome.js"></script>
 
     <header class="site-header navbar site-nav" data-elevate>
       <a class="brand" href="#inicio" aria-label="BET inicio">
@@ -478,7 +505,6 @@
       <a class="button glass-button full assistant-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Hablar por WhatsApp</span></a>
     </section>
 
-    <script src="scripts/welcome.js" defer></script>
     <script src="data/anatomyProducts.js" defer></script>
     <script src="scripts/app.js" defer></script>
   </body>

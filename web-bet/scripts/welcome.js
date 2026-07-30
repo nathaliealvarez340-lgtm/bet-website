@@ -1,41 +1,55 @@
 (() => {
-  const overlay = document.querySelector("[data-welcome-overlay]");
-  const body = document.body;
-  let exitTimer = 0;
+  const WELCOME_DURATION = 4000;
+  const EXIT_DURATION = 800;
+  const welcomeScreen = document.querySelector("[data-welcome-screen]");
+  const root = document.documentElement;
+  let leaveTimer = 0;
   let cleanupTimer = 0;
-  let hasFinished = false;
+  let cleaned = false;
 
-  const finishWelcome = () => {
-    if (hasFinished) return;
-    hasFinished = true;
-    window.clearTimeout(exitTimer);
+  const cleanup = () => {
+    if (cleaned) return;
+    cleaned = true;
+    window.clearTimeout(leaveTimer);
     window.clearTimeout(cleanupTimer);
-    body.classList.remove("welcome-active");
-    overlay?.remove();
+    window.removeEventListener("pagehide", handlePageHide);
+    root.classList.remove("bet-welcome-active");
+    welcomeScreen?.remove();
   };
 
-  const dismissWelcome = () => {
-    if (!overlay || hasFinished) {
-      finishWelcome();
-      return;
-    }
+  const handleTransitionEnd = (event) => {
+    if (event.target !== welcomeScreen) return;
+    if (event.propertyName !== "transform" && event.propertyName !== "opacity") return;
+    cleanup();
+  };
 
-    overlay.classList.add("is-leaving");
-    overlay.setAttribute("aria-hidden", "true");
-    overlay.addEventListener("transitionend", finishWelcome, { once: true });
-    cleanupTimer = window.setTimeout(finishWelcome, 1100);
+  const handlePageHide = () => {
+    cleanup();
   };
 
   try {
-    if (!overlay) {
-      finishWelcome();
+    if (!welcomeScreen) {
+      root.classList.remove("bet-welcome-active");
       return;
     }
 
-    exitTimer = window.setTimeout(dismissWelcome, 4000);
-    window.addEventListener("pagehide", finishWelcome, { once: true });
+    if (welcomeScreen.dataset.initialized === "true") {
+      return;
+    }
+
+    welcomeScreen.dataset.initialized = "true";
+    root.classList.add("bet-welcome-active");
+
+    leaveTimer = window.setTimeout(() => {
+      welcomeScreen.classList.add("is-leaving");
+      welcomeScreen.setAttribute("aria-hidden", "true");
+      welcomeScreen.addEventListener("transitionend", handleTransitionEnd);
+      cleanupTimer = window.setTimeout(cleanup, EXIT_DURATION + 250);
+    }, WELCOME_DURATION);
+
+    window.addEventListener("pagehide", handlePageHide, { once: true });
   } catch (error) {
     console.error("[BET] No fue posible completar la pantalla de bienvenida.", error);
-    finishWelcome();
+    cleanup();
   }
 })();
