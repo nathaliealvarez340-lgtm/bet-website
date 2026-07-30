@@ -29,7 +29,7 @@ const translations = {
     heroProductsCta: "Cont\u00e1ctanos",
     focusTitle: 'Tecnolog\u00eda <span class="title-accent">m\u00e9dica</span>.<br>Respuesta <span class="title-accent">precisa</span>.',
     criteriaTitleAria: "Criterios que importan cuando el margen de error no existe.",
-    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span> cuando</span><span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span></span><span class="criteria-title-mobile-line" aria-hidden="true">cuando el margen</span><span class="criteria-title-mobile-line" aria-hidden="true">de error no existe.</span>',
+    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span> cuando</span><span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criterios</span></span><span class="criteria-title-mobile-line" aria-hidden="true">que <span class="criteria-accent">importan</span></span><span class="criteria-title-mobile-line" aria-hidden="true">cuando el</span><span class="criteria-title-mobile-line" aria-hidden="true">margen de error</span><span class="criteria-title-mobile-line" aria-hidden="true">no existe</span>',
     criteriaWordOne: "Criterios",
     criteriaWordTwo: "importan",
     anatomyEyebrow: "\u00c1REAS ANAT\u00d3MICAS",
@@ -104,7 +104,7 @@ const translations = {
     heroProductsCta: "Contact us",
     focusTitle: '<span class="title-accent">Medical</span> technology.<br><span class="title-accent">Precise</span> response.',
     criteriaTitleAria: "Criteria that matter when the margin for error does not exist.",
-    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span> when</span><span class="criteria-title-desktop-line" aria-hidden="true">the margin for error does not exist.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span></span><span class="criteria-title-mobile-line" aria-hidden="true">when the margin</span><span class="criteria-title-mobile-line" aria-hidden="true">for error does not exist.</span>',
+    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span> when</span><span class="criteria-title-desktop-line" aria-hidden="true">the margin for error does not exist.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criteria</span></span><span class="criteria-title-mobile-line" aria-hidden="true">that <span class="criteria-accent">matter</span></span><span class="criteria-title-mobile-line" aria-hidden="true">when the</span><span class="criteria-title-mobile-line" aria-hidden="true">margin for error</span><span class="criteria-title-mobile-line" aria-hidden="true">does not exist</span>',
     criteriaWordOne: "Criteria",
     criteriaWordTwo: "matter",
     anatomyEyebrow: "ANATOMICAL AREAS",
@@ -532,7 +532,7 @@ const anatomyZonesSource = Array.isArray(window.BET_ANATOMY_ZONES) && window.BET
 function buildSkeletonDataFromZones(zones) {
   const normalizeZone = (zone) => ({
     ...zone,
-    label: zone.title,
+    label: zone.region || zone.title,
     nombre: zone.title,
     categoria: zone.category,
     descripcion: zone.description,
@@ -540,7 +540,12 @@ function buildSkeletonDataFromZones(zones) {
       nombre: product.name,
       descripcion: product.description,
       uso: product.type,
+      medida: product.measure,
+      material: product.material,
     })),
+    etiquetas: zone.tags || [],
+    materiales: zone.materials || [],
+    caracteristicas: zone.features || [],
     aplicaciones: zone.applications || [],
   });
 
@@ -548,14 +553,14 @@ function buildSkeletonDataFromZones(zones) {
     front: {
       label: "Vista frontal",
       image: "/images/esqueleto-frontal.png",
-      alt: "Esqueleto en vista frontal",
+      alt: "Vista frontal del esqueleto humano",
       initialZone: "proximal-femur",
       zones: zones.filter((zone) => zone.view === "front").map(normalizeZone),
     },
     back: {
       label: "Vista posterior",
       image: "/images/esqueleto-reverso.png",
-      alt: "Esqueleto en vista posterior",
+      alt: "Vista posterior del esqueleto humano",
       initialZone: "posterior-spine",
       zones: zones.filter((zone) => zone.view === "back").map(normalizeZone),
     },
@@ -740,19 +745,29 @@ const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anat
 const selectors = {
   workbench: document.querySelector(".anatomy-workbench"),
   category: document.querySelector("#bone-category"),
+  categoryText: document.querySelector("#bone-category-text"),
   name: document.querySelector("#bone-name"),
   area: document.querySelector("#bone-area"),
   description: document.querySelector("#bone-description"),
+  tags: document.querySelector("#bone-tags"),
   products: document.querySelector("#bone-products"),
   benefits: document.querySelector("#bone-benefits"),
   applications: document.querySelector("#bone-applications"),
+  complementary: document.querySelector("#bone-complementary"),
   productImage: document.querySelector("#bone-product-image"),
   document: document.querySelector("#bone-document"),
+  careRoute: document.querySelector("#bone-care-route"),
   image: document.querySelector("#anatomy-skeleton-image"),
+  imageFallback: document.querySelector("[data-skeleton-fallback]"),
   hotspots: document.querySelector("[data-anatomy-hotspots]"),
   stage: document.querySelector("[data-skeleton-stage]"),
   viewButtons: document.querySelectorAll("[data-anatomy-view]"),
   backButton: document.querySelector("[data-anatomy-back]"),
+  pagesContainer: document.querySelector("[data-anatomy-pages]"),
+  pages: document.querySelectorAll("[data-anatomy-page]"),
+  previousPage: document.querySelector("[data-anatomy-page-previous]"),
+  nextPage: document.querySelector("[data-anatomy-page-next]"),
+  pageStatus: document.querySelector("[data-anatomy-page-status]"),
 };
 
 let activeAnatomyView = "front";
@@ -761,6 +776,7 @@ let anatomyProducts = Object.values(skeletonData).flatMap((view) => view.zones);
 const availableProductImages = new Set([]);
 const anatomyMobileQuery = window.matchMedia("(max-width: 767px)");
 let mobileAnatomyPanel = "skeleton";
+let activeAnatomyPage = 0;
 let newsAutoFrame = 0;
 let newsResumeTimeout = 0;
 let newsAutoTrack = null;
@@ -968,6 +984,67 @@ function renderAnatomyHotspots() {
     .join("");
 }
 
+function updateSkeletonImage(viewData) {
+  if (!selectors.image) return;
+
+  const expectedPath = viewData.image;
+  selectors.image.hidden = false;
+  selectors.image.alt = viewData.alt;
+  if (selectors.imageFallback) selectors.imageFallback.hidden = true;
+
+  selectors.image.onload = () => {
+    selectors.image.hidden = false;
+    if (selectors.imageFallback) selectors.imageFallback.hidden = true;
+  };
+
+  selectors.image.onerror = () => {
+    selectors.image.hidden = true;
+    if (selectors.imageFallback) selectors.imageFallback.hidden = false;
+    console.error(`[BET] No se pudo cargar la imagen anat\u00f3mica. Ruta esperada: ${expectedPath}`);
+  };
+
+  if (selectors.image.getAttribute("src") !== expectedPath) {
+    selectors.image.src = expectedPath;
+  } else if (selectors.image.complete && !selectors.image.naturalWidth) {
+    selectors.image.onerror();
+  }
+}
+
+function setAnatomyPage(pageIndex, shouldAnimate = true) {
+  const lastPageIndex = Math.max(selectors.pages.length - 1, 0);
+  activeAnatomyPage = Math.min(Math.max(pageIndex, 0), lastPageIndex);
+  const previousHeight = selectors.pagesContainer?.getBoundingClientRect().height || 0;
+
+  selectors.pages.forEach((page, index) => {
+    const isActive = index === activeAnatomyPage;
+    page.hidden = !isActive;
+    page.classList.toggle("is-active", isActive);
+    if (isActive) {
+      page.setAttribute("aria-current", "page");
+    } else {
+      page.removeAttribute("aria-current");
+    }
+  });
+
+  selectors.previousPage?.toggleAttribute("disabled", activeAnatomyPage === 0);
+  selectors.nextPage?.toggleAttribute("disabled", activeAnatomyPage === lastPageIndex);
+  if (selectors.pageStatus) selectors.pageStatus.textContent = `${activeAnatomyPage + 1} de ${lastPageIndex + 1}`;
+
+  if (shouldAnimate && selectors.pagesContainer && !reducedMotionQuery.matches) {
+    const nextHeight = selectors.pagesContainer.getBoundingClientRect().height;
+    selectors.pagesContainer.animate(
+      [
+        { height: `${previousHeight}px`, opacity: 0.72, transform: "translateY(4px)" },
+        { height: `${nextHeight}px`, opacity: 1, transform: "translateY(0)" },
+      ],
+      {
+        duration: 220,
+        easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+      }
+    );
+  }
+}
+
 function setAnatomyView(viewKey) {
   if (!skeletonData[viewKey]) return;
   activeAnatomyView = viewKey;
@@ -980,10 +1057,7 @@ function setAnatomyView(viewKey) {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  if (selectors.image) {
-    selectors.image.src = viewData.image;
-    selectors.image.alt = viewData.alt;
-  }
+  updateSkeletonImage(viewData);
 
   if (selectors.stage) {
     selectors.stage.classList.remove("is-rotating");
@@ -1001,11 +1075,19 @@ function renderBone(boneId) {
   activeBoneId = bone.id;
 
   renderAnatomyHotspots();
+  setAnatomyPage(0, false);
 
   selectors.category.textContent = translations[currentLanguage].anatomyModelEyebrow;
   selectors.name.textContent = bone.nombre;
-  if (selectors.area) selectors.area.textContent = bone.anatomicalArea || "";
+  if (selectors.area) selectors.area.textContent = bone.region || bone.anatomicalArea || "";
+  if (selectors.categoryText) selectors.categoryText.textContent = bone.categoria || "";
   selectors.description.textContent = bone.descripcion;
+  if (selectors.tags) {
+    selectors.tags.innerHTML = (bone.etiquetas || [])
+      .map((tag) => `<span>${escapeHtml(tag)}</span>`)
+      .join("");
+    selectors.tags.hidden = !bone.etiquetas?.length;
+  }
   if (selectors.productImage) {
     if (bone.image && availableProductImages.has(bone.image)) {
       selectors.productImage.hidden = false;
@@ -1027,6 +1109,8 @@ function renderBone(boneId) {
           <strong>${escapeHtml(product.nombre)}</strong>
           ${product.descripcion ? `<span>${escapeHtml(product.descripcion)}</span>` : ""}
           ${product.uso ? `<small>${escapeHtml(product.uso)}</small>` : ""}
+          ${product.medida ? `<span class="product-mini-spec"><b>Referencia:</b> ${escapeHtml(product.medida)}</span>` : ""}
+          ${product.material ? `<span class="product-mini-spec"><b>Material:</b> ${escapeHtml(product.material)}</span>` : ""}
         </article>
       `
     )
@@ -1035,16 +1119,28 @@ function renderBone(boneId) {
     selectors.benefits.innerHTML = (bone.benefits || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   }
   selectors.applications.innerHTML = bone.aplicaciones.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  if (selectors.complementary) {
+    const materials = (bone.materiales || []).length
+      ? `<div><strong>Materiales</strong><ul>${bone.materiales.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`
+      : "";
+    const features = (bone.caracteristicas || []).length
+      ? `<div><strong>Caracter\u00edsticas</strong><ul>${bone.caracteristicas.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`
+      : "";
+    selectors.complementary.innerHTML = materials || features
+      ? `${materials}${features}`
+      : '<p class="anatomy-complementary-note">La informaci\u00f3n t\u00e9cnica de esta regi\u00f3n est\u00e1 disponible en su documento de referencia.</p>';
+  }
   if (selectors.document) {
     if (bone.document?.href) {
       selectors.document.hidden = false;
       selectors.document.href = bone.document.href;
-      selectors.document.querySelector("span").textContent = bone.document.label || "Ver ficha tecnica";
+      selectors.document.textContent = bone.document.label || "Consultar documento t\u00e9cnico";
     } else {
       selectors.document.hidden = true;
       selectors.document.href = "#";
     }
   }
+  if (selectors.careRoute) selectors.careRoute.href = bone.careRoute || "/cuidados-adecuados";
 }
 
 selectors.hotspots?.addEventListener("click", (event) => {
@@ -1062,6 +1158,14 @@ selectors.backButton?.addEventListener("click", () => {
   setMobileAnatomyPanel("skeleton");
 });
 
+selectors.previousPage?.addEventListener("click", () => {
+  setAnatomyPage(activeAnatomyPage - 1);
+});
+
+selectors.nextPage?.addEventListener("click", () => {
+  setAnatomyPage(activeAnatomyPage + 1);
+});
+
 if (anatomyMobileQuery.addEventListener) {
   anatomyMobileQuery.addEventListener("change", () => setMobileAnatomyPanel("skeleton"));
 } else {
@@ -1069,6 +1173,7 @@ if (anatomyMobileQuery.addEventListener) {
 }
 
 setMobileAnatomyPanel("skeleton");
+updateSkeletonImage(getActiveViewData());
 renderBone(activeBoneId);
 
 fetch("/api/news")
@@ -1301,6 +1406,7 @@ startCriteriaAutoRotate();
 function initRouteSection() {
   const routeSection = document.querySelector(".route-section");
   const routeSteps = routeSection ? [...routeSection.querySelectorAll(".route-step")] : [];
+  const routeLayout = routeSection?.querySelector(".route-layout");
   if (!routeSection || !routeSteps.length) return;
 
   let routeFrame = 0;
@@ -1323,6 +1429,18 @@ function initRouteSection() {
         step.removeAttribute("aria-current");
       }
     });
+
+    if (routeLayout) {
+      if (mobileViewportQuery.matches && index === routeSteps.length - 1) {
+        const currentTransform = new DOMMatrixReadOnly(window.getComputedStyle(routeLayout).transform);
+        const finalCardBottom = routeSteps.at(-1).getBoundingClientRect().bottom - currentTransform.m42;
+        const releaseThreshold = window.innerHeight - 32;
+        const internalOffset = Math.max(0, finalCardBottom - releaseThreshold);
+        routeLayout.style.transform = `translateY(-${internalOffset}px)`;
+      } else {
+        routeLayout.style.transform = "";
+      }
+    }
   }
 
   function requestRouteUpdate() {

@@ -1,3 +1,84 @@
+const anatomicalCatalog = {
+  proximalFemur: {
+    id: "proximal-femur",
+    region: "F\u00e9mur proximal",
+    category: "Fijaci\u00f3n intramedular",
+    title: "Sistema de enclavado trocant\u00e9rico para f\u00e9mur proximal",
+    anatomicalArea: "F\u00e9mur proximal / regi\u00f3n trocant\u00e9rica",
+    description: "Sistema de fijaci\u00f3n intramedular dise\u00f1ado para el tratamiento de la regi\u00f3n proximal del f\u00e9mur mediante un clavo anat\u00f3mico y un tornillo cef\u00e1lico.",
+    tags: [
+      "F\u00e9mur proximal",
+      "Fijaci\u00f3n interna",
+      "PEEK reforzado con fibra de carbono",
+      "Tornillos de titanio",
+      "Radiol\u00facido",
+      "Uso profesional",
+    ],
+    products: [
+      {
+        name: "Clavo trocant\u00e9rico para f\u00e9mur proximal",
+        type: "Componente intramedular",
+        measure: "Di\u00e1metros de 11 y 12 mm; versi\u00f3n corta de 180 mm y opciones largas; configuraciones de 125\u00b0 y 130\u00b0.",
+        material: "PEEK reforzado con fibra de carbono",
+        description: "Clavo anat\u00f3mico disponible en configuraciones cortas y largas para la regi\u00f3n proximal del f\u00e9mur.",
+      },
+      {
+        name: "Tornillo cef\u00e1lico",
+        type: "Fijaci\u00f3n cef\u00e1lica",
+        measure: "Di\u00e1metro aproximado de 10.4 mm; longitudes de 80 a 110 mm.",
+        material: "PEEK reforzado con fibra de carbono y recubrimiento ultradelgado de titanio en la secci\u00f3n roscada",
+        description: "Componente cef\u00e1lico del sistema de enclavado trocant\u00e9rico.",
+      },
+      {
+        name: "Tornillos distales de bloqueo",
+        type: "Bloqueo distal",
+        measure: "Di\u00e1metro aproximado de 4 mm; diferentes longitudes disponibles.",
+        material: "Aleaci\u00f3n de titanio",
+        description: "Tornillos destinados al bloqueo distal del sistema.",
+      },
+      {
+        name: "Tapones para clavo",
+        type: "Componente complementario",
+        measure: "Variantes de altura seg\u00fan la configuraci\u00f3n del sistema.",
+        description: "Opciones complementarias para las diferentes configuraciones del clavo.",
+      },
+    ],
+    materials: [
+      "Clavo y tornillo cef\u00e1lico fabricados con pol\u00edmero PEEK reforzado con fibra de carbono.",
+      "Tornillos distales fabricados con aleaci\u00f3n de titanio.",
+      "Recubrimiento ultradelgado de titanio en la secci\u00f3n roscada del tornillo cef\u00e1lico.",
+    ],
+    features: [
+      "Dise\u00f1o anat\u00f3mico para abordaje anter\u00f3grado.",
+      "Configuraciones de 125\u00b0 y 130\u00b0, con opciones cortas y largas.",
+      "Opciones derecha e izquierda en las versiones largas.",
+      "Marcadores radiopacos para visualizaci\u00f3n.",
+      "Componentes principales suministrados est\u00e9riles.",
+    ],
+    benefits: [
+      "Radiolucidez para visualizaci\u00f3n del sitio tratado.",
+      "Menor interferencia en CT y MRI frente a implantes met\u00e1licos convencionales.",
+      "M\u00f3dulo de elasticidad cercano al hueso cortical.",
+      "Marcadores radiopacos para control mediante imagen.",
+      "Dise\u00f1o orientado al seguimiento radiogr\u00e1fico.",
+    ],
+    applications: [
+      "Soluciones de fijaci\u00f3n para la regi\u00f3n proximal del f\u00e9mur.",
+      "Fracturas trocant\u00e9ricas.",
+      "Procedimientos de fijaci\u00f3n intramedular determinados por el especialista.",
+      "Selecci\u00f3n de configuraci\u00f3n de acuerdo con anatom\u00eda y planeaci\u00f3n quir\u00fargica.",
+    ],
+    careRoute: "/cuidados-adecuados",
+    pdfReference: "CarboFix Proximal Femur Nailing System Surgical Technique 10.1.2023.pdf",
+    document: {
+      label: "Consultar documento t\u00e9cnico",
+      href: "/docs/productos/CarboFix Proximal Femur Nailing System Surgical Technique 10.1.2023.pdf",
+    },
+  },
+};
+
+window.BET_ANATOMICAL_CATALOG = anatomicalCatalog;
+
 window.BET_ANATOMY_ZONES = [
   {
     id: "cervical-spine",
@@ -90,23 +171,10 @@ window.BET_ANATOMY_ZONES = [
     applications: ["Columna cervical.", "Reemplazo discal.", "Evaluacion vertebral.", "Procedimientos especializados de columna."],
   },
   {
-    id: "proximal-femur",
+    ...anatomicalCatalog.proximalFemur,
     view: "front",
-    category: "Miembro inferior",
-    title: "Femur proximal",
-    anatomicalArea: "Cadera / region trocanterica",
-    description: "Soluciones para femur proximal y region trocanterica orientadas a fijacion interna, estabilidad y seguimiento claro del proceso de consolidacion.",
     x: "50%",
     y: "54%",
-    image: "/images/products/carbofix-femur-proximal.png",
-    document: { label: "Ver ficha femur proximal", href: "/docs/productos/carbofix-femur-proximal.pdf" },
-    products: [
-      { name: "CarboFix Trochanteric PF Nailing System", type: "Clavo trocanterico", description: "Sistema de clavo para femur proximal con opciones de angulacion 125 / 130 grados y tornillo lag." },
-      { name: "CarboFix Proximal Femur Nailing System", type: "Sistema de enclavado femoral proximal", description: "Sistema de fijacion para trauma de femur proximal dentro del portafolio CarboFix." },
-      { name: "Lag Screw Carbon Fiber / Titanium", type: "Tornillo lag", description: "Tornillos lag disponibles para el sistema trocanterico." },
-    ],
-    benefits: ["Implante radiolucido para visualizacion del sitio de fractura.", "Menor interferencia en CT/MRI.", "Alta resistencia a fatiga.", "Modulo de elasticidad cercano al hueso cortical.", "Util para seguimiento en trauma y oncologia ortopedica cuando aplique."],
-    applications: ["Fracturas trocantericas.", "Fracturas de femur proximal.", "Fijacion interna.", "Trauma ortopedico."],
   },
   {
     id: "pediatric-proximal-femur",

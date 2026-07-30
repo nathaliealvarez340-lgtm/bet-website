@@ -15,7 +15,12 @@
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
   </head>
-  <body>
+  <body class="welcome-active">
+    <div class="welcome-overlay" data-welcome-overlay role="status" aria-live="polite" aria-label="Bienvenido a BET">
+      <div class="welcome-overlay-sheen" aria-hidden="true"></div>
+      <p>Bienvenido a BET</p>
+    </div>
+
     <header class="site-header navbar site-nav" data-elevate>
       <a class="brand" href="#inicio" aria-label="BET inicio">
         <img src="assets/logo-bet.webp" alt="Body Edge Technologies" width="132" height="52">
@@ -153,9 +158,11 @@
           <h2 class="criteria-title" id="criteria-title" aria-label="Criterios que importan cuando el margen de error no existe." data-i18n-aria-label="criteriaTitleAria" data-i18n-html="criteriaTitleHtml">
             <span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent" data-i18n="criteriaWordOne">Criterios</span> que <span class="criteria-accent" data-i18n="criteriaWordTwo">importan</span> cuando</span>
             <span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span>
-            <span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent" data-i18n="criteriaWordOne">Criterios</span> que <span class="criteria-accent" data-i18n="criteriaWordTwo">importan</span></span>
-            <span class="criteria-title-mobile-line" aria-hidden="true">cuando el margen</span>
-            <span class="criteria-title-mobile-line" aria-hidden="true">de error no existe.</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent" data-i18n="criteriaWordOne">Criterios</span></span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">que <span class="criteria-accent" data-i18n="criteriaWordTwo">importan</span></span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">cuando el</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">margen de error</span>
+            <span class="criteria-title-mobile-line" aria-hidden="true">no existe</span>
           </h2>
           <p>Un sistema de decisi&oacute;n pensado para cirug&iacute;as donde la disponibilidad, la trazabilidad y el criterio t&eacute;cnico deben sentirse claros desde el primer contacto.</p>
         </div>
@@ -238,37 +245,63 @@
                 id="anatomy-skeleton-image"
                 class="anatomy-skeleton-image"
                 src="/images/esqueleto-frontal.png"
-                alt="Esqueleto en vista frontal"
+                alt="Vista frontal del esqueleto humano"
                 width="1341"
                 height="1029"
                 loading="lazy"
                 decoding="async"
               >
+              <div class="anatomy-skeleton-fallback" data-skeleton-fallback hidden>
+                <strong>Vista anat&oacute;mica no disponible</strong>
+                <span>Intenta cambiar de vista o recargar la p&aacute;gina.</span>
+              </div>
               <div class="anatomy-hotspots" data-anatomy-hotspots aria-label="Zonas anatomicas disponibles"></div>
             </div>
           </div>
           <aside class="anatomy-panel glass" aria-live="polite">
             <button class="anatomy-back-button" type="button" data-anatomy-back hidden>Ver esqueleto</button>
             <span class="eyebrow" id="bone-category" data-i18n="anatomyModelEyebrow">MODELO INTERACTIVO</span>
-            <h3 id="bone-name">Femur</h3>
-            <span class="anatomy-area" id="bone-area">Cadera / region trocanterica</span>
+            <div class="anatomy-context">
+              <span class="anatomy-area" id="bone-area">F&eacute;mur proximal</span>
+              <span class="anatomy-category" id="bone-category-text">Fijaci&oacute;n intramedular</span>
+            </div>
+            <h3 id="bone-name">Sistema de enclavado trocant&eacute;rico para f&eacute;mur proximal</h3>
             <p id="bone-description">Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.</p>
             <img class="anatomy-product-image" id="bone-product-image" alt="" loading="lazy" decoding="async" hidden>
-            <div class="panel-block">
-              <h4>Productos relacionados</h4>
-              <div id="bone-products"></div>
+            <div class="anatomy-tags" id="bone-tags" aria-label="Etiquetas t&eacute;cnicas"></div>
+            <div class="anatomy-content-pages" data-anatomy-pages>
+              <section class="anatomy-content-page is-active" data-anatomy-page="overview" aria-label="Productos relacionados">
+                <div class="panel-block">
+                  <h4>Productos relacionados</h4>
+                  <div id="bone-products"></div>
+                </div>
+              </section>
+              <section class="anatomy-content-page" data-anatomy-page="details" aria-label="Beneficios, aplicaciones e informaci&oacute;n complementaria" hidden>
+                <div class="anatomy-detail-grid">
+                  <div class="panel-block">
+                    <h4>Beneficios t&eacute;cnicos</h4>
+                    <ul id="bone-benefits"></ul>
+                  </div>
+                  <div class="panel-block">
+                    <h4>Aplicaciones</h4>
+                    <ul id="bone-applications"></ul>
+                  </div>
+                </div>
+                <div class="panel-block anatomy-complementary">
+                  <h4>Informaci&oacute;n complementaria</h4>
+                  <div id="bone-complementary"></div>
+                  <a class="anatomy-technical-link" id="bone-document" href="#" target="_blank" rel="noopener noreferrer" hidden>Consultar documento t&eacute;cnico</a>
+                </div>
+              </section>
             </div>
-            <div class="panel-block">
-              <h4>Beneficios clave</h4>
-              <ul id="bone-benefits"></ul>
-            </div>
-            <div class="panel-block">
-              <h4>Aplicaciones</h4>
-              <ul id="bone-applications"></ul>
+            <div class="anatomy-page-controls" aria-label="Navegaci&oacute;n de informaci&oacute;n del producto">
+              <button type="button" data-anatomy-page-previous aria-label="Ver informaci&oacute;n anterior" disabled>&lsaquo;</button>
+              <span data-anatomy-page-status aria-live="polite">1 de 2</span>
+              <button type="button" data-anatomy-page-next aria-label="Ver informaci&oacute;n siguiente">&rsaquo;</button>
             </div>
             <div class="anatomy-actions">
-              <a class="button glass-button full anatomy-document-link" id="bone-document" href="#" target="_blank" rel="noopener noreferrer" hidden><span>Ver ficha tecnica</span></a>
-              <a class="button glass-button primary full anatomy-request-link" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Solicitar informacion</span></a>
+              <a class="anatomy-action-button" id="bone-care-route" href="/cuidados-adecuados"><span>Cuidados adecuados</span></a>
+              <a class="anatomy-action-button anatomy-request-link" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20t%C3%A9cnica%20sobre%20una%20soluci%C3%B3n%20BET." target="_blank" rel="noopener noreferrer"><span>Solicitar informaci&oacute;n</span></a>
             </div>
           </aside>
         </div>
@@ -356,10 +389,11 @@
                 <span>disponibilidad<br>quir&uacute;rgica.</span>
               </h2>
               <h2 class="route-title-mobile" aria-hidden="true">
-                Una ruta clara<br>
-                entre<br>
-                necesidad cl&iacute;nica<br>
-                y <span>disponibilidad real.</span>
+                <span>Una ruta clara</span>
+                <span>entre necesidad</span>
+                <span>cl&iacute;nica y</span>
+                <span class="title-accent">disponibilidad</span>
+                <span class="title-accent">real</span>
               </h2>
             </div>
           </div>
@@ -444,6 +478,7 @@
       <a class="button glass-button full assistant-whatsapp" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20productos.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20detalles%20y%20precios%3F" target="_blank" rel="noopener noreferrer"><span>Hablar por WhatsApp</span></a>
     </section>
 
+    <script src="scripts/welcome.js" defer></script>
     <script src="data/anatomyProducts.js" defer></script>
     <script src="scripts/app.js" defer></script>
   </body>

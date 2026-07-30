@@ -12041,3 +12041,1188 @@ main {
     display: none;
   }
 }
+
+/* BET clinical catalog, welcome overlay and care education page */
+body.welcome-active {
+  height: 100%;
+  overflow: hidden !important;
+}
+
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    linear-gradient(145deg, rgba(2, 48, 78, 0.92), rgba(8, 120, 201, 0.76)),
+    rgba(8, 120, 201, 0.82);
+  backdrop-filter: blur(22px) saturate(125%);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -80px 160px rgba(2, 35, 57, 0.18);
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 820ms cubic-bezier(0.77, 0, 0.175, 1),
+    opacity 220ms ease;
+  will-change: transform;
+}
+
+.welcome-overlay::before,
+.welcome-overlay::after,
+.welcome-overlay-sheen {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.welcome-overlay::before {
+  inset: 0;
+  background:
+    linear-gradient(118deg, transparent 18%, rgba(255, 255, 255, 0.13) 42%, transparent 63%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 30%);
+}
+
+.welcome-overlay::after {
+  width: min(76vw, 960px);
+  height: 1px;
+  top: 25%;
+  left: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+  transform: translateX(-50%);
+}
+
+.welcome-overlay-sheen {
+  width: min(68vw, 760px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 80px rgba(255, 255, 255, 0.025),
+    0 0 0 160px rgba(255, 255, 255, 0.018);
+}
+
+.welcome-overlay p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 1rem;
+  color: #ffffff;
+  font-family: "Hammersmith One", "Poppins", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+  text-shadow: 0 18px 46px rgba(2, 35, 57, 0.22);
+}
+
+.welcome-overlay.is-leaving {
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.route-title-desktop span {
+  color: var(--bet-title-accent) !important;
+}
+
+.anatomy-skeleton-image[hidden],
+.anatomy-skeleton-fallback[hidden],
+.anatomy-content-page[hidden],
+.anatomy-tags[hidden],
+.anatomy-technical-link[hidden] {
+  display: none !important;
+}
+
+.anatomy-skeleton-fallback {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2rem, 24rem);
+  min-height: 12rem;
+  display: grid;
+  place-content: center;
+  gap: 0.4rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(8, 120, 201, 0.16);
+  border-radius: 8px;
+  color: #264d5c;
+  background: rgba(255, 255, 255, 0.84);
+  text-align: center;
+}
+
+.anatomy-skeleton-fallback strong {
+  color: #062f3a;
+}
+
+.anatomy-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin: 0.65rem 0 0.85rem;
+}
+
+.anatomy-context .anatomy-area,
+.anatomy-category {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0 !important;
+  padding: 0.3rem 0.62rem;
+  border: 1px solid rgba(8, 120, 201, 0.13);
+  border-radius: 999px;
+  color: #0878c9;
+  background: rgba(8, 120, 201, 0.06);
+  font-family: var(--bet-sans, "Poppins", sans-serif);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+.anatomy-category {
+  color: #245b6e;
+  background: rgba(11, 136, 166, 0.06);
+}
+
+.anatomy-panel #bone-name {
+  max-width: 18ch;
+  font-size: clamp(2rem, 3.2vw, 3.5rem) !important;
+  line-height: 1.02 !important;
+}
+
+.anatomy-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin: 1rem 0 0.2rem;
+}
+
+.anatomy-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0.3rem 0.58rem;
+  border: 1px solid rgba(8, 120, 201, 0.13);
+  border-radius: 999px;
+  color: #28596b;
+  background: #f6fbfd;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.anatomy-content-pages {
+  position: relative;
+  overflow: clip;
+}
+
+.anatomy-content-page {
+  transform-origin: center top;
+}
+
+.anatomy-content-page.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anatomy-panel .panel-block {
+  margin: 1.15rem 0 !important;
+}
+
+.anatomy-panel #bone-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.58rem;
+}
+
+.anatomy-panel .product-mini {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  margin: 0 !important;
+  padding: 0.86rem 0.9rem !important;
+  border: 1px solid rgba(8, 120, 201, 0.11) !important;
+  border-radius: 8px !important;
+  background: #f7fbfd !important;
+  content-visibility: visible;
+}
+
+.product-mini strong {
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.product-mini small {
+  order: -1;
+  color: #0878c9 !important;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.product-mini span {
+  margin: 0 !important;
+  font-size: 0.76rem;
+  line-height: 1.42 !important;
+}
+
+.product-mini-spec {
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(8, 120, 201, 0.08);
+}
+
+.product-mini-spec b {
+  color: #18495a;
+  font-weight: 800;
+}
+
+.anatomy-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.anatomy-detail-grid ul,
+.anatomy-complementary ul {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+  padding-left: 1.05rem;
+}
+
+.anatomy-detail-grid li,
+.anatomy-complementary li,
+.anatomy-complementary-note {
+  color: rgba(15, 23, 32, 0.64) !important;
+  font-size: 0.8rem;
+  line-height: 1.48 !important;
+}
+
+.anatomy-complementary #bone-complementary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.anatomy-complementary strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #18495a;
+  font-size: 0.78rem;
+}
+
+.anatomy-technical-link {
+  width: fit-content;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.9rem;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(8, 120, 201, 0.2);
+  border-radius: 8px;
+  color: #0878c9;
+  background: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.anatomy-page-controls {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.anatomy-page-controls button {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #0878c9;
+  border-radius: 50%;
+  color: #0878c9;
+  background: #ffffff;
+  font-size: 1.65rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 160ms ease;
+}
+
+.anatomy-page-controls button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.anatomy-page-controls button:disabled {
+  cursor: default;
+  opacity: 0.32;
+}
+
+.anatomy-page-controls span {
+  color: #526b75;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.anatomy-page-controls button:focus-visible,
+.anatomy-action-button:focus-visible,
+.anatomy-technical-link:focus-visible,
+.care-product-cta:focus-visible {
+  outline: 3px solid rgba(8, 120, 201, 0.28);
+  outline-offset: 3px;
+}
+
+.anatomy-actions {
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 0.7rem !important;
+  margin-top: auto !important;
+  padding-top: 1rem !important;
+}
+
+.anatomy-action-button {
+  min-width: 0;
+  min-height: 46px;
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--bet-title-accent);
+  border-radius: 8px;
+  color: #ffffff !important;
+  background: var(--bet-title-accent);
+  box-shadow: 0 10px 24px rgba(8, 120, 201, 0.16);
+  font-family: var(--bet-sans, "Poppins", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.anatomy-action-button:active {
+  transform: scale(0.97);
+}
+
+.care-adequate-page {
+  color: #102f3d;
+  background: #ffffff;
+}
+
+.care-adequate-main {
+  overflow: hidden;
+}
+
+.care-adequate-hero {
+  min-height: min(86svh, 880px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(8rem, 14vh, 10rem) clamp(1.25rem, 6vw, 6rem) clamp(4rem, 8vh, 6rem);
+  background:
+    linear-gradient(90deg, rgba(244, 251, 255, 0.98) 0%, rgba(244, 251, 255, 0.94) 45%, rgba(244, 251, 255, 0.36) 72%, rgba(244, 251, 255, 0.12) 100%),
+    url("/assets/images/implant-trauma.webp") 82% 44% / cover no-repeat;
+}
+
+.care-adequate-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-bottom: 1px solid rgba(8, 120, 201, 0.12);
+  background: linear-gradient(180deg, rgba(8, 120, 201, 0.07), transparent 30%);
+  pointer-events: none;
+}
+
+.care-adequate-hero-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.care-adequate-hero .eyebrow {
+  color: #0878c9;
+}
+
+.care-adequate-hero h1 {
+  max-width: 12ch;
+  margin: 0.65rem 0 1.2rem;
+  color: #082d42;
+  font-family: "Hammersmith One", "Poppins", sans-serif;
+  font-size: clamp(3.4rem, 7vw, 7.2rem);
+  font-weight: 400;
+  line-height: 0.93;
+  letter-spacing: 0;
+}
+
+.care-adequate-hero-inner > p {
+  max-width: 42rem;
+  margin: 0;
+  color: #385968;
+  font-family: "Open Sans", sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.72;
+}
+
+.care-education-note {
+  max-width: 42rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(8, 120, 201, 0.18);
+  border-radius: 8px;
+  color: #17485b;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 44px rgba(7, 58, 82, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-size: 0.9rem;
+  line-height: 1.58;
+}
+
+.care-content-band {
+  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.25rem, 6vw, 6rem);
+}
+
+.care-content-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.care-two-column {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: start;
+}
+
+.care-section-index {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: #0878c9;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.care-content-band h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: #082d42;
+  font-family: "Hammersmith One", "Poppins", sans-serif;
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.care-clinical-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.care-clinical-list li {
+  position: relative;
+  padding: 1.1rem 0 1.1rem 2rem;
+  border-bottom: 1px solid rgba(8, 120, 201, 0.11);
+  color: #365866;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.68;
+}
+
+.care-clinical-list li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 1.62rem;
+  left: 0;
+  border: 2px solid #0878c9;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.care-wound-section {
+  color: #ffffff;
+  background: #0878c9;
+}
+
+.care-wound-section .care-section-index,
+.care-wound-section h2,
+.care-wound-copy p {
+  color: #ffffff;
+}
+
+.care-wound-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.care-wound-copy p {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.72;
+}
+
+.care-wound-copy p + p {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.94rem;
+}
+
+.care-products-section {
+  background: #f5fafc;
+}
+
+.care-products-heading {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.care-products-heading h2 {
+  max-width: 16ch;
+}
+
+.care-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.care-product-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(8, 120, 201, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 60px rgba(7, 58, 82, 0.07);
+}
+
+.care-product-category {
+  color: #0878c9;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.care-product-card h3 {
+  margin: 0.55rem 0 0.8rem;
+  color: #082d42;
+  font-family: "Hammersmith One", "Poppins", sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.care-product-card > p,
+.care-product-detail li,
+.care-product-facts dd {
+  color: #45626e;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+}
+
+.care-product-detail {
+  margin: 1.2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(8, 120, 201, 0.1);
+  border-bottom: 1px solid rgba(8, 120, 201, 0.1);
+}
+
+.care-product-detail h4 {
+  margin: 0 0 0.65rem;
+  color: #18495a;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.care-product-detail ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 1rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.care-product-detail li {
+  font-size: 0.84rem;
+}
+
+.care-product-facts {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.care-product-facts div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.42fr) minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.care-product-facts dt {
+  color: #18495a;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.care-product-facts dd {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.care-product-cta {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 0.7rem 1rem;
+  border: 1px solid #0878c9;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #0878c9;
+  box-shadow: 0 10px 24px rgba(8, 120, 201, 0.16);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 180ms ease;
+}
+
+.care-product-cta:active {
+  transform: scale(0.97);
+}
+
+.care-products-legend {
+  max-width: 64rem;
+  margin: 1.25rem auto 0;
+  color: #526b75;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .anatomy-page-controls button:hover:not(:disabled) {
+    color: #ffffff;
+    background: #0878c9;
+    transform: scale(1.04);
+  }
+
+  .anatomy-action-button:hover,
+  .care-product-cta:hover {
+    color: #ffffff;
+    background: #076fb8;
+    box-shadow: 0 16px 32px rgba(8, 120, 201, 0.22);
+    transform: scale(1.025);
+  }
+
+  .anatomy-technical-link:hover {
+    color: #ffffff;
+    background: #0878c9;
+  }
+}
+
+@media (max-width: 900px) {
+  .care-adequate-hero {
+    background:
+      linear-gradient(90deg, rgba(244, 251, 255, 0.98), rgba(244, 251, 255, 0.86)),
+      url("/assets/images/implant-trauma.webp") 68% center / cover no-repeat;
+  }
+
+  .care-two-column,
+  .care-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .care-content-band h2 {
+    max-width: 15ch;
+  }
+}
+
+@media (max-width: 767px) {
+  .welcome-overlay p {
+    font-size: clamp(2.3rem, 13vw, 4rem);
+  }
+
+  .anatomy-panel #bone-name {
+    max-width: 100%;
+    font-size: clamp(1.65rem, 7.5vw, 2.3rem) !important;
+  }
+
+  .anatomy-panel #bone-products,
+  .anatomy-detail-grid,
+  .anatomy-complementary #bone-complementary {
+    grid-template-columns: 1fr;
+  }
+
+  .anatomy-panel .product-mini {
+    padding: 0.82rem 0.88rem !important;
+  }
+
+  .anatomy-actions {
+    gap: 0.55rem !important;
+  }
+
+  .anatomy-action-button {
+    min-height: 46px !important;
+    padding: 0.65rem 0.7rem !important;
+    font-size: 0.73rem;
+  }
+
+  .care-adequate-page .site-header.navbar.site-nav .language-current {
+    display: none !important;
+  }
+
+  .care-adequate-hero {
+    min-height: 82svh;
+    align-items: flex-end;
+    padding: 7.5rem 1rem 3.5rem;
+    background:
+      linear-gradient(180deg, rgba(244, 251, 255, 0.56) 0%, rgba(244, 251, 255, 0.94) 44%, #f4fbff 100%),
+      url("/assets/images/implant-trauma.webp") 58% 18% / cover no-repeat;
+  }
+
+  .care-adequate-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(2.65rem, 13vw, 4.3rem);
+  }
+
+  .care-adequate-hero-inner > p {
+    font-size: 0.94rem;
+    line-height: 1.62;
+  }
+
+  .care-education-note {
+    padding: 0.9rem;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    font-size: 0.8rem;
+  }
+
+  .care-content-band {
+    padding: 4rem 1rem;
+  }
+
+  .care-two-column {
+    gap: 1.6rem;
+  }
+
+  .care-content-band h2 {
+    font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  .care-clinical-list li {
+    padding: 0.9rem 0 0.9rem 1.6rem;
+    font-size: 0.92rem;
+  }
+
+  .care-clinical-list li::before {
+    top: 1.36rem;
+  }
+
+  .care-product-card {
+    padding: 1.1rem;
+  }
+
+  .care-product-detail ul {
+    grid-template-columns: 1fr;
+  }
+
+  .care-product-facts div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .anatomy-actions {
+    flex-direction: column;
+  }
+
+  .anatomy-action-button {
+    width: 100%;
+    flex-basis: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-overlay {
+    transform: none;
+    transition: opacity 220ms ease;
+  }
+
+  .welcome-overlay.is-leaving {
+    opacity: 0;
+    transform: none;
+  }
+
+  .anatomy-content-pages,
+  .anatomy-page-controls button,
+  .anatomy-action-button,
+  .care-product-cta {
+    animation: none !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* BET mobile-only refinement: titles, criteria, trust, route and footer */
+@media (max-width: 767px) {
+  :root {
+    --bet-title-accent-dark: #055d9c;
+    --mobile-header-height: 72px;
+  }
+
+  .focus-copy h2,
+  .tech-copy h2,
+  .criteria-title,
+  .experience-copy h2,
+  .anatomy-section .section-heading h2,
+  .differentials-section .section-heading h2,
+  .route-title-mobile,
+  .news-header h2,
+  .final-cta-content h2 {
+    max-width: 100% !important;
+    overflow: visible !important;
+    font-size: clamp(calc(1.75rem - 2px), calc(8vw - 2px), calc(2.65rem - 2px)) !important;
+    line-height: 0.98 !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-wrap: balance;
+    white-space: normal !important;
+  }
+
+  .criteria-title {
+    display: block !important;
+    margin-top: 1.55rem !important;
+    text-align: left !important;
+  }
+
+  .criteria-title-mobile-line {
+    width: 100%;
+    max-width: 100%;
+    display: block !important;
+    color: #06142b !important;
+    white-space: normal !important;
+  }
+
+  .criteria-title-mobile-line .criteria-accent {
+    color: var(--bet-title-accent) !important;
+  }
+
+  .criteria-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: clamp(0.6rem, 2.6vw, 0.85rem) !important;
+  }
+
+  .criteria-video-card,
+  .criteria-card {
+    height: clamp(238px, 70vw, 292px) !important;
+    min-height: 238px !important;
+    aspect-ratio: auto !important;
+  }
+
+  .criteria-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: clamp(0.8rem, 4vw, 1.2rem) clamp(0.72rem, 3.5vw, 1.1rem) 0.9rem !important;
+    color: #ffffff !important;
+    background: linear-gradient(
+      145deg,
+      var(--bet-title-accent) 0%,
+      var(--bet-title-accent-dark) 100%
+    ) !important;
+  }
+
+  .criteria-number {
+    position: static !important;
+    width: auto !important;
+    display: block !important;
+    margin: 0 0 0.6rem !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-size: 0.7rem !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    opacity: 1 !important;
+  }
+
+  .criteria-content,
+  .criteria-card.is-changing .criteria-content {
+    position: relative !important;
+    z-index: 1 !important;
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .criteria-card h3 {
+    margin: 0 0 0.55rem !important;
+    color: #ffffff !important;
+    font-size: clamp(1.02rem, 4.7vw, 1.5rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  .criteria-card p {
+    margin: 0 !important;
+    color: #ffffff !important;
+    font-size: clamp(0.7rem, 2.95vw, 0.86rem) !important;
+    line-height: 1.38 !important;
+    opacity: 1 !important;
+  }
+
+  .criteria-controls {
+    position: static !important;
+    inset: auto !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.6rem !important;
+    margin: auto 0 0 !important;
+    padding-top: 0.75rem !important;
+    transform: none !important;
+  }
+
+  .criteria-controls button {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    display: inline-grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.58) !important;
+    border-radius: 999px !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  .criteria-controls button:focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
+  }
+
+  .experience-stats {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  .experience-stat {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 128px !important;
+    height: 128px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 1rem 0.85rem !important;
+  }
+
+  .experience-stat strong {
+    max-width: 100% !important;
+    color: #0878c9 !important;
+    font-size: clamp(1.65rem, 7.8vw, 2.5rem) !important;
+    line-height: 0.95 !important;
+    white-space: nowrap !important;
+  }
+
+  .experience-stat span {
+    max-width: 100% !important;
+    margin-top: 0.7rem !important;
+    font-size: clamp(0.7rem, 3.15vw, 0.88rem) !important;
+    line-height: 1.25 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  .route-title-mobile {
+    max-width: 100% !important;
+    text-align: left !important;
+  }
+
+  .route-title-mobile > span {
+    width: 100%;
+    display: block !important;
+    color: #06142b !important;
+    white-space: nowrap !important;
+  }
+
+  .route-title-mobile > .title-accent {
+    color: var(--bet-title-accent) !important;
+  }
+
+  .route-section {
+    height: calc(400svh + 140px) !important;
+    min-height: calc(400svh + 140px) !important;
+  }
+
+  .route-sticky {
+    min-height: 100svh !important;
+    height: 100svh !important;
+    padding:
+      calc(var(--mobile-header-height) + env(safe-area-inset-top))
+      0
+      calc(32px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .route-layout {
+    max-height: calc(100svh - var(--mobile-header-height) - 32px - env(safe-area-inset-bottom)) !important;
+    align-content: center !important;
+    transition: transform 220ms cubic-bezier(0.77, 0, 0.175, 1) !important;
+    will-change: transform;
+  }
+
+  .route-copy {
+    padding-right: 0 !important;
+  }
+
+  .news-section,
+  .criteria-section,
+  .experience-section,
+  .anatomy-section,
+  .differentials-section,
+  .final-cta-section {
+    scroll-margin-top: var(--mobile-header-height);
+  }
+
+  .final-cta-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.62rem !important;
+  }
+
+  .final-cta-button img {
+    width: 19px !important;
+    height: 19px !important;
+    flex: 0 0 19px !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+
+  .site-footer {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: clamp(0.85rem, 4vw, 1.15rem) !important;
+    padding:
+      1.75rem
+      1.25rem
+      calc(5.5rem + env(safe-area-inset-bottom)) !important;
+    text-align: initial !important;
+  }
+
+  .site-footer img {
+    width: clamp(88px, 25vw, 112px) !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  .site-footer span {
+    min-width: 0 !important;
+    margin: 0 !important;
+    color: #64747c !important;
+    font-size: clamp(0.64rem, 2.65vw, 0.78rem) !important;
+    line-height: 1.35 !important;
+    text-align: right !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .criteria-card {
+    padding: 0.72rem 0.65rem 0.8rem !important;
+  }
+
+  .criteria-card p {
+    font-size: 0.68rem !important;
+  }
+
+  .experience-stats {
+    gap: 0.6rem !important;
+  }
+
+  .experience-stat {
+    min-height: 120px !important;
+    height: 120px !important;
+    padding: 0.8rem 0.68rem !important;
+  }
+
+  .experience-stat strong {
+    font-size: clamp(1.5rem, 7.2vw, 1.8rem) !important;
+  }
+
+  .experience-stat span {
+    font-size: 0.66rem !important;
+  }
+
+  .site-footer {
+    gap: 0.7rem !important;
+    padding-inline: 1rem !important;
+  }
+
+  .site-footer img {
+    width: 82px !important;
+  }
+
+  .site-footer span {
+    font-size: 0.62rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .route-visual .route-title-mobile {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
