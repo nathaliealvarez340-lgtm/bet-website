@@ -1151,7 +1151,28 @@ selectors.hotspots?.addEventListener("click", (event) => {
 });
 
 selectors.viewButtons.forEach((button) => {
-  button.addEventListener("click", () => setAnatomyView(button.dataset.anatomyView));
+  button.addEventListener("click", () => {
+    const stageTop = selectors.stage?.getBoundingClientRect().top;
+
+    const restoreStagePosition = () => {
+      if (!selectors.stage || !Number.isFinite(stageTop)) return;
+      const offset = selectors.stage.getBoundingClientRect().top - stageTop;
+      if (Math.abs(offset) > 0.5) {
+        window.scrollBy({ top: offset, behavior: "instant" });
+      }
+    };
+
+    setAnatomyView(button.dataset.anatomyView);
+    void selectors.workbench?.offsetHeight;
+    restoreStagePosition();
+
+    window.requestAnimationFrame(() => {
+      restoreStagePosition();
+      window.requestAnimationFrame(() => {
+        restoreStagePosition();
+      });
+    });
+  });
 });
 
 selectors.backButton?.addEventListener("click", () => {

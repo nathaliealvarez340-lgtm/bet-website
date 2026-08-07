@@ -7757,6 +7757,7 @@ html {
 .experience-section {
   position: relative;
   z-index: 3;
+  isolation: isolate;
   min-height: 72svh;
   display: flex;
   align-items: center;
@@ -8436,7 +8437,6 @@ body {
 .focus-section,
 .tech-section,
 .criteria-section,
-.experience-section,
 .anatomy-section {
   position: sticky !important;
   top: 0 !important;
@@ -9575,14 +9575,27 @@ main {
   pointer-events: none;
 }
 
-.anatomy-skeleton-stage.is-rotating {
-  animation: anatomySkeletonTurn 380ms cubic-bezier(0.22, 1, 0.36, 1);
+.anatomy-skeleton-stage.is-rotating .anatomy-skeleton-image-frame {
+  animation: anatomySkeletonFade 200ms ease-out;
+}
+
+.anatomy-skeleton-image-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(14px, 2vw, 22px) 0;
+  pointer-events: none;
 }
 
 .anatomy-skeleton-image {
   width: auto;
   height: clamp(520px, 62vh, 620px);
   max-width: none;
+  max-height: 92%;
   display: block;
   object-fit: contain;
   object-position: center;
@@ -9590,8 +9603,6 @@ main {
   z-index: 1;
   opacity: 1;
   visibility: visible;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
   transition: opacity 220ms ease;
   user-select: none;
   pointer-events: none;
@@ -9690,22 +9701,21 @@ main {
 .anatomy-section {
   content-visibility: auto;
   contain-intrinsic-size: 900px;
+  overflow-anchor: none;
 }
 
-@keyframes anatomySkeletonTurn {
+@keyframes anatomySkeletonFade {
   from {
-    opacity: 0;
-    transform: rotateY(8deg) scale(0.98);
+    opacity: 0.18;
   }
 
   to {
     opacity: 1;
-    transform: rotateY(0deg) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .anatomy-skeleton-stage.is-rotating,
+  .anatomy-skeleton-stage.is-rotating .anatomy-skeleton-image-frame,
   .bone-target,
   .anatomy-view-toggle button {
     animation: none !important;
@@ -10288,7 +10298,6 @@ main {
 .hero-focus-transition .focus-section,
 .tech-section,
 .criteria-section,
-.experience-section,
 .anatomy-section,
 .differentials-section {
   position: sticky !important;
@@ -10544,7 +10553,6 @@ main {
   .hero-focus-transition .focus-section,
   .tech-section,
   .criteria-section,
-  .experience-section,
   .anatomy-section,
   .differentials-section {
     position: sticky !important;
@@ -10657,7 +10665,9 @@ main {
   }
 
   .anatomy-skeleton-image {
-    height: clamp(360px, 54svh, 460px) !important;
+    height: min(94%, 460px) !important;
+    max-width: none !important;
+    max-height: 94% !important;
   }
 
   .anatomy-panel h3 {
@@ -11639,11 +11649,13 @@ main {
   }
 
   .anatomy-skeleton-stage {
-    min-height: 520px !important;
+    min-height: clamp(560px, 64vh, 620px) !important;
   }
 
   .anatomy-skeleton-image {
-    height: clamp(460px, 52vh, 540px) !important;
+    height: min(92%, 540px) !important;
+    max-width: none !important;
+    max-height: 92% !important;
   }
 
   .anatomy-panel .panel-block {
@@ -11744,13 +11756,13 @@ main {
   .anatomy-section > .anatomy-workbench,
   .anatomy-workbench {
     grid-template-columns: minmax(460px, 0.85fr) minmax(650px, 1.15fr) !important;
-    align-items: stretch !important;
+    align-items: start !important;
   }
 
   .anatomy-map,
   .anatomy-panel {
     min-height: 620px !important;
-    height: 100% !important;
+    height: auto !important;
   }
 
   .anatomy-map {
