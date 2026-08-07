@@ -1,5 +1,5 @@
 (() => {
-  const WELCOME_DURATION = 4000;
+  const WELCOME_DURATION = 2500;
   const EXIT_DURATION = 800;
   const welcomeScreen = document.querySelector("[data-welcome-screen]");
   const root = document.documentElement;
