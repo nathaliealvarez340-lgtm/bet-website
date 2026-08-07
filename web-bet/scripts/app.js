@@ -552,14 +552,14 @@ function buildSkeletonDataFromZones(zones) {
   return {
     front: {
       label: "Vista frontal",
-      image: "/images/esqueleto-frontal.png",
+      image: "/assets/images/bet/esqueleto-frontal.png",
       alt: "Vista frontal del esqueleto humano",
       initialZone: "proximal-femur",
       zones: zones.filter((zone) => zone.view === "front").map(normalizeZone),
     },
     back: {
       label: "Vista posterior",
-      image: "/images/esqueleto-reverso.png",
+      image: "/assets/images/bet/esqueleto-reverso.png",
       alt: "Vista posterior del esqueleto humano",
       initialZone: "posterior-spine",
       zones: zones.filter((zone) => zone.view === "back").map(normalizeZone),
@@ -570,7 +570,7 @@ function buildSkeletonDataFromZones(zones) {
 const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anatomyZonesSource) : {
   front: {
     label: "Vista frontal",
-    image: "assets/images/esqueleto-frontal.png",
+    image: "/assets/images/bet/esqueleto-frontal.png",
     alt: "Esqueleto en vista frontal",
     initialZone: "femur",
     zones: [
@@ -664,7 +664,7 @@ const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anat
   },
   back: {
     label: "Vista posterior",
-    image: "assets/images/esqueleto-reverso.png",
+    image: "/assets/images/bet/esqueleto-reverso.png",
     alt: "Esqueleto en vista posterior",
     initialZone: "posterior-spine",
     zones: [
