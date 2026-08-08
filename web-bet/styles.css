@@ -13257,3 +13257,67 @@ html.bet-welcome-active body {
     max-width: 100% !important;
   }
 }
+
+/* Desktop editorial headings follow the hero shell without moving section grids. */
+@media (min-width: 1024px) {
+  .focus-copy,
+  .tech-copy,
+  .experience-copy,
+  .anatomy-section > .section-heading,
+  .news-section > .news-header {
+    --bet-hero-shell-start: max(1vw, calc((100vw - 1640px) / 2));
+    --bet-editorial-shell-start: max(24px, calc((100vw - 1180px) / 2));
+    --bet-editorial-heading-shift: calc(var(--bet-hero-shell-start) - var(--bet-editorial-shell-start));
+  }
+
+  .final-cta-content {
+    --bet-hero-shell-start: max(1vw, calc((100vw - 1640px) / 2));
+    --bet-final-shell-start: max(48px, calc((100vw - 1180px) / 2));
+    --bet-hero-shell-padding: clamp(16px, 2.5vw, 40px);
+    --bet-final-copy-padding: clamp(20px, 3vw, 48px);
+    --bet-final-heading-shift: calc(
+      var(--bet-hero-shell-start) + var(--bet-hero-shell-padding) -
+        var(--bet-final-shell-start) - var(--bet-final-copy-padding)
+    );
+  }
+
+  .focus-copy > .section-kicker,
+  .focus-copy > h2,
+  .focus-copy > p,
+  .focus-copy > .focus-actions,
+  .tech-copy > .tech-kicker,
+  .tech-copy > h2,
+  .tech-copy > p,
+  .experience-copy > .experience-kicker,
+  .experience-copy > h2,
+  .experience-copy > p,
+  .anatomy-section > .section-heading > .eyebrow,
+  .anatomy-section > .section-heading > h2,
+  .anatomy-section > .section-heading > p,
+  .news-section > .news-header > .eyebrow,
+  .news-section > .news-header > h2,
+  .news-section > .news-header > p {
+    margin-inline-start: var(--bet-editorial-heading-shift) !important;
+  }
+
+  .final-cta-content > h2,
+  .final-cta-content > .final-cta-support {
+    margin-inline-start: var(--bet-final-heading-shift) !important;
+  }
+
+  .focus-copy > h2,
+  .focus-copy > p,
+  .focus-copy > .focus-actions,
+  .tech-copy > h2,
+  .tech-copy > p,
+  .experience-copy > h2,
+  .experience-copy > p,
+  .anatomy-section > .section-heading > h2,
+  .anatomy-section > .section-heading > p,
+  .news-section > .news-header > h2,
+  .news-section > .news-header > p,
+  .final-cta-content > h2,
+  .final-cta-content > .final-cta-support {
+    width: 100% !important;
+  }
+}
