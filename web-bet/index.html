@@ -255,37 +255,39 @@
           <p>Selecciona una zona del modelo para consultar las categor&iacute;as y documentos disponibles para esa regi&oacute;n.</p>
         </div>
         <div class="anatomy-workbench reveal">
-          <div class="anatomy-map" aria-label="Modelo anat&oacute;mico interactivo">
-            <div class="map-toolbar">
-              <div>
-                <span>Vista cl&iacute;nica</span>
-                <small>Selecciona un &aacute;rea para conocer m&aacute;s.</small>
+          <div class="anatomy-clinical-column">
+            <div class="anatomy-map" aria-label="Modelo anat&oacute;mico interactivo">
+              <div class="map-toolbar">
+                <div>
+                  <span>Vista cl&iacute;nica</span>
+                  <small>Selecciona un &aacute;rea para conocer m&aacute;s.</small>
+                </div>
+                <div class="anatomy-view-toggle" aria-label="Cambiar vista del modelo anat&oacute;mico">
+                  <button class="is-active" type="button" data-anatomy-view="front" aria-pressed="true">Frontal</button>
+                  <button type="button" data-anatomy-view="back" aria-pressed="false">Posterior</button>
+                </div>
               </div>
-              <div class="anatomy-view-toggle" aria-label="Cambiar vista del modelo anat&oacute;mico">
-                <button class="is-active" type="button" data-anatomy-view="front" aria-pressed="true">Frontal</button>
-                <button type="button" data-anatomy-view="back" aria-pressed="false">Posterior</button>
+              <div class="anatomy-skeleton-stage" data-skeleton-stage>
+                <div class="anatomy-skeleton-image-frame">
+                  <img
+                    id="anatomy-skeleton-image"
+                    class="anatomy-skeleton-image"
+                    src="/assets/images/bet/esqueleto-frontal.png"
+                    alt="Vista frontal del modelo anat&oacute;mico"
+                    width="1341"
+                    height="1029"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <div class="anatomy-skeleton-fallback" data-skeleton-fallback hidden>
+                  <strong>Vista anat&oacute;mica no disponible</strong>
+                  <span>Intenta cambiar de vista o recargar la p&aacute;gina.</span>
+                </div>
+                <div class="anatomy-hotspots" data-anatomy-hotspots aria-label="&Aacute;reas anat&oacute;micas disponibles"></div>
               </div>
-              <a class="anatomy-care-link" href="/cuidado-protesis" target="_blank" rel="noopener noreferrer">Cuidados</a>
             </div>
-            <div class="anatomy-skeleton-stage" data-skeleton-stage>
-              <div class="anatomy-skeleton-image-frame">
-                <img
-                  id="anatomy-skeleton-image"
-                  class="anatomy-skeleton-image"
-                  src="/assets/images/bet/esqueleto-frontal.png"
-                  alt="Vista frontal del modelo anat&oacute;mico"
-                  width="1341"
-                  height="1029"
-                  loading="lazy"
-                  decoding="async"
-                >
-              </div>
-              <div class="anatomy-skeleton-fallback" data-skeleton-fallback hidden>
-                <strong>Vista anat&oacute;mica no disponible</strong>
-                <span>Intenta cambiar de vista o recargar la p&aacute;gina.</span>
-              </div>
-              <div class="anatomy-hotspots" data-anatomy-hotspots aria-label="&Aacute;reas anat&oacute;micas disponibles"></div>
-            </div>
+            <a class="anatomy-care-link" href="/cuidado-protesis" target="_blank" rel="noopener noreferrer">Cuidados</a>
           </div>
           <aside class="anatomy-panel glass" aria-live="polite">
             <button class="anatomy-back-button" type="button" data-anatomy-back hidden>Volver al modelo</button>
@@ -329,7 +331,6 @@
               <button type="button" data-anatomy-page-next aria-label="Ver informaci&oacute;n siguiente">&rsaquo;</button>
             </div>
             <div class="anatomy-actions">
-              <a class="anatomy-action-button" id="bone-care-route" href="/cuidados-adecuados"><span>Cuidados</span></a>
               <a class="anatomy-action-button anatomy-request-link" data-whatsapp-link href="https://wa.me/525520810867?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20t%C3%A9cnica%20sobre%20una%20soluci%C3%B3n%20BET." target="_blank" rel="noopener noreferrer"><span>Consultar informaci&oacute;n</span></a>
             </div>
           </aside>
@@ -432,9 +433,11 @@
         <div class="final-cta-grid reveal">
           <div class="final-cta-content">
             <h2 id="final-cta-title" data-i18n-html="finalCtaTitle">
-              Conversemos sobre<br>
-              la informaci&oacute;n<br>
-              <span>que necesitas.</span>
+              <span class="final-cta-title-part final-cta-title-conversemos">Conversemos</span>
+              <span class="final-cta-title-part final-cta-title-sobre">sobre</span><br class="final-cta-title-mobile-break">
+              <span class="final-cta-title-part final-cta-title-la">la</span>
+              <span class="final-cta-title-part final-cta-title-information">informaci&oacute;n</span><br class="final-cta-title-mobile-break">
+              <span class="final-cta-title-part final-cta-title-need">que necesitas.</span>
             </h2>
             <p class="final-cta-support" data-i18n="finalCtaSupport">Solicita informaci&oacute;n sobre nuestras soluciones, categor&iacute;as o documentos t&eacute;cnicos. El equipo de BET atender&aacute; tu consulta y te orientar&aacute; hacia la informaci&oacute;n disponible.</p>
           </div>

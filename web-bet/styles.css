@@ -13258,27 +13258,45 @@ html.bet-welcome-active body {
   }
 }
 
-/* Desktop editorial headings follow the hero shell without moving section grids. */
+.anatomy-clinical-column {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.final-cta-content h2 .final-cta-title-part {
+  color: #071629 !important;
+}
+
+.final-cta-content h2 .final-cta-title-need {
+  color: var(--bet-title-accent) !important;
+}
+
+@media (max-width: 767px) {
+  .anatomy-clinical-column > .anatomy-map {
+    min-height: calc(clamp(430px, 72vh, 560px) + 167.5625px) !important;
+  }
+}
+
+/* Desktop section geometry follows the hero shell without offset simulation. */
 @media (min-width: 1024px) {
-  .focus-copy,
-  .tech-copy,
-  .experience-copy,
-  .anatomy-section > .section-heading,
-  .news-section > .news-header {
-    --bet-hero-shell-start: max(1vw, calc((100vw - 1640px) / 2));
-    --bet-editorial-shell-start: max(24px, calc((100vw - 1180px) / 2));
-    --bet-editorial-heading-shift: calc(var(--bet-hero-shell-start) - var(--bet-editorial-shell-start));
+  .final-cta-section {
+    padding-inline: 0 !important;
   }
 
-  .final-cta-content {
-    --bet-hero-shell-start: max(1vw, calc((100vw - 1640px) / 2));
-    --bet-final-shell-start: max(48px, calc((100vw - 1180px) / 2));
-    --bet-hero-shell-padding: clamp(16px, 2.5vw, 40px);
-    --bet-final-copy-padding: clamp(20px, 3vw, 48px);
-    --bet-final-heading-shift: calc(
-      var(--bet-hero-shell-start) + var(--bet-hero-shell-padding) -
-        var(--bet-final-shell-start) - var(--bet-final-copy-padding)
-    );
+  .focus-section > .focus-layout,
+  .tech-section > .tech-layout,
+  .experience-section > .experience-layout,
+  .anatomy-section > .section-heading,
+  .anatomy-section > .anatomy-workbench,
+  .news-section > .news-header,
+  .final-cta-section > .final-cta-grid {
+    width: min(98vw, 1640px) !important;
+    max-width: 1640px !important;
+    margin-inline: auto !important;
+    padding-inline: clamp(16px, 2.5vw, 40px) !important;
+    box-sizing: border-box !important;
   }
 
   .focus-copy > .section-kicker,
@@ -13288,36 +13306,229 @@ html.bet-welcome-active body {
   .tech-copy > .tech-kicker,
   .tech-copy > h2,
   .tech-copy > p,
+  .tech-copy > .tech-values,
   .experience-copy > .experience-kicker,
   .experience-copy > h2,
   .experience-copy > p,
+  .experience-copy > .experience-stats,
   .anatomy-section > .section-heading > .eyebrow,
   .anatomy-section > .section-heading > h2,
   .anatomy-section > .section-heading > p,
   .news-section > .news-header > .eyebrow,
   .news-section > .news-header > h2,
-  .news-section > .news-header > p {
-    margin-inline-start: var(--bet-editorial-heading-shift) !important;
-  }
-
-  .final-cta-content > h2,
-  .final-cta-content > .final-cta-support {
-    margin-inline-start: var(--bet-final-heading-shift) !important;
-  }
-
-  .focus-copy > h2,
-  .focus-copy > p,
-  .focus-copy > .focus-actions,
-  .tech-copy > h2,
-  .tech-copy > p,
-  .experience-copy > h2,
-  .experience-copy > p,
-  .anatomy-section > .section-heading > h2,
-  .anatomy-section > .section-heading > p,
-  .news-section > .news-header > h2,
   .news-section > .news-header > p,
   .final-cta-content > h2,
   .final-cta-content > .final-cta-support {
+    margin-inline-start: 0 !important;
+  }
+
+  .focus-section > .focus-layout {
+    grid-template-columns: minmax(420px, 1fr) clamp(430px, 42vw, 560px) !important;
+    gap: clamp(2rem, 4vw, 5rem) !important;
+  }
+
+  .focus-visual {
     width: 100% !important;
+    justify-self: end;
+  }
+
+  .tech-section > .tech-layout {
+    grid-template-columns: minmax(0, 760px) minmax(0, 1fr) !important;
+    gap: clamp(1.5rem, 4vw, 3rem) !important;
+  }
+
+  .tech-copy,
+  .tech-values {
+    width: min(100%, clamp(720px, 60vw, 760px)) !important;
+    max-width: 760px !important;
+  }
+
+  .experience-section > .experience-layout {
+    grid-template-columns: minmax(420px, 560px) minmax(0, 1fr) !important;
+    gap: clamp(2rem, 5vw, 6rem) !important;
+  }
+
+  .anatomy-section > .anatomy-workbench {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) !important;
+    gap: clamp(1.5rem, 2.6vw, 2.25rem) !important;
+    align-items: start !important;
+  }
+
+  .anatomy-map,
+  .anatomy-panel {
+    width: 100% !important;
+    min-width: 0;
+    min-height: clamp(700px, 55vw, 760px) !important;
+    height: clamp(700px, 55vw, 760px) !important;
+    max-height: clamp(700px, 55vw, 760px) !important;
+  }
+
+  .anatomy-map {
+    overflow: hidden !important;
+  }
+
+  .anatomy-panel {
+    overflow: hidden !important;
+    padding: clamp(1.25rem, 2vw, 1.75rem) !important;
+  }
+
+  .anatomy-clinical-column > .anatomy-care-link {
+    width: fit-content;
+    min-height: 46px;
+    justify-self: start;
+    padding-inline: 1.15rem;
+    border-color: var(--bet-title-accent);
+    border-radius: 8px;
+    color: #ffffff;
+    background: var(--bet-title-accent);
+    box-shadow: 0 12px 28px rgba(8, 120, 201, 0.18);
+  }
+
+  .anatomy-panel #bone-name {
+    max-width: 100%;
+    font-size: clamp(1.65rem, 1.8vw, 2rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .anatomy-panel #bone-description {
+    font-size: 0.9rem !important;
+    line-height: 1.48 !important;
+  }
+
+  .anatomy-content-pages {
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .anatomy-content-page.is-active {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    padding: 0.2rem 0.35rem 0.35rem 0.1rem;
+  }
+
+  .anatomy-panel .panel-block {
+    margin: 0.2rem 0 0.75rem !important;
+    padding: 1rem;
+    border: 1px solid rgba(8, 120, 201, 0.72);
+    border-radius: 8px;
+    color: #ffffff;
+    background: var(--bet-title-accent);
+  }
+
+  .anatomy-panel .panel-block h4,
+  .anatomy-panel .panel-block strong,
+  .anatomy-panel .panel-block b,
+  .anatomy-panel .panel-block small,
+  .anatomy-panel .panel-block span,
+  .anatomy-panel .panel-block p,
+  .anatomy-panel .panel-block li {
+    color: #ffffff !important;
+  }
+
+  .anatomy-panel .product-mini {
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12) !important;
+    transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease !important;
+  }
+
+  .anatomy-panel .product-mini-spec {
+    border-top-color: rgba(255, 255, 255, 0.22);
+  }
+
+  .anatomy-panel .anatomy-technical-link {
+    border-color: rgba(255, 255, 255, 0.44);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .anatomy-page-controls,
+  .anatomy-actions {
+    flex: 0 0 auto;
+  }
+
+  .anatomy-actions .anatomy-request-link {
+    flex: 0 1 auto !important;
+  }
+
+  .news-section > .news-header {
+    overflow: visible !important;
+  }
+
+  .news-section > .news-header > h2,
+  .news-section > .news-header > p {
+    width: min(100%, 900px) !important;
+    max-width: 900px !important;
+    overflow: visible !important;
+  }
+
+  .final-cta-section > .final-cta-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 400px) !important;
+    gap: clamp(2.5rem, 5vw, 5rem) !important;
+  }
+
+  .final-cta-content {
+    width: 100% !important;
+    max-width: none !important;
+    padding-inline: 0 !important;
+  }
+
+  .final-cta-content > h2 {
+    width: 100% !important;
+    max-width: 680px !important;
+  }
+
+  .final-cta-title-mobile-break {
+    display: none;
+  }
+
+  .final-cta-title-conversemos,
+  .final-cta-title-information,
+  .final-cta-title-need {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .final-contact-form .button {
+    border-color: var(--bet-title-accent) !important;
+    background: var(--bet-title-accent) !important;
+    box-shadow: 0 14px 30px rgba(8, 120, 201, 0.22) !important;
+    transition: background-color 220ms ease, box-shadow 220ms ease, transform 180ms ease !important;
+  }
+
+  .final-contact-form .button::before {
+    content: none !important;
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .anatomy-panel .product-mini:hover,
+  .anatomy-panel .product-mini:focus-within {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    transform: scale(1.018);
+  }
+
+  .anatomy-clinical-column > .anatomy-care-link:hover,
+  .anatomy-clinical-column > .anatomy-care-link:focus-visible,
+  .final-contact-form .button:hover,
+  .final-contact-form .button:focus-visible {
+    color: #ffffff;
+    background: #076fb8 !important;
+    border-color: #076fb8 !important;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .anatomy-panel .product-mini {
+    transition-duration: 1ms !important;
+  }
+
+  .anatomy-panel .product-mini:hover,
+  .anatomy-panel .product-mini:focus-within {
+    transform: none;
   }
 }

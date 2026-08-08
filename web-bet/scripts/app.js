@@ -35,7 +35,7 @@ const translations = {
     anatomyEyebrow: "\u00c1REAS ANAT\u00d3MICAS",
     anatomyTitle: "Explora las soluciones por regi\u00f3n anat\u00f3mica.",
     anatomyModelEyebrow: "MODELO INTERACTIVO",
-    finalCtaTitle: "Conversemos sobre<br>la informaci\u00f3n<br><span>que necesitas.</span>",
+    finalCtaTitle: '<span class="final-cta-title-part final-cta-title-conversemos">Conversemos</span> <span class="final-cta-title-part final-cta-title-sobre">sobre</span><br class="final-cta-title-mobile-break"> <span class="final-cta-title-part final-cta-title-la">la</span> <span class="final-cta-title-part final-cta-title-information">informaci\u00f3n</span><br class="final-cta-title-mobile-break"> <span class="final-cta-title-part final-cta-title-need">que necesitas.</span>',
     finalCtaSupport: "Solicita informaci\u00f3n sobre nuestras soluciones, categor\u00edas o documentos t\u00e9cnicos. El equipo de BET atender\u00e1 tu consulta y te orientar\u00e1 hacia la informaci\u00f3n disponible.",
     finalCtaButton: "Conversemos",
     contactName: "Nombre completo",
@@ -110,7 +110,7 @@ const translations = {
     anatomyEyebrow: "ANATOMICAL AREAS",
     anatomyTitle: "Explore solutions by anatomical region.",
     anatomyModelEyebrow: "INTERACTIVE MODEL",
-    finalCtaTitle: "Let's discuss<br>the information<br><span>you need.</span>",
+    finalCtaTitle: '<span class="final-cta-title-part final-cta-title-conversemos">Let\'s discuss</span><br class="final-cta-title-mobile-break"> <span class="final-cta-title-part final-cta-title-sobre">the</span> <span class="final-cta-title-part final-cta-title-information">information</span><br class="final-cta-title-mobile-break"> <span class="final-cta-title-part final-cta-title-need">you need.</span>',
     finalCtaSupport: "Request information about our solutions, categories, or technical documents. The BET team will review your inquiry and guide you to the available information.",
     finalCtaButton: "Let's talk",
     contactName: "Full name",
@@ -756,7 +756,6 @@ const selectors = {
   complementary: document.querySelector("#bone-complementary"),
   productImage: document.querySelector("#bone-product-image"),
   document: document.querySelector("#bone-document"),
-  careRoute: document.querySelector("#bone-care-route"),
   image: document.querySelector("#anatomy-skeleton-image"),
   imageFallback: document.querySelector("[data-skeleton-fallback]"),
   hotspots: document.querySelector("[data-anatomy-hotspots]"),
@@ -1140,7 +1139,6 @@ function renderBone(boneId) {
       selectors.document.href = "#";
     }
   }
-  if (selectors.careRoute) selectors.careRoute.href = bone.careRoute || "/cuidados-adecuados";
 }
 
 selectors.hotspots?.addEventListener("click", (event) => {
