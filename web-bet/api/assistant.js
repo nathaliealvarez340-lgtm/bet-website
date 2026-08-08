@@ -9,34 +9,34 @@ function buildReply(message = "") {
   const text = normalizeText(message);
 
   if (/(protesis|implante|implantes)/.test(text)) {
-    return "BET trabaja con protesis internas, implantes y soluciones quirurgicas para procedimientos ortopedicos y de trauma. Si compartes el area anatomica, puedo orientarte mejor.";
+    return "BET presenta soluciones ortop\u00e9dicas e implantes internos organizados por regi\u00f3n anat\u00f3mica. Ind\u00edcame el \u00e1rea que deseas consultar para orientarte hacia la informaci\u00f3n disponible.";
   }
   if (/(femur|cadera)/.test(text)) {
-    return "Para femur y cadera, BET puede orientar sobre protesis femoral, clavos intramedulares, placas y soluciones de reconstruccion segun el requerimiento quirurgico.";
+    return "Para f\u00e9mur y cadera, puedes consultar sistemas de fijaci\u00f3n y sus documentos t\u00e9cnicos. La selecci\u00f3n corresponde al profesional de la salud.";
   }
   if (/(craneo|craneal|craneomaxilofacial)/.test(text)) {
-    return "En craneo y region craneomaxilofacial, la orientacion suele enfocarse en placas, fijacion y reconstruccion. Para validar disponibilidad, conviene contactar directamente a BET.";
+    return "No encuentro una categor\u00eda craneal documentada en el explorador actual. Contacta a BET para confirmar si existe informaci\u00f3n relacionada con esa regi\u00f3n.";
   }
   if (/(contacto|whatsapp|telefono|correo)/.test(text)) {
-    return "Puedes contactar a BET por WhatsApp o desde el formulario de contacto. Comparte area de interes, datos de contacto y una breve descripcion del caso.";
+    return "Puedes contactar a BET por WhatsApp o desde el formulario. Comparte el \u00e1rea de inter\u00e9s y la informaci\u00f3n que necesitas.";
   }
   if (/(precio|precios|cotizacion|costo|costos)/.test(text)) {
-    return "Los precios dependen del producto, la zona anatomica, la disponibilidad y el requerimiento quirurgico. Para cotizacion, lo ideal es enviar los datos del caso por WhatsApp.";
+    return "Para solicitar informaci\u00f3n comercial, env\u00eda el nombre de la soluci\u00f3n o el \u00e1rea anat\u00f3mica mediante WhatsApp.";
   }
   if (/(disponibilidad|disponible|inventario|entrega)/.test(text)) {
-    return "La disponibilidad se revisa por area anatomica, tipo de producto y tiempo de procedimiento. BET puede darte seguimiento directo por WhatsApp.";
+    return "La disponibilidad debe confirmarse directamente con BET. Puedes indicar la soluci\u00f3n o el \u00e1rea anat\u00f3mica mediante WhatsApp.";
   }
   if (/(proceso|atencion|seleccion|seguimiento)/.test(text)) {
-    return "El proceso BET contempla analisis del caso, seleccion tecnica, coordinacion operativa y seguimiento posterior.";
+    return "La ruta de consulta organiza el \u00e1rea anat\u00f3mica, las alternativas y los documentos disponibles. La valoraci\u00f3n y selecci\u00f3n corresponden al profesional de la salud.";
   }
 
-  return "Puedo ayudarte con informacion general sobre protesis internas, areas anatomicas, disponibilidad, proceso de atencion o contacto con BET.";
+  return "Puedo ayudarte a localizar informaci\u00f3n general, \u00e1reas anat\u00f3micas y documentos. Para una solicitud espec\u00edfica, contacta directamente a BET por WhatsApp.";
 }
 
 module.exports = async function handler(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
-    return response.status(405).json({ error: "Metodo no permitido." });
+    return response.status(405).json({ error: "M\u00e9todo no permitido." });
   }
 
   const message = String(request.body?.message || "").trim();

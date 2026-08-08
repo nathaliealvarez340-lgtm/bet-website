@@ -5,10 +5,10 @@ const HERO_ROTATION_MS = 5000;
 
 const translations = {
   es: {
-    navEnfoque: "Productos",
-    navExplorador: "Soluciones",
+    navEnfoque: "\u00c1reas anat\u00f3micas",
+    navExplorador: "Nosotros",
     navProceso: "Ruta",
-    navEducacion: "Educaci\u00f3n",
+    navEducacion: "Actualidad",
     navContacto: "Contacto",
     whatsapp: "WhatsApp",
     heroKicker: "",
@@ -19,71 +19,71 @@ const translations = {
     heroEditorialPhrases: [
       {
         lines: [
-          { text: "Precisi\u00f3n cl\u00ednica" },
-          { text: "traducida en" },
-          { text: "disponibilidad real.", accent: true },
+          { text: "Soluciones" },
+          { text: "para" },
+          { text: "ortopedia.", accent: true },
         ],
       },
     ],
-    heroSubtitle: "Pr\u00f3tesis internas y soluciones m\u00e9dicas dise\u00f1adas para responder con velocidad, confianza y exactitud.",
-    heroProductsCta: "Cont\u00e1ctanos",
-    focusTitle: 'Tecnolog\u00eda <span class="title-accent">m\u00e9dica</span>.<br>Respuesta <span class="title-accent">precisa</span>.',
-    criteriaTitleAria: "Criterios que importan cuando el margen de error no existe.",
-    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span> cuando</span><span class="criteria-title-desktop-line" aria-hidden="true">el margen de error no existe.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criterios</span></span><span class="criteria-title-mobile-line" aria-hidden="true">que <span class="criteria-accent">importan</span></span><span class="criteria-title-mobile-line" aria-hidden="true">cuando el</span><span class="criteria-title-mobile-line" aria-hidden="true">margen de error</span><span class="criteria-title-mobile-line" aria-hidden="true">no existe</span>',
+    heroSubtitle: "Acercamos soluciones especializadas e informaci\u00f3n t\u00e9cnica a m\u00e9dicos e instituciones de salud para facilitar una evaluaci\u00f3n clara y responsable.",
+    heroProductsCta: "Hablar con un asesor",
+    focusTitle: 'Informaci\u00f3n <span class="title-accent">clara</span>.<br>Decisiones <span class="title-accent">responsables</span>.',
+    criteriaTitleAria: "Criterios que importan en cada consulta profesional.",
+    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criterios</span> que <span class="criteria-accent">importan</span></span><span class="criteria-title-desktop-line" aria-hidden="true">en cada consulta profesional.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criterios</span></span><span class="criteria-title-mobile-line" aria-hidden="true">que <span class="criteria-accent">importan</span></span><span class="criteria-title-mobile-line" aria-hidden="true">en cada</span><span class="criteria-title-mobile-line" aria-hidden="true">consulta</span><span class="criteria-title-mobile-line" aria-hidden="true">profesional</span>',
     criteriaWordOne: "Criterios",
     criteriaWordTwo: "importan",
     anatomyEyebrow: "\u00c1REAS ANAT\u00d3MICAS",
-    anatomyTitle: "Explorador anat\u00f3mico interactivo.",
+    anatomyTitle: "Explora las soluciones por regi\u00f3n anat\u00f3mica.",
     anatomyModelEyebrow: "MODELO INTERACTIVO",
-    finalCtaTitle: "Tecnolog\u00eda m\u00e9dica<br>dise\u00f1ada para elevar<br>la <span>precisi\u00f3n humana.</span>",
-    finalCtaSupport: "Conecta con BET para recibir informaci\u00f3n t\u00e9cnica, disponibilidad de productos y acompa\u00f1amiento especializado.",
+    finalCtaTitle: "Conversemos sobre<br>la informaci\u00f3n<br><span>que necesitas.</span>",
+    finalCtaSupport: "Solicita informaci\u00f3n sobre nuestras soluciones, categor\u00edas o documentos t\u00e9cnicos. El equipo de BET atender\u00e1 tu consulta y te orientar\u00e1 hacia la informaci\u00f3n disponible.",
     finalCtaButton: "Conversemos",
-    contactName: "Nombre",
-    contactEmail: "Correo",
-    contactRequest: "Solicitud",
-    contactSend: "Enviar",
+    contactName: "Nombre completo",
+    contactEmail: "Correo profesional",
+    contactRequest: "Mensaje",
+    contactSend: "Enviar solicitud",
     contactSending: "Enviando...",
-    contactSuccess: "Solicitud enviada correctamente.",
-    contactError: "No se pudo enviar. Intenta nuevamente.",
-    contactValidation: "Completa los campos requeridos para enviar la solicitud.",
-    contactEmailValidation: "Ingresa un correo v\u00e1lido.",
+    contactSuccess: "Recibimos tu solicitud. Nuestro equipo se pondr\u00e1 en contacto contigo.",
+    contactError: "No fue posible enviar la solicitud. Int\u00e9ntalo nuevamente o cont\u00e1ctanos por WhatsApp.",
+    contactValidation: "Completa los campos requeridos antes de enviar la solicitud.",
+    contactEmailValidation: "Ingresa un correo profesional v\u00e1lido.",
     heroAdvisorCta: "Hablar con un asesor",
-    heroStatOneValue: "+500",
-    heroStatOneLabel: "procedimientos atendidos",
-    heroStatTwoValue: "Materiales",
-    heroStatTwoLabel: "certificados internacionalmente",
+    heroStatOneValue: "Consulta",
+    heroStatOneLabel: "organizada por regi\u00f3n anat\u00f3mica",
+    heroStatTwoValue: "Informaci\u00f3n",
+    heroStatTwoLabel: "t\u00e9cnica disponible",
     heroStatThreeValue: "Atenci\u00f3n",
-    heroStatThreeLabel: "especializada",
-    heroMicrocopy: "Soluciones internas dise\u00f1adas para respaldar decisiones m\u00e9dicas cr\u00edticas.",
+    heroStatThreeLabel: "profesional",
+    heroMicrocopy: "Soluciones ortop\u00e9dicas e informaci\u00f3n t\u00e9cnica para consulta profesional.",
     heroPhrases: [
       {
-        lines: ["HAY HISTORIAS QUE", "MERECEN SEGUIR"],
-        highlight: "AVANZANDO",
+        lines: ["SOLUCIONES ORTOP\u00c9DICAS", "E INFORMACI\u00d3N"],
+        highlight: "T\u00c9CNICA",
       },
       {
-        lines: ["NUEVAS", "POSIBILIDADES"],
-        highlight: "COMIENZAN AQUÍ",
+        lines: ["CONSULTA POR", "REGI\u00d3N"],
+        highlight: "ANAT\u00d3MICA",
       },
     ],
     benefits: [
-      "Prótesis de máxima calidad certificada",
-      "Atención personalizada y seguimiento",
-      "Tecnología de vanguardia en prótesis",
+      "Informaci\u00f3n t\u00e9cnica para consulta profesional",
+      "Atenci\u00f3n orientada a cada solicitud",
+      "Acceso organizado por regi\u00f3n anat\u00f3mica",
     ],
-    contactTitle: "Conversemos sobre la solución adecuada para tu procedimiento.",
+    contactTitle: "Conversemos sobre la informaci\u00f3n que necesitas.",
     contactTitleLineOne: "Conversemos sobre",
-    contactTitleLineTwo: "la solución adecuada",
-    contactTitleAccent: "para tu procedimiento.",
-    contactCopy: "Comparte los datos del caso, área anatómica y tiempo estimado de intervención. BET puede coordinar información técnica, disponibilidad y seguimiento.",
+    contactTitleLineTwo: "la informaci\u00f3n",
+    contactTitleAccent: "que necesitas.",
+    contactCopy: "Comparte el \u00e1rea anat\u00f3mica y la informaci\u00f3n que necesitas. BET orientar\u00e1 tu consulta hacia las categor\u00edas y los documentos disponibles.",
     submitRequest: "Enviar solicitud",
     preparingRequest: "Preparando solicitud",
     contactWhatsapp: "Contactar por WhatsApp",
   },
   en: {
-    navEnfoque: "Products",
-    navExplorador: "Solutions",
-    navProceso: "Route",
-    navEducacion: "Education",
+    navEnfoque: "Anatomical areas",
+    navExplorador: "About BET",
+    navProceso: "Process",
+    navEducacion: "Insights",
     navContacto: "Contact",
     whatsapp: "WhatsApp",
     heroKicker: "",
@@ -94,62 +94,62 @@ const translations = {
     heroEditorialPhrases: [
       {
         lines: [
-          { text: "Clinical precision" },
-          { text: "translated into" },
-          { text: "real availability.", accent: true },
+          { text: "Orthopedic" },
+          { text: "medical" },
+          { text: "solutions.", accent: true },
         ],
       },
     ],
-    heroSubtitle: "Internal prosthetics and medical solutions designed to respond with speed, confidence and accuracy.",
-    heroProductsCta: "Contact us",
-    focusTitle: '<span class="title-accent">Medical</span> technology.<br><span class="title-accent">Precise</span> response.',
-    criteriaTitleAria: "Criteria that matter when the margin for error does not exist.",
-    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span> when</span><span class="criteria-title-desktop-line" aria-hidden="true">the margin for error does not exist.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criteria</span></span><span class="criteria-title-mobile-line" aria-hidden="true">that <span class="criteria-accent">matter</span></span><span class="criteria-title-mobile-line" aria-hidden="true">when the</span><span class="criteria-title-mobile-line" aria-hidden="true">margin for error</span><span class="criteria-title-mobile-line" aria-hidden="true">does not exist</span>',
+    heroSubtitle: "We connect physicians and healthcare institutions with specialized solutions and technical information for clear, responsible evaluation.",
+    heroProductsCta: "Talk to an advisor",
+    focusTitle: '<span class="title-accent">Clear</span> information.<br><span class="title-accent">Responsible</span> decisions.',
+    criteriaTitleAria: "Criteria that matter in every professional review.",
+    criteriaTitleHtml: '<span class="criteria-title-desktop-line" aria-hidden="true"><span class="criteria-accent">Criteria</span> that <span class="criteria-accent">matter</span></span><span class="criteria-title-desktop-line" aria-hidden="true">in every professional review.</span><span class="criteria-title-mobile-line" aria-hidden="true"><span class="criteria-accent">Criteria</span></span><span class="criteria-title-mobile-line" aria-hidden="true">that <span class="criteria-accent">matter</span></span><span class="criteria-title-mobile-line" aria-hidden="true">in every</span><span class="criteria-title-mobile-line" aria-hidden="true">professional</span><span class="criteria-title-mobile-line" aria-hidden="true">review</span>',
     criteriaWordOne: "Criteria",
     criteriaWordTwo: "matter",
     anatomyEyebrow: "ANATOMICAL AREAS",
-    anatomyTitle: "Interactive anatomical explorer.",
+    anatomyTitle: "Explore solutions by anatomical region.",
     anatomyModelEyebrow: "INTERACTIVE MODEL",
-    finalCtaTitle: "Medical technology<br>designed to elevate<br><span>human precision.</span>",
-    finalCtaSupport: "Connect with BET to receive technical information, product availability and specialized guidance.",
-    finalCtaButton: "Contact us",
-    contactName: "Name",
-    contactEmail: "Email",
-    contactRequest: "Request",
-    contactSend: "Send",
+    finalCtaTitle: "Let's discuss<br>the information<br><span>you need.</span>",
+    finalCtaSupport: "Request information about our solutions, categories, or technical documents. The BET team will review your inquiry and guide you to the available information.",
+    finalCtaButton: "Let's talk",
+    contactName: "Full name",
+    contactEmail: "Professional email",
+    contactRequest: "Message",
+    contactSend: "Send request",
     contactSending: "Sending...",
-    contactSuccess: "Request sent successfully.",
-    contactError: "Could not send. Please try again.",
-    contactValidation: "Complete the required fields to send the request.",
-    contactEmailValidation: "Enter a valid email address.",
+    contactSuccess: "We received your request. Our team will contact you.",
+    contactError: "We could not send your request. Please try again or contact us on WhatsApp.",
+    contactValidation: "Complete the required fields before sending your request.",
+    contactEmailValidation: "Enter a valid professional email address.",
     heroAdvisorCta: "Talk to an advisor",
-    heroStatOneValue: "+500",
-    heroStatOneLabel: "procedures supported",
-    heroStatTwoValue: "Materials",
-    heroStatTwoLabel: "internationally certified",
-    heroStatThreeValue: "Care",
-    heroStatThreeLabel: "specialized",
-    heroMicrocopy: "Internal solutions designed to support critical medical decisions.",
+    heroStatOneValue: "Browse",
+    heroStatOneLabel: "by anatomical region",
+    heroStatTwoValue: "Technical",
+    heroStatTwoLabel: "information available",
+    heroStatThreeValue: "Professional",
+    heroStatThreeLabel: "assistance",
+    heroMicrocopy: "Orthopedic solutions and technical information for professional review.",
     heroPhrases: [
       {
-        lines: ["SOME STORIES DESERVE", "TO KEEP MOVING"],
-        highlight: "FORWARD",
+        lines: ["ORTHOPEDIC SOLUTIONS", "AND TECHNICAL"],
+        highlight: "INFORMATION",
       },
       {
-        lines: ["NEW", "POSSIBILITIES"],
-        highlight: "BEGIN HERE",
+        lines: ["BROWSE BY", "ANATOMICAL"],
+        highlight: "REGION",
       },
     ],
     benefits: [
-      "Certified high-quality prosthetics",
-      "Personalized care and follow-up",
-      "Advanced technology in prosthetics",
+      "Technical information for professional review",
+      "Assistance focused on each request",
+      "Access organized by anatomical region",
     ],
-    contactTitle: "Let's discuss the right solution for your procedure.",
+    contactTitle: "Let's discuss the information you need.",
     contactTitleLineOne: "Let's discuss",
-    contactTitleLineTwo: "the right solution",
-    contactTitleAccent: "for your procedure.",
-    contactCopy: "Share the case details, anatomical area and estimated timing. BET can coordinate technical information, availability and follow-up.",
+    contactTitleLineTwo: "the information",
+    contactTitleAccent: "you need.",
+    contactCopy: "Share the anatomical area and the information you need. BET will guide your inquiry to the available categories and documents.",
     submitRequest: "Send request",
     preparingRequest: "Preparing request",
     contactWhatsapp: "Contact via WhatsApp",
@@ -553,14 +553,14 @@ function buildSkeletonDataFromZones(zones) {
     front: {
       label: "Vista frontal",
       image: "/assets/images/bet/esqueleto-frontal.png",
-      alt: "Vista frontal del esqueleto humano",
+      alt: "Vista frontal del modelo anat\u00f3mico",
       initialZone: "proximal-femur",
       zones: zones.filter((zone) => zone.view === "front").map(normalizeZone),
     },
     back: {
       label: "Vista posterior",
       image: "/assets/images/bet/esqueleto-reverso.png",
-      alt: "Vista posterior del esqueleto humano",
+      alt: "Vista posterior del modelo anat\u00f3mico",
       initialZone: "posterior-spine",
       zones: zones.filter((zone) => zone.view === "back").map(normalizeZone),
     },
@@ -571,7 +571,7 @@ const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anat
   front: {
     label: "Vista frontal",
     image: "/assets/images/bet/esqueleto-frontal.png",
-    alt: "Esqueleto en vista frontal",
+    alt: "Vista frontal del modelo anat\u00f3mico",
     initialZone: "femur",
     zones: [
       {
@@ -665,7 +665,7 @@ const skeletonData = anatomyZonesSource.length ? buildSkeletonDataFromZones(anat
   back: {
     label: "Vista posterior",
     image: "/assets/images/bet/esqueleto-reverso.png",
-    alt: "Esqueleto en vista posterior",
+    alt: "Vista posterior del modelo anat\u00f3mico",
     initialZone: "posterior-spine",
     zones: [
       {
@@ -903,7 +903,7 @@ function renderNewsArticles(articles) {
   const cards = validArticles
     .map((article) => {
       const image = getArticleImage(article);
-      const imageAlt = article.imageAlt || `Imagen medica relacionada con ${article.category || "BET"}`;
+      const imageAlt = article.imageAlt || `Imagen m\u00e9dica relacionada con ${article.category || "BET"}`;
       const category = article.category || "BET";
 
       return `
@@ -1092,7 +1092,7 @@ function renderBone(boneId) {
     if (bone.image && availableProductImages.has(bone.image)) {
       selectors.productImage.hidden = false;
       selectors.productImage.src = bone.image;
-      selectors.productImage.alt = `Producto relacionado con ${bone.nombre}`;
+      selectors.productImage.alt = `Soluci\u00f3n relacionada con ${bone.nombre}`;
       selectors.productImage.onerror = () => {
         selectors.productImage.hidden = true;
         selectors.productImage.removeAttribute("src");
@@ -1109,7 +1109,7 @@ function renderBone(boneId) {
           <strong>${escapeHtml(product.nombre)}</strong>
           ${product.descripcion ? `<span>${escapeHtml(product.descripcion)}</span>` : ""}
           ${product.uso ? `<small>${escapeHtml(product.uso)}</small>` : ""}
-          ${product.medida ? `<span class="product-mini-spec"><b>Referencia:</b> ${escapeHtml(product.medida)}</span>` : ""}
+          ${product.medida ? `<span class="product-mini-spec"><b>Especificaci\u00f3n:</b> ${escapeHtml(product.medida)}</span>` : ""}
           ${product.material ? `<span class="product-mini-spec"><b>Material:</b> ${escapeHtml(product.material)}</span>` : ""}
         </article>
       `
@@ -1128,13 +1128,13 @@ function renderBone(boneId) {
       : "";
     selectors.complementary.innerHTML = materials || features
       ? `${materials}${features}`
-      : '<p class="anatomy-complementary-note">La informaci\u00f3n t\u00e9cnica de esta regi\u00f3n est\u00e1 disponible en su documento de referencia.</p>';
+      : '<p class="anatomy-complementary-note">Consulta el documento de referencia para revisar la informaci\u00f3n t\u00e9cnica disponible.</p>';
   }
   if (selectors.document) {
     if (bone.document?.href) {
       selectors.document.hidden = false;
       selectors.document.href = bone.document.href;
-      selectors.document.textContent = bone.document.label || "Consultar documento t\u00e9cnico";
+      selectors.document.textContent = bone.document.label || "Ver ficha t\u00e9cnica";
     } else {
       selectors.document.hidden = true;
       selectors.document.href = "#";
@@ -1240,15 +1240,15 @@ let lastFocusScrollY = window.pageYOffset || document.documentElement.scrollTop 
 const focusStates = {
   mission: {
     title: "MISI\u00d3N",
-    text: "Impulsar procedimientos quir\u00fargicos de alta precisi\u00f3n mediante soluciones m\u00e9dicas confiables, especializadas y cl\u00ednicamente respaldadas.",
+    text: "Facilitar el acceso a soluciones ortop\u00e9dicas e informaci\u00f3n t\u00e9cnica para m\u00e9dicos e instituciones de salud, mediante una atenci\u00f3n clara y responsable.",
   },
   vision: {
     title: "VISI\u00d3N",
-    text: "Transformar la forma en que hospitales y especialistas acceden a soluciones quir\u00fargicas, elevando los est\u00e1ndares de precisi\u00f3n y confianza.",
+    text: "Consolidar una experiencia de consulta ordenada que acerque informaci\u00f3n relevante a los profesionales del entorno ortop\u00e9dico.",
   },
   bet: {
     title: "BET",
-    text: "Proveemos soluciones precisas que respaldan decisiones quir\u00fargicas cr\u00edticas, con disponibilidad, calidad y acompa\u00f1amiento especializado.",
+    text: "Organizamos soluciones, categor\u00edas y documentaci\u00f3n para orientar cada solicitud sin sustituir el criterio del profesional de la salud.",
   },
 };
 
@@ -1306,28 +1306,28 @@ if (focusSection && focusVisual) {
 const criteriaItems = [
   {
     number: "01",
-    title: "Precisi\u00f3n cl\u00ednica",
-    description: "Cada soluci\u00f3n responde a requerimientos m\u00e9dicos espec\u00edficos, no a inventario gen\u00e9rico.",
+    title: "Claridad",
+    description: "Informaci\u00f3n directa y comprensible para facilitar la consulta del especialista.",
   },
   {
     number: "02",
-    title: "Confiabilidad",
-    description: "Disponibilidad y calidad en momentos donde el margen de error no existe.",
+    title: "Precisi\u00f3n",
+    description: "Datos organizados para identificar correctamente las caracter\u00edsticas de cada soluci\u00f3n.",
   },
   {
     number: "03",
-    title: "Especializaci\u00f3n",
-    description: "Enfoque profundo en pr\u00f3tesis internas y soluciones quir\u00fargicas.",
+    title: "Responsabilidad",
+    description: "Comunicaci\u00f3n cuidadosa, sin sustituir la valoraci\u00f3n ni el criterio del profesional de la salud.",
   },
   {
     number: "04",
-    title: "Respaldo profesional",
-    description: "Acompa\u00f1amiento a m\u00e9dicos y hospitales en la toma de decisiones.",
+    title: "Cercan\u00eda",
+    description: "Atenci\u00f3n profesional para responder preguntas y orientar la b\u00fasqueda de informaci\u00f3n.",
   },
   {
     number: "05",
-    title: "Eficiencia operativa",
-    description: "Respuesta r\u00e1pida, procesos claros y entrega oportuna.",
+    title: "Orden",
+    description: "Acceso estructurado a categor\u00edas, documentos y recursos relevantes.",
   },
 ];
 
@@ -1478,34 +1478,34 @@ initRouteSection();
 
 const siteSections = [
   {
-    title: "Soluciones medicas",
-    description: "Protesis internas, osteosintesis, trauma y soporte hospitalario especializado.",
+    title: "Enfoque BET",
+    description: "Conoce c\u00f3mo BET organiza soluciones e informaci\u00f3n t\u00e9cnica para m\u00e9dicos e instituciones.",
     target: "#enfoque",
-    keywords: "protesis implantes osteosintesis trauma placas tornillos clavos instrumental",
+    keywords: "BET enfoque soluciones informaci\u00f3n t\u00e9cnica m\u00e9dicos instituciones",
   },
   {
-    title: "Explorador anatomico",
-    description: "Consulta areas anatomicas, productos relacionados y aplicaciones quirurgicas.",
+    title: "\u00c1reas anat\u00f3micas",
+    description: "Explora categor\u00edas y documentos disponibles por regi\u00f3n anat\u00f3mica.",
     target: "#explorador",
-    keywords: "femur cadera craneo clavicula humero tibia pelvis columna anatomia",
+    keywords: "f\u00e9mur cadera h\u00famero tibia columna anatom\u00eda soluciones documentos",
   },
   {
-    title: "Proceso de atencion",
-    description: "Analisis del caso, seleccion tecnica, coordinacion operativa y seguimiento.",
+    title: "Ruta de consulta",
+    description: "Encuentra informaci\u00f3n t\u00e9cnica y orientaci\u00f3n para cada solicitud.",
     target: "#proceso",
-    keywords: "proceso analisis seleccion coordinacion seguimiento atencion",
+    keywords: "ruta consulta informaci\u00f3n orientaci\u00f3n solicitud",
   },
   {
-    title: "Valores BET",
-    description: "Precision clinica, confiabilidad, especializacion, respaldo profesional y eficiencia operativa.",
+    title: "Criterios BET",
+    description: "Claridad, precisi\u00f3n, responsabilidad, cercan\u00eda y orden en cada consulta.",
     target: "#criterios",
-    keywords: "valores precision confiabilidad especializacion respaldo eficiencia",
+    keywords: "criterios claridad precisi\u00f3n responsabilidad cercan\u00eda orden",
   },
   {
     title: "Contacto BET",
-    description: "Formulario y WhatsApp para orientacion comercial y disponibilidad.",
+    description: "Formulario y WhatsApp para solicitar informaci\u00f3n sobre soluciones y documentos.",
     target: "#contacto",
-    keywords: "contacto whatsapp disponibilidad precios cotizacion informacion",
+    keywords: "contacto whatsapp solicitud informaci\u00f3n soluciones documentos",
   },
 ];
 
@@ -1541,7 +1541,7 @@ function renderSearchResults(results, query) {
   container.classList.remove("is-hidden");
 
   if (results.length === 0) {
-    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactar a BET para orientacion personalizada.</p>`;
+    container.innerHTML = `<p class="empty-state">No encontramos coincidencias. Puedes contactar a BET para recibir orientaci\u00f3n sobre la informaci\u00f3n disponible.</p>`;
     return;
   }
 
@@ -1554,7 +1554,7 @@ function renderSearchResults(results, query) {
             <h4>${escapeHtml(result.title)}</h4>
             <p>${escapeHtml(result.description)}</p>
           </div>
-          <button class="button glass-button small-button result-action" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}"><span>Ver seccion</span></button>
+          <button class="button glass-button small-button result-action" type="button" data-search-target="${escapeHtml(result.target)}" data-external="${result.external ? "true" : "false"}"><span>Ver secci\u00f3n</span></button>
         </article>
       `
     )
@@ -1676,28 +1676,28 @@ function handleAssistantMessage(message) {
   const text = normalizeText(message);
 
   if (/(protesis|implante|implantes)/.test(text)) {
-    return "Claro. BET trabaja con protesis internas, implantes y soluciones quirurgicas para procedimientos ortopedicos y de trauma. Si me dices el area anatomica, puedo orientarte mejor.";
+    return "BET presenta soluciones ortop\u00e9dicas e implantes internos organizados por regi\u00f3n anat\u00f3mica. Ind\u00edcame el \u00e1rea que deseas consultar para orientarte hacia la informaci\u00f3n disponible.";
   }
   if (/(femur|cadera)/.test(text)) {
-    return "Para femur y cadera, BET puede orientar sobre protesis femoral, clavos intramedulares, placas y soluciones de reconstruccion segun el requerimiento quirurgico.";
+    return "Para f\u00e9mur y cadera, puedes consultar sistemas de fijaci\u00f3n y sus documentos t\u00e9cnicos. La selecci\u00f3n corresponde al profesional de la salud.";
   }
   if (/(craneo|craneal|craneomaxilofacial)/.test(text)) {
-    return "En craneo y region craneomaxilofacial, la orientacion suele enfocarse en placas, fijacion y reconstruccion. Para validar disponibilidad, te recomiendo contactar directamente a BET.";
+    return "No encuentro una categor\u00eda craneal documentada en el explorador actual. Contacta a BET para confirmar si existe informaci\u00f3n relacionada con esa regi\u00f3n.";
   }
   if (/(contacto|whatsapp|telefono|correo)/.test(text)) {
-    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario de contacto. Comparte area de interes, datos de contacto y mensaje para dar mejor seguimiento.";
+    return "Puedes contactar a BET por WhatsApp desde este chat o usar el formulario. Comparte el \u00e1rea de inter\u00e9s y la informaci\u00f3n que necesitas.";
   }
   if (/(precio|precios|cotizacion|costo|costos)/.test(text)) {
-    return "Los precios dependen del producto, zona anatomica, disponibilidad y requerimiento quirurgico. Para cotizacion, lo mejor es enviar los datos del caso por WhatsApp.";
+    return "Para solicitar informaci\u00f3n comercial, env\u00eda el nombre de la soluci\u00f3n o el \u00e1rea anat\u00f3mica mediante WhatsApp.";
   }
   if (/(disponibilidad|disponible|inventario|entrega)/.test(text)) {
-    return "La disponibilidad se revisa por area anatomica, producto y tiempo de procedimiento. BET puede darte seguimiento directo por WhatsApp.";
+    return "La disponibilidad debe confirmarse directamente con BET. Puedes indicar la soluci\u00f3n o el \u00e1rea anat\u00f3mica mediante WhatsApp.";
   }
   if (/(proceso|atencion|seleccion|seguimiento)/.test(text)) {
-    return "El proceso BET contempla analisis del caso, seleccion tecnica, coordinacion operativa y seguimiento para futuras decisiones clinicas.";
+    return "La ruta de consulta organiza el \u00e1rea anat\u00f3mica, las alternativas y los documentos disponibles. La valoraci\u00f3n y selecci\u00f3n corresponden al profesional de la salud.";
   }
 
-  return "Puedo ayudarte a ubicar informacion general. Para una solicitud especifica, te recomiendo contactar directamente a BET por WhatsApp.";
+  return "Puedo ayudarte a localizar informaci\u00f3n general, \u00e1reas anat\u00f3micas y documentos. Para una solicitud espec\u00edfica, contacta directamente a BET por WhatsApp.";
 }
 
 async function askAssistant(message) {

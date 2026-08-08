@@ -9,8 +9,8 @@ function buildEmailHtml(data) {
     <div style="font-family:Arial,sans-serif;color:#222;line-height:1.55">
       <h2 style="color:#1693a5;margin:0 0 16px">Nueva solicitud desde BET</h2>
       <p><strong>Nombre:</strong> ${data.name}</p>
-      <p><strong>Correo:</strong> ${data.email}</p>
-      <p><strong>Solicitud:</strong></p>
+      <p><strong>Correo profesional:</strong> ${data.email}</p>
+      <p><strong>Mensaje:</strong></p>
       <p style="white-space:pre-line">${data.request}</p>
     </div>
   `;
@@ -19,7 +19,7 @@ function buildEmailHtml(data) {
 module.exports = async function handler(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
-    return response.status(405).json({ error: "Metodo no permitido." });
+    return response.status(405).json({ error: "M\u00e9todo no permitido." });
   }
 
   const data = Object.fromEntries(
@@ -28,11 +28,11 @@ module.exports = async function handler(request, response) {
   const missing = requiredFields.filter((field) => !data[field]);
 
   if (missing.length > 0) {
-    return response.status(400).json({ error: "Completa todos los campos requeridos." });
+    return response.status(400).json({ error: "Completa los campos requeridos antes de enviar la solicitud." });
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    return response.status(400).json({ error: "Ingresa un correo valido." });
+    return response.status(400).json({ error: "Ingresa un correo profesional v\u00e1lido." });
   }
 
   const contactEmail = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "nathaliealvarez340@gmail.com";
@@ -41,7 +41,7 @@ module.exports = async function handler(request, response) {
 
   if (!resendApiKey) {
     return response.status(503).json({
-      error: "El envio por correo aun no esta configurado. Define RESEND_API_KEY en Vercel.",
+      error: "No fue posible enviar la solicitud. Int\u00e9ntalo nuevamente o cont\u00e1ctanos por WhatsApp.",
     });
   }
 
@@ -61,7 +61,7 @@ module.exports = async function handler(request, response) {
   });
 
   if (!resendResponse.ok) {
-    return response.status(502).json({ error: "No se pudo enviar el correo. Intentalo nuevamente." });
+    return response.status(502).json({ error: "No fue posible enviar la solicitud. Int\u00e9ntalo nuevamente o cont\u00e1ctanos por WhatsApp." });
   }
 
   return response.status(200).json({ ok: true });

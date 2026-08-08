@@ -1,52 +1,52 @@
 [
   {
-    "title": "Fracturas de cadera: opciones quir\u00fargicas y pron\u00f3stico actual",
-    "description": "Una referencia clinica sobre factores de riesgo, abordaje medico y recuperacion en fracturas de cadera.",
+    "title": "Fracturas de cadera: informaci\u00f3n general",
+    "description": "Consulta informaci\u00f3n sobre factores de riesgo, diagn\u00f3stico y atenci\u00f3n de las fracturas de cadera.",
     "source": "Mayo Clinic",
     "url": "https://www.mayoclinic.org/diseases-conditions/hip-fracture/symptoms-causes/syc-20373468",
     "image": "assets/newsletter/fractura_cadera.webp",
-    "imageAlt": "Equipo medico revisando una imagen relacionada con fractura de cadera",
-    "category": "CADERA",
+    "imageAlt": "Equipo m\u00e9dico revisando informaci\u00f3n sobre fractura de cadera",
+    "category": "ORTOPEDIA",
     "fallbackImage": "assets/newsletter/fractura_cadera.webp"
   },
   {
-    "title": "Nuevas superficies articulares para mayor durabilidad",
-    "description": "Informacion especializada sobre reemplazo articular, materiales y componentes usados en cirugia de rodilla.",
+    "title": "Reemplazo total de rodilla: conceptos principales",
+    "description": "Consulta informaci\u00f3n sobre el procedimiento, sus componentes y las consideraciones generales descritas por AAOS.",
     "source": "AAOS OrthoInfo",
     "url": "https://orthoinfo.aaos.org/en/treatment/total-knee-replacement/",
     "image": "assets/newsletter/nuevas_superficies.webp",
-    "imageAlt": "Implante o superficie articular asociada a reemplazo de rodilla",
-    "category": "RODILLA",
+    "imageAlt": "Componente articular asociado al reemplazo de rodilla",
+    "category": "CRITERIO CL\u00cdNICO",
     "fallbackImage": "assets/newsletter/nuevas_superficies.webp"
   },
   {
-    "title": "Placas de titanio: dise\u00f1o y biomec\u00e1nica avanzada",
-    "description": "Panorama de soluciones de trauma, fijacion interna y principios biomecanicos para osteosintesis moderna.",
+    "title": "Principios de fijaci\u00f3n en trauma ortop\u00e9dico",
+    "description": "Explora recursos sobre fijaci\u00f3n interna y principios aplicados al tratamiento del trauma ortop\u00e9dico.",
     "source": "AO Foundation",
     "url": "https://www.aofoundation.org/trauma",
     "image": "assets/newsletter/placas.webp",
-    "imageAlt": "Placas de titanio e instrumental para trauma ortopedico",
-    "category": "TRAUMA",
+    "imageAlt": "Placas e instrumental relacionados con trauma ortop\u00e9dico",
+    "category": "INFORMACI\u00d3N T\u00c9CNICA",
     "fallbackImage": "assets/newsletter/placas.webp"
   },
   {
     "title": "Impresi\u00f3n 3D en medicina: aplicaciones actuales",
-    "description": "Revision sobre manufactura aditiva y su aplicacion en dispositivos medicos, planeacion y soluciones personalizadas.",
+    "description": "Revisa una publicaci\u00f3n sobre manufactura aditiva y sus aplicaciones en dispositivos m\u00e9dicos y planeaci\u00f3n.",
     "source": "National Library of Medicine",
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5977636/",
     "image": "assets/newsletter/impresion.webp",
-    "imageAlt": "Proceso de impresion 3D aplicado a medicina y dispositivos ortopedicos",
-    "category": "INVESTIGACI\u00d3N",
+    "imageAlt": "Proceso de impresi\u00f3n 3D aplicado a dispositivos m\u00e9dicos",
+    "category": "TECNOLOG\u00cdA",
     "fallbackImage": "assets/newsletter/impresion.webp"
   },
   {
-    "title": "Actualizaciones en regulaci\u00f3n de dispositivos m\u00e9dicos 2026",
-    "description": "Guia oficial sobre clasificacion, requisitos y supervision regulatoria para dispositivos medicos.",
+    "title": "Regulaci\u00f3n de dispositivos m\u00e9dicos: panorama general",
+    "description": "Consulta la gu\u00eda de la FDA sobre clasificaci\u00f3n, requisitos y supervisi\u00f3n de dispositivos m\u00e9dicos.",
     "source": "FDA",
     "url": "https://www.fda.gov/medical-devices/device-advice-comprehensive-regulatory-assistance/overview-device-regulation",
     "image": "assets/newsletter/actualizacion.webp",
-    "imageAlt": "Documentacion regulatoria y tecnologia medica en revision",
-    "category": "NOVEDADES",
+    "imageAlt": "Documentaci\u00f3n regulatoria sobre dispositivos m\u00e9dicos",
+    "category": "ACTUALIDAD",
     "fallbackImage": "assets/newsletter/actualizacion.webp"
   }
 ]

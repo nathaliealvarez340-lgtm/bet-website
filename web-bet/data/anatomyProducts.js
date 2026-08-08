@@ -71,7 +71,7 @@ const anatomicalCatalog = {
     careRoute: "/cuidados-adecuados",
     pdfReference: "CarboFix Proximal Femur Nailing System Surgical Technique 10.1.2023.pdf",
     document: {
-      label: "Consultar documento t\u00e9cnico",
+      label: "Ver ficha t\u00e9cnica",
       href: "/docs/productos/CarboFix Proximal Femur Nailing System Surgical Technique 10.1.2023.pdf",
     },
   },
@@ -90,7 +90,7 @@ window.BET_ANATOMY_ZONES = [
     x: "50%",
     y: "18%",
     image: "/images/products/procoral-cervical-disc.png",
-    document: { label: "Ver ficha PROCORAL", href: "/docs/productos/procoral-cervical-disc.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/procoral-cervical-disc.pdf" },
     products: [
       { name: "PROCORAL Anterior Cervical Disc Prosthesis", type: "Protesis de disco cervical anterior", description: "Implante de largo plazo disenado para reemplazo total de disco cervical en procedimientos por abordaje anterior." },
       { name: "Instrumental cervical PROCORAL", type: "Instrumental especializado", description: "Instrumentos para preparacion, distraccion, seleccion de tamano e insercion de la protesis cervical." },
@@ -108,7 +108,7 @@ window.BET_ANATOMY_ZONES = [
     x: "42%",
     y: "27%",
     image: "/images/products/carbofix-humero-proximal.png",
-    document: { label: "Ver ficha humero proximal", href: "/docs/productos/carbofix-humero-proximal.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-humero-proximal.pdf" },
     products: [
       { name: "CarboFix Proximal Humeral Plate", type: "Placa proximal de humero", description: "Placa anatomica de bajo perfil para humero proximal, fabricada con fibras de carbono embebidas en polimero PEEK." },
       { name: "CarboFix Proximal Humerus Nail", type: "Clavo proximal de humero", description: "Clavo de fibra de carbono para estabilizacion del humero proximal dentro del portafolio CarboFix." },
@@ -126,7 +126,7 @@ window.BET_ANATOMY_ZONES = [
     x: "35%",
     y: "39%",
     image: "/images/products/carbofix-humerus-nail.png",
-    document: { label: "Ver portafolio CarboFix", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
     products: [
       { name: "CarboFix Humerus Nail", type: "Clavo humeral", description: "Clavo de fibra de carbono para estabilizacion humeral dentro del portafolio de trauma CarboFix." },
       { name: "CarboFix Diaphyseal Plates", type: "Placas diafisarias", description: "Placas de fibra de carbono para aplicaciones diafisarias en trauma ortopedico." },
@@ -144,7 +144,7 @@ window.BET_ANATOMY_ZONES = [
     x: "36%",
     y: "52%",
     image: "/images/products/carbofix-radio-distal.png",
-    document: { label: "Ver ficha radio distal", href: "/docs/productos/carbofix-radio-distal.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-radio-distal.pdf" },
     products: [
       { name: "CarboFix Distal Volar Radius Plate", type: "Placa volar de radio distal", description: "Placas anatomicas de bajo perfil para radio distal, disponibles en configuraciones estandar, narrow y triangular." },
       { name: "Tornillos y pegs para radio distal", type: "Sistema de fijacion", description: "Tornillos bloqueados, no bloqueados y pegs para fijacion de cabeza y eje de placa." },
@@ -162,7 +162,7 @@ window.BET_ANATOMY_ZONES = [
     x: "50%",
     y: "36%",
     image: "/images/products/procoral-cervical-disc.png",
-    document: { label: "Ver ficha cervical", href: "/docs/productos/procoral-cervical-disc.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/procoral-cervical-disc.pdf" },
     products: [
       { name: "PROCORAL Anterior Cervical Disc Prosthesis", type: "Protesis de disco cervical", description: "Protesis enfocada en reemplazo total de disco cervical por abordaje anterior." },
       { name: "Soluciones BET para columna", type: "Linea especializada", description: "Soluciones para evaluacion y soporte en procedimientos de columna segun indicacion medica." },
@@ -186,7 +186,7 @@ window.BET_ANATOMY_ZONES = [
     x: "56%",
     y: "55%",
     image: "/images/products/peditst-proximal-femur.png",
-    document: { label: "Ver catalogo pediatrico", href: "/docs/productos/peditst-placas-pediatricas.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/peditst-placas-pediatricas.pdf" },
     products: [
       { name: "LC Pediatric Hip Plate", type: "Placa pediatrica de cadera", description: "Placas para osteotomias varizantes, valguizantes, rotacionales y fijacion de trauma en femur proximal pediatrico." },
       { name: "Trauma Plate 120 grados", type: "Placa pediatrica para trauma", description: "Placa disenada para estabilidad angular en fracturas proximales femorales." },
@@ -205,7 +205,7 @@ window.BET_ANATOMY_ZONES = [
     x: "47%",
     y: "70%",
     image: "/images/products/carbofix-distal-femur.png",
-    document: { label: "Ver portafolio CarboFix", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
     products: [
       { name: "CarboFix Distal Femur Plate", type: "Placa de femur distal", description: "Placa de fibra de carbono disponible en multiples longitudes y configuraciones para femur distal." },
       { name: "CarboFix Diaphyseal Plates", type: "Placas diafisarias", description: "Placas estrechas y anchas para aplicaciones diafisarias en trauma ortopedico." },
@@ -223,7 +223,7 @@ window.BET_ANATOMY_ZONES = [
     x: "52%",
     y: "82%",
     image: "/images/products/carbofix-tibia.png",
-    document: { label: "Ver portafolio CarboFix", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
     products: [
       { name: "CarboFix Tibia Nail", type: "Clavo tibial", description: "Clavo de fibra de carbono para estabilizacion tibial." },
       { name: "Medial Proximal Tibia Plate", type: "Placa tibial proximal medial", description: "Placa para tibia proximal medial en multiples longitudes." },
@@ -242,7 +242,7 @@ window.BET_ANATOMY_ZONES = [
     x: "60%",
     y: "82%",
     image: "/images/products/carbofix-fibula-distal.png",
-    document: { label: "Ver ficha fibula distal", href: "/docs/productos/carbofix-fibula-distal.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-fibula-distal.pdf" },
     products: [
       { name: "CarboFix Distal Fibula Plate", type: "Placa de fibula distal", description: "Placa anatomica de bajo perfil para fibula distal, con opciones derecha e izquierda y multiples longitudes." },
       { name: "CarboFix One Third Tubular Plate", type: "Placa tercio tubular", description: "Placa tubular disponible en diferentes longitudes para estabilizacion osea." },
@@ -260,7 +260,7 @@ window.BET_ANATOMY_ZONES = [
     x: "50%",
     y: "90%",
     image: "/images/products/carbofix-ankle-arthrodesis.png",
-    document: { label: "Ver ficha artrodesis de tobillo", href: "/docs/productos/carbofix-ankle-arthrodesis.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-ankle-arthrodesis.pdf" },
     products: [
       { name: "CarboFix Ankle Arthrodesis Nail", type: "Clavo de artrodesis de tobillo", description: "Clavo de fibra de carbono para artrodesis de tobillo, disponible en diametros 10.0 y 12.0 mm y longitudes 160, 200 y 240 mm." },
       { name: "Titanium Screws 5.0 mm", type: "Tornillos de fijacion", description: "Tornillos de titanio para fijacion del sistema de artrodesis." },
@@ -278,7 +278,7 @@ window.BET_ANATOMY_ZONES = [
     x: "48%",
     y: "96%",
     image: "/images/products/carbofix-foot.png",
-    document: { label: "Ver portafolio CarboFix", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
     products: [
       { name: "CarboFix MTP Fusion", type: "Sistema de fusion MTP", description: "Implante para fusion metatarsofalangica." },
       { name: "CarboFix Lapidus", type: "Sistema Lapidus", description: "Solucion para procedimientos de correccion y estabilizacion en pie." },
@@ -296,7 +296,7 @@ window.BET_ANATOMY_ZONES = [
     x: "62%",
     y: "62%",
     image: "/images/products/carbofix-diaphyseal.png",
-    document: { label: "Ver portafolio CarboFix", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
     products: [
       { name: "CarboFix Diaphyseal Narrow Plate", type: "Placa diafisaria estrecha", description: "Placa de fibra de carbono para aplicaciones diafisarias seleccionadas." },
       { name: "CarboFix Diaphyseal Broad Plate", type: "Placa diafisaria ancha", description: "Placa de fibra de carbono para soporte en huesos largos segun indicacion medica." },
@@ -314,7 +314,7 @@ window.BET_ANATOMY_ZONES = [
     x: "50%",
     y: "35%",
     image: "/images/products/procoral-cervical-disc.png",
-    document: { label: "Ver ficha cervical", href: "/docs/productos/procoral-cervical-disc.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/procoral-cervical-disc.pdf" },
     products: [
       { name: "PROCORAL Anterior Cervical Disc Prosthesis", type: "Protesis de disco cervical", description: "Protesis enfocada en columna cervical por abordaje anterior." },
       { name: "Soluciones BET para columna", type: "Linea especializada", description: "Soluciones para soporte y evaluacion especializada por segmento." },
@@ -332,7 +332,7 @@ window.BET_ANATOMY_ZONES = [
     x: "58%",
     y: "29%",
     image: "/images/products/carbofix-humero-proximal.png",
-    document: { label: "Ver ficha humero proximal", href: "/docs/productos/carbofix-humero-proximal.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-humero-proximal.pdf" },
     products: [
       { name: "CarboFix Proximal Humeral Plate", type: "Placa proximal de humero", description: "Placa anatomica de fibra de carbono para fijacion de humero proximal." },
       { name: "CarboFix Humerus Nail", type: "Clavo humeral", description: "Clavo de fibra de carbono para estabilizacion humeral." },
@@ -350,7 +350,7 @@ window.BET_ANATOMY_ZONES = [
     x: "50%",
     y: "55%",
     image: "/images/products/carbofix-femur-proximal.png",
-    document: { label: "Ver portafolio", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-trauma-brochure.pdf" },
     products: [
       { name: "CarboFix Trochanteric PF Nailing System", type: "Clavo trocanterico", description: "Sistema para fijacion de femur proximal." },
       { name: "LC Pediatric Hip Plate", type: "Placa pediatrica de cadera", description: "Sistema pediatrico para osteotomias y trauma de femur proximal." },
@@ -368,7 +368,7 @@ window.BET_ANATOMY_ZONES = [
     x: "50%",
     y: "90%",
     image: "/images/products/carbofix-ankle-arthrodesis.png",
-    document: { label: "Ver ficha tobillo", href: "/docs/productos/carbofix-ankle-arthrodesis.pdf" },
+    document: { label: "Ver ficha t\u00e9cnica", href: "/docs/productos/carbofix-ankle-arthrodesis.pdf" },
     products: [
       { name: "CarboFix Ankle Arthrodesis Nail", type: "Clavo de artrodesis de tobillo", description: "Clavo radiolucido para artrodesis de tobillo con opciones de compresion." },
       { name: "CarboFix Distal Fibula Plate", type: "Placa de fibula distal", description: "Placa anatomica de bajo perfil para trauma lateral de tobillo." },
