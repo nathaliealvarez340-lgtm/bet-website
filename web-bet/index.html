@@ -429,18 +429,22 @@
             <form class="contact-form final-contact-form" aria-label="Formulario de contacto BET">
               <label>
                 <span data-i18n="contactName">Nombre completo</span>
-                <input name="name" type="text" autocomplete="name" required data-i18n-placeholder="contactName">
+                <input name="name" type="text" autocomplete="name" maxlength="120" required data-i18n-placeholder="contactName">
               </label>
               <label>
                 <span data-i18n="contactEmail">Correo profesional</span>
-                <input name="email" type="email" autocomplete="email" required data-i18n-placeholder="contactEmail">
+                <input name="email" type="email" autocomplete="email" maxlength="254" required data-i18n-placeholder="contactEmail">
               </label>
               <label>
                 <span data-i18n="contactRequest">Mensaje</span>
-                <textarea name="request" rows="4" required data-i18n-placeholder="contactRequest"></textarea>
+                <textarea name="request" rows="4" maxlength="5000" required data-i18n-placeholder="contactRequest"></textarea>
               </label>
+              <div class="contact-honeypot" aria-hidden="true">
+                <label for="contact-website">Deja este campo vac&iacute;o</label>
+                <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" maxlength="200">
+              </div>
               <button class="button glass-button primary" type="submit"><span data-i18n="contactSend">Enviar solicitud</span></button>
-              <p class="form-status" aria-live="polite"></p>
+              <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
             </form>
           </div>
         </div>

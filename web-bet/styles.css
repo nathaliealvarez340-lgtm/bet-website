@@ -11118,6 +11118,14 @@ main {
   font: 800 0.78rem var(--bet-sans, "Poppins", sans-serif);
 }
 
+.contact-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .final-contact-form input,
 .final-contact-form textarea {
   width: 100%;

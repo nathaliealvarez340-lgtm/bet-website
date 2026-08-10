@@ -1,9 +1,12 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
+import { createRequire } from "node:module";
 import { extname, join, normalize } from "node:path";
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 4173);
+const require = createRequire(import.meta.url);
+const contactHandler = require("./api/contact.js");
 const types = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -53,6 +56,38 @@ function buildAssistantReply(message = "") {
   return "Puedo ayudarte a localizar informaci\u00f3n general, \u00e1reas anat\u00f3micas y documentos. Para una solicitud espec\u00edfica, contacta directamente a BET por WhatsApp.";
 }
 
+function readRequestBody(request, maxBytes = 24000) {
+  return new Promise((resolve, reject) => {
+    let rawBody = "";
+
+    request.on("data", (chunk) => {
+      rawBody += chunk;
+      if (Buffer.byteLength(rawBody) > maxBytes) {
+        reject(new RangeError("Request body is too large"));
+      }
+    });
+    request.on("end", () => resolve(rawBody));
+    request.on("error", reject);
+  });
+}
+
+function createApiResponse(response) {
+  return {
+    setHeader(name, value) {
+      response.setHeader(name, value);
+    },
+    status(statusCode) {
+      response.statusCode = statusCode;
+      return this;
+    },
+    json(payload) {
+      response.setHeader("Content-Type", "application/json; charset=utf-8");
+      response.end(JSON.stringify(payload));
+      return this;
+    },
+  };
+}
+
 createServer(async (request, response) => {
   const pathname = decodeURIComponent(new URL(request.url, `http://${request.headers.host}`).pathname);
 
@@ -79,35 +114,23 @@ createServer(async (request, response) => {
     return;
   }
 
-  if (pathname === "/api/contact" && request.method === "POST") {
-    let rawBody = "";
-    request.on("data", (chunk) => {
-      rawBody += chunk;
-    });
-    request.on("end", () => {
-      const payload = rawBody ? JSON.parse(rawBody) : {};
-      const name = String(payload.name || "").trim();
-      const email = String(payload.email || "").trim();
-      const requestText = String(payload.request || "").trim();
-      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-      if (!name || !email || !requestText) {
-        response.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
-        response.end(JSON.stringify({ error: "Completa los campos requeridos antes de enviar la solicitud." }));
-        return;
-      }
-
-      if (!isValidEmail) {
-        response.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
-        response.end(JSON.stringify({ error: "Ingresa un correo profesional v\u00e1lido." }));
-        return;
-      }
-
-      response.writeHead(503, { "Content-Type": "application/json; charset=utf-8" });
+  if (pathname === "/api/contact") {
+    try {
+      const rawBody = request.method === "POST" ? await readRequestBody(request) : "";
+      await contactHandler(
+        { method: request.method, headers: request.headers, body: rawBody },
+        createApiResponse(response)
+      );
+    } catch (error) {
+      const statusCode = error instanceof RangeError ? 413 : 400;
+      response.writeHead(statusCode, { "Content-Type": "application/json; charset=utf-8" });
       response.end(JSON.stringify({
-        error: "No fue posible enviar la solicitud. Int\u00e9ntalo nuevamente o cont\u00e1ctanos por WhatsApp.",
+        ok: false,
+        error: statusCode === 413
+          ? "La solicitud excede el tama\u00f1o permitido."
+          : "La solicitud no contiene datos v\u00e1lidos.",
       }));
-    });
+    }
     return;
   }
 

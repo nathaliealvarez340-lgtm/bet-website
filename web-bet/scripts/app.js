@@ -1672,8 +1672,12 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") searchResults?.classList.add("is-hidden");
 });
 
-document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
+let contactSubmissionPending = false;
+
+document.querySelector(".contact-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
+  if (contactSubmissionPending) return;
+
   const form = event.currentTarget;
   const dictionary = translations[currentLanguage] || translations.es;
   const status = form.querySelector(".form-status");
@@ -1694,10 +1698,25 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
 
   const formData = new FormData(form);
   const payload = {
-    name: String(formData.get("name")).trim(),
-    email: String(formData.get("email")).trim(),
-    request: String(formData.get("request")).trim(),
+    name: String(formData.get("name") || "").trim(),
+    email: String(formData.get("email") || "").trim(),
+    request: String(formData.get("request") || "").trim(),
+    website: String(formData.get("website") || "").trim(),
   };
+  const fieldLimits = { name: 120, email: 254, request: 5000 };
+  const oversizedField = Object.entries(fieldLimits).find(
+    ([fieldName, maxLength]) => payload[fieldName].length > maxLength
+  );
+
+  if (oversizedField) {
+    const field = form.querySelector(`[name="${oversizedField[0]}"]`);
+    field?.classList.add("is-invalid");
+    status.textContent = dictionary.contactValidation;
+    status.className = "form-status is-error";
+    field?.focus();
+    return;
+  }
+
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
     const emailField = form.querySelector('[name="email"]');
     emailField?.classList.add("is-invalid");
@@ -1711,32 +1730,37 @@ document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   const whatsappLink = form.querySelector("[data-whatsapp-link]");
   if (whatsappLink) whatsappLink.href = createWhatsAppUrl(message);
 
+  contactSubmissionPending = true;
   submitButton.disabled = true;
+  form.setAttribute("aria-busy", "true");
   if (submitLabel) submitLabel.textContent = dictionary.contactSending;
   status.textContent = dictionary.contactSending;
   status.className = "form-status";
 
-  fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  })
-    .then(async (response) => {
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(data.error || dictionary.contactError);
-      status.textContent = dictionary.contactSuccess;
-      status.className = "form-status is-success";
-      form.reset();
-    })
-    .catch((error) => {
-      status.textContent = error.message || dictionary.contactError;
-      status.className = "form-status is-error";
-      window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
-    })
-    .finally(() => {
-      submitButton.disabled = false;
-      if (submitLabel) submitLabel.textContent = translations[currentLanguage].contactSend;
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) throw new Error(data.error || dictionary.contactError);
+
+    status.textContent = dictionary.contactSuccess;
+    status.className = "form-status is-success";
+    form.reset();
+  } catch (error) {
+    status.textContent = error.message || dictionary.contactError;
+    status.className = "form-status is-error";
+  } finally {
+    contactSubmissionPending = false;
+    submitButton.disabled = false;
+    form.removeAttribute("aria-busy");
+    if (submitLabel) {
+      submitLabel.textContent = (translations[currentLanguage] || translations.es).contactSend;
+    }
+  }
 });
 
 function handleAssistantMessage(message) {
