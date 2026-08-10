@@ -1020,6 +1020,16 @@ function renderAnatomyInfoCard(title, items, id = "") {
   `;
 }
 
+function renderAnatomyApplications(items) {
+  if (!items.length) return "";
+  return `
+    <section class="anatomy-applications" aria-labelledby="bone-applications-title">
+      <h4 id="bone-applications-title">Aplicaciones</h4>
+      ${renderAnatomyList(items, "bone-applications")}
+    </section>
+  `;
+}
+
 function buildAnatomyPages(bone) {
   const products = bone.productos || [];
   const benefits = bone.benefits || [];
@@ -1046,7 +1056,7 @@ function buildAnatomyPages(bone) {
     : "";
   const details = [
     renderAnatomyInfoCard("Caracter\u00edsticas t\u00e9cnicas", benefits, "bone-benefits"),
-    renderAnatomyInfoCard("Aplicaciones", applications, "bone-applications"),
+    renderAnatomyApplications(applications),
   ].filter(Boolean);
   const complementary = [
     renderAnatomyInfoCard("Materiales", materials),
