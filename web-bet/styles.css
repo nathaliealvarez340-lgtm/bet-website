@@ -13532,3 +13532,224 @@ html.bet-welcome-active body {
     transform: none;
   }
 }
+
+/* Interactive anatomy: image-relative hotspots and a single scrollable panel body. */
+.anatomy-skeleton-media {
+  position: relative;
+  height: clamp(520px, 62vh, 620px);
+  max-height: 92%;
+  aspect-ratio: 1341 / 1029;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+
+.anatomy-skeleton-media .anatomy-skeleton-image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain;
+}
+
+.anatomy-skeleton-media .anatomy-hotspots {
+  position: absolute;
+  inset: 0;
+}
+
+.anatomy-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.anatomy-panel-scroll {
+  min-width: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--bet-title-accent) rgba(8, 120, 201, 0.1);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  padding: 0.15rem 0.35rem 0.35rem 0.1rem;
+}
+
+.anatomy-panel-scroll::-webkit-scrollbar {
+  width: 9px;
+}
+
+.anatomy-panel-scroll::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(8, 120, 201, 0.1);
+}
+
+.anatomy-panel-scroll::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: var(--bet-title-accent);
+  background-clip: padding-box;
+}
+
+.anatomy-panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: #076fb8;
+  background-clip: padding-box;
+}
+
+.anatomy-panel-scroll > #bone-description {
+  margin: 0 0 1rem;
+  color: rgba(15, 23, 32, 0.64);
+}
+
+.anatomy-content-pages {
+  overflow: visible;
+}
+
+.anatomy-content-page,
+.anatomy-content-page.is-active {
+  height: auto;
+  overflow: visible;
+  padding: 0.15rem;
+}
+
+.anatomy-panel .panel-block {
+  margin: 1rem 0 0.7rem !important;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+}
+
+.anatomy-panel .panel-block > h4 {
+  color: rgba(15, 23, 32, 0.72) !important;
+}
+
+.anatomy-panel #bone-products,
+.anatomy-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.anatomy-info-grid-complementary {
+  margin-top: 0.7rem;
+}
+
+.anatomy-panel .product-mini,
+.anatomy-info-card {
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0.95rem 1rem !important;
+  border: 1px solid rgba(8, 120, 201, 0.76) !important;
+  border-radius: 8px !important;
+  color: #ffffff;
+  background: var(--bet-title-accent) !important;
+  box-shadow: 0 10px 24px rgba(8, 120, 201, 0.12);
+  transform-origin: center;
+  transition:
+    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease !important;
+}
+
+.anatomy-info-card h4 {
+  margin: 0 0 0.65rem;
+  color: #ffffff !important;
+  font-family: var(--bet-sans, "Poppins", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.anatomy-info-card ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.05rem;
+}
+
+.anatomy-panel .product-mini strong,
+.anatomy-panel .product-mini span,
+.anatomy-panel .product-mini small,
+.anatomy-panel .product-mini b,
+.anatomy-info-card li {
+  color: #ffffff !important;
+}
+
+.anatomy-panel .product-mini small {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.anatomy-panel .product-mini-spec {
+  border-top-color: rgba(255, 255, 255, 0.24);
+}
+
+.anatomy-info-card li {
+  font-size: 0.8rem;
+  line-height: 1.48;
+}
+
+.anatomy-content-page > .anatomy-technical-link {
+  margin-top: 0.8rem;
+}
+
+@media (min-width: 1024px) {
+  .anatomy-skeleton-media {
+    height: min(92%, 540px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .anatomy-panel .product-mini:hover,
+  .anatomy-panel .product-mini:focus-within,
+  .anatomy-info-card:hover,
+  .anatomy-info-card:focus-within {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    background: #076fb8 !important;
+    box-shadow: 0 14px 28px rgba(8, 120, 201, 0.18);
+    transform: scale(1.012);
+  }
+}
+
+@media (max-width: 767px) {
+  .anatomy-skeleton-media {
+    height: clamp(390px, 58vh, 500px);
+  }
+
+  .anatomy-workbench[data-mobile-panel="details"] .anatomy-panel {
+    min-height: clamp(560px, 78svh, 680px) !important;
+    height: clamp(560px, 78svh, 680px) !important;
+    max-height: clamp(560px, 78svh, 680px);
+  }
+
+  .anatomy-panel #bone-products,
+  .anatomy-info-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .anatomy-panel-scroll {
+    padding-right: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .anatomy-skeleton-media {
+    height: clamp(360px, 56vh, 460px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anatomy-panel .product-mini,
+  .anatomy-info-card {
+    transition-duration: 1ms !important;
+  }
+
+  .anatomy-panel .product-mini:hover,
+  .anatomy-panel .product-mini:focus-within,
+  .anatomy-info-card:hover,
+  .anatomy-info-card:focus-within {
+    transform: none;
+  }
+}

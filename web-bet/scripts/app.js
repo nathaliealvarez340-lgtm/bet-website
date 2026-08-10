@@ -750,20 +750,15 @@ const selectors = {
   area: document.querySelector("#bone-area"),
   description: document.querySelector("#bone-description"),
   tags: document.querySelector("#bone-tags"),
-  products: document.querySelector("#bone-products"),
-  benefits: document.querySelector("#bone-benefits"),
-  applications: document.querySelector("#bone-applications"),
-  complementary: document.querySelector("#bone-complementary"),
   productImage: document.querySelector("#bone-product-image"),
-  document: document.querySelector("#bone-document"),
   image: document.querySelector("#anatomy-skeleton-image"),
   imageFallback: document.querySelector("[data-skeleton-fallback]"),
   hotspots: document.querySelector("[data-anatomy-hotspots]"),
   stage: document.querySelector("[data-skeleton-stage]"),
   viewButtons: document.querySelectorAll("[data-anatomy-view]"),
   backButton: document.querySelector("[data-anatomy-back]"),
+  panelScroll: document.querySelector("[data-anatomy-scroll]"),
   pagesContainer: document.querySelector("[data-anatomy-pages]"),
-  pages: document.querySelectorAll("[data-anatomy-page]"),
   previousPage: document.querySelector("[data-anatomy-page-previous]"),
   nextPage: document.querySelector("[data-anatomy-page-next]"),
   pageStatus: document.querySelector("[data-anatomy-page-status]"),
@@ -1009,12 +1004,113 @@ function updateSkeletonImage(viewData) {
   }
 }
 
-function setAnatomyPage(pageIndex, shouldAnimate = true) {
-  const lastPageIndex = Math.max(selectors.pages.length - 1, 0);
-  activeAnatomyPage = Math.min(Math.max(pageIndex, 0), lastPageIndex);
-  const previousHeight = selectors.pagesContainer?.getBoundingClientRect().height || 0;
+function renderAnatomyList(items, id = "") {
+  if (!items.length) return "";
+  const idAttribute = id ? ` id="${id}"` : "";
+  return `<ul${idAttribute}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
 
-  selectors.pages.forEach((page, index) => {
+function renderAnatomyInfoCard(title, items, id = "") {
+  if (!items.length) return "";
+  return `
+    <article class="anatomy-info-card">
+      <h4>${escapeHtml(title)}</h4>
+      ${renderAnatomyList(items, id)}
+    </article>
+  `;
+}
+
+function buildAnatomyPages(bone) {
+  const products = bone.productos || [];
+  const benefits = bone.benefits || [];
+  const applications = bone.aplicaciones || [];
+  const materials = bone.materiales || [];
+  const features = bone.caracteristicas || [];
+
+  const productCards = products
+    .map(
+      (product) => `
+        <article class="product-mini">
+          <strong>${escapeHtml(product.nombre)}</strong>
+          ${product.descripcion ? `<span>${escapeHtml(product.descripcion)}</span>` : ""}
+          ${product.uso ? `<small>${escapeHtml(product.uso)}</small>` : ""}
+          ${product.medida ? `<span class="product-mini-spec"><b>Especificaci\u00f3n:</b> ${escapeHtml(product.medida)}</span>` : ""}
+          ${product.material ? `<span class="product-mini-spec"><b>Material:</b> ${escapeHtml(product.material)}</span>` : ""}
+        </article>
+      `
+    )
+    .join("");
+
+  const overview = productCards
+    ? `<div class="panel-block"><h4>Soluciones relacionadas</h4><div id="bone-products">${productCards}</div></div>`
+    : "";
+  const details = [
+    renderAnatomyInfoCard("Caracter\u00edsticas t\u00e9cnicas", benefits, "bone-benefits"),
+    renderAnatomyInfoCard("Aplicaciones", applications, "bone-applications"),
+  ].filter(Boolean);
+  const complementary = [
+    renderAnatomyInfoCard("Materiales", materials),
+    renderAnatomyInfoCard("Informaci\u00f3n complementaria", features),
+  ].filter(Boolean);
+  const documentLink = bone.document?.href
+    ? `<a class="anatomy-technical-link" href="${escapeHtml(bone.document.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(bone.document.label || "Ver ficha t\u00e9cnica")}</a>`
+    : "";
+  const contentCount = products.length + benefits.length + applications.length + materials.length + features.length;
+  const useThirdPage = complementary.length > 0 && (products.length >= 4 || contentCount >= 18);
+  const pages = [];
+
+  if (overview) {
+    pages.push({ label: "Soluciones relacionadas", html: overview });
+  }
+
+  if (useThirdPage) {
+    if (details.length) {
+      pages.push({ label: "Caracter\u00edsticas y aplicaciones", html: `<div class="anatomy-info-grid">${details.join("")}</div>` });
+    }
+    pages.push({
+      label: "Informaci\u00f3n complementaria",
+      html: `<div class="anatomy-info-grid">${complementary.join("")}</div>${documentLink}`,
+    });
+  } else {
+    const secondaryContent = `${details.length ? `<div class="anatomy-info-grid">${details.join("")}</div>` : ""}${complementary.length ? `<div class="anatomy-info-grid anatomy-info-grid-complementary">${complementary.join("")}</div>` : ""}${documentLink}`;
+    if (secondaryContent) {
+      pages.push({ label: "Caracter\u00edsticas e informaci\u00f3n t\u00e9cnica", html: secondaryContent });
+    }
+  }
+
+  if (!pages.length) {
+    pages.push({ label: "Informaci\u00f3n de la soluci\u00f3n", html: '<p class="anatomy-complementary-note">Consulta la informaci\u00f3n disponible para esta regi\u00f3n.</p>' });
+  }
+
+  return pages.slice(0, 3);
+}
+
+function renderAnatomyPages(bone) {
+  if (!selectors.pagesContainer) return;
+  const pages = buildAnatomyPages(bone);
+  selectors.pagesContainer.innerHTML = pages
+    .map(
+      (page, index) => `
+        <section
+          class="anatomy-content-page${index === 0 ? " is-active" : ""}"
+          data-anatomy-page="${index + 1}"
+          aria-label="${escapeHtml(page.label)}"
+          ${index === 0 ? 'aria-current="page"' : "hidden"}
+        >
+          ${page.html}
+        </section>
+      `
+    )
+    .join("");
+  setAnatomyPage(0, false);
+}
+
+function setAnatomyPage(pageIndex, shouldAnimate = true) {
+  const pages = [...(selectors.pagesContainer?.querySelectorAll("[data-anatomy-page]") || [])];
+  const lastPageIndex = Math.max(pages.length - 1, 0);
+  activeAnatomyPage = Math.min(Math.max(pageIndex, 0), lastPageIndex);
+
+  pages.forEach((page, index) => {
     const isActive = index === activeAnatomyPage;
     page.hidden = !isActive;
     page.classList.toggle("is-active", isActive);
@@ -1028,13 +1124,14 @@ function setAnatomyPage(pageIndex, shouldAnimate = true) {
   selectors.previousPage?.toggleAttribute("disabled", activeAnatomyPage === 0);
   selectors.nextPage?.toggleAttribute("disabled", activeAnatomyPage === lastPageIndex);
   if (selectors.pageStatus) selectors.pageStatus.textContent = `${activeAnatomyPage + 1} de ${lastPageIndex + 1}`;
+  selectors.panelScroll?.scrollTo({ top: 0, behavior: "auto" });
 
-  if (shouldAnimate && selectors.pagesContainer && !reducedMotionQuery.matches) {
-    const nextHeight = selectors.pagesContainer.getBoundingClientRect().height;
-    selectors.pagesContainer.animate(
+  const activePage = pages[activeAnatomyPage];
+  if (shouldAnimate && activePage && !reducedMotionQuery.matches) {
+    activePage.animate(
       [
-        { height: `${previousHeight}px`, opacity: 0.72, transform: "translateY(4px)" },
-        { height: `${nextHeight}px`, opacity: 1, transform: "translateY(0)" },
+        { opacity: 0.72, transform: "translateY(4px)" },
+        { opacity: 1, transform: "translateY(0)" },
       ],
       {
         duration: 220,
@@ -1074,7 +1171,6 @@ function renderBone(boneId) {
   activeBoneId = bone.id;
 
   renderAnatomyHotspots();
-  setAnatomyPage(0, false);
 
   selectors.category.textContent = translations[currentLanguage].anatomyModelEyebrow;
   selectors.name.textContent = bone.nombre;
@@ -1101,44 +1197,7 @@ function renderBone(boneId) {
       selectors.productImage.removeAttribute("src");
     }
   }
-  selectors.products.innerHTML = bone.productos
-    .map(
-      (product) => `
-        <article class="product-mini">
-          <strong>${escapeHtml(product.nombre)}</strong>
-          ${product.descripcion ? `<span>${escapeHtml(product.descripcion)}</span>` : ""}
-          ${product.uso ? `<small>${escapeHtml(product.uso)}</small>` : ""}
-          ${product.medida ? `<span class="product-mini-spec"><b>Especificaci\u00f3n:</b> ${escapeHtml(product.medida)}</span>` : ""}
-          ${product.material ? `<span class="product-mini-spec"><b>Material:</b> ${escapeHtml(product.material)}</span>` : ""}
-        </article>
-      `
-    )
-    .join("");
-  if (selectors.benefits) {
-    selectors.benefits.innerHTML = (bone.benefits || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-  }
-  selectors.applications.innerHTML = bone.aplicaciones.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-  if (selectors.complementary) {
-    const materials = (bone.materiales || []).length
-      ? `<div><strong>Materiales</strong><ul>${bone.materiales.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`
-      : "";
-    const features = (bone.caracteristicas || []).length
-      ? `<div><strong>Caracter\u00edsticas</strong><ul>${bone.caracteristicas.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>`
-      : "";
-    selectors.complementary.innerHTML = materials || features
-      ? `${materials}${features}`
-      : '<p class="anatomy-complementary-note">Consulta el documento de referencia para revisar la informaci\u00f3n t\u00e9cnica disponible.</p>';
-  }
-  if (selectors.document) {
-    if (bone.document?.href) {
-      selectors.document.hidden = false;
-      selectors.document.href = bone.document.href;
-      selectors.document.textContent = bone.document.label || "Ver ficha t\u00e9cnica";
-    } else {
-      selectors.document.hidden = true;
-      selectors.document.href = "#";
-    }
-  }
+  renderAnatomyPages(bone);
 }
 
 selectors.hotspots?.addEventListener("click", (event) => {

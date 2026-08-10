@@ -28,8 +28,7 @@
 
       <div class="bet-welcome-content">
         <p class="bet-welcome-title">
-          <span>Bienvenido a</span>
-          <span class="bet-welcome-title-accent">BET</span>
+          <span>Bienvenido</span>
         </p>
         <span class="bet-welcome-divider" aria-hidden="true"></span>
         <p class="bet-welcome-subtitle">Soluciones ortop&eacute;dicas e informaci&oacute;n t&eacute;cnica<br>para m&eacute;dicos e instituciones de salud.</p>
@@ -269,61 +268,41 @@
               </div>
               <div class="anatomy-skeleton-stage" data-skeleton-stage>
                 <div class="anatomy-skeleton-image-frame">
-                  <img
-                    id="anatomy-skeleton-image"
-                    class="anatomy-skeleton-image"
-                    src="/assets/images/bet/esqueleto-frontal.png"
-                    alt="Vista frontal del modelo anat&oacute;mico"
-                    width="1341"
-                    height="1029"
-                    loading="lazy"
-                    decoding="async"
-                  >
+                  <div class="anatomy-skeleton-media">
+                    <img
+                      id="anatomy-skeleton-image"
+                      class="anatomy-skeleton-image"
+                      src="/assets/images/bet/esqueleto-frontal.png"
+                      alt="Vista frontal del modelo anat&oacute;mico"
+                      width="1341"
+                      height="1029"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                    <div class="anatomy-hotspots" data-anatomy-hotspots aria-label="&Aacute;reas anat&oacute;micas disponibles"></div>
+                  </div>
                 </div>
                 <div class="anatomy-skeleton-fallback" data-skeleton-fallback hidden>
                   <strong>Vista anat&oacute;mica no disponible</strong>
                   <span>Intenta cambiar de vista o recargar la p&aacute;gina.</span>
                 </div>
-                <div class="anatomy-hotspots" data-anatomy-hotspots aria-label="&Aacute;reas anat&oacute;micas disponibles"></div>
               </div>
             </div>
             <a class="anatomy-care-link" href="/cuidado-protesis" target="_blank" rel="noopener noreferrer">Cuidados</a>
           </div>
           <aside class="anatomy-panel glass" aria-live="polite">
             <button class="anatomy-back-button" type="button" data-anatomy-back hidden>Volver al modelo</button>
-            <span class="eyebrow" id="bone-category" data-i18n="anatomyModelEyebrow">MODELO INTERACTIVO</span>
-            <div class="anatomy-context">
-              <span class="anatomy-area" id="bone-area">F&eacute;mur proximal</span>
-              <span class="anatomy-category" id="bone-category-text">Fijaci&oacute;n intramedular</span>
-            </div>
-            <h3 id="bone-name">Sistema de enclavado trocant&eacute;rico para f&eacute;mur proximal</h3>
-            <p id="bone-description">Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.</p>
-            <img class="anatomy-product-image" id="bone-product-image" alt="" loading="lazy" decoding="async" hidden>
-            <div class="anatomy-tags" id="bone-tags" aria-label="Etiquetas t&eacute;cnicas"></div>
-            <div class="anatomy-content-pages" data-anatomy-pages>
-              <section class="anatomy-content-page is-active" data-anatomy-page="overview" aria-label="Soluciones relacionadas">
-                <div class="panel-block">
-                  <h4>Soluciones relacionadas</h4>
-                  <div id="bone-products"></div>
-                </div>
-              </section>
-              <section class="anatomy-content-page" data-anatomy-page="details" aria-label="Caracter&iacute;sticas, aplicaciones e informaci&oacute;n complementaria" hidden>
-                <div class="anatomy-detail-grid">
-                  <div class="panel-block">
-                    <h4>Caracter&iacute;sticas t&eacute;cnicas</h4>
-                    <ul id="bone-benefits"></ul>
-                  </div>
-                  <div class="panel-block">
-                    <h4>Aplicaciones</h4>
-                    <ul id="bone-applications"></ul>
-                  </div>
-                </div>
-                <div class="panel-block anatomy-complementary">
-                  <h4>Informaci&oacute;n complementaria</h4>
-                  <div id="bone-complementary"></div>
-                  <a class="anatomy-technical-link" id="bone-document" href="#" target="_blank" rel="noopener noreferrer" hidden>Ver ficha t&eacute;cnica</a>
-                </div>
-              </section>
+            <div class="anatomy-panel-scroll" data-anatomy-scroll>
+              <span class="eyebrow" id="bone-category" data-i18n="anatomyModelEyebrow">MODELO INTERACTIVO</span>
+              <div class="anatomy-context">
+                <span class="anatomy-area" id="bone-area">F&eacute;mur proximal</span>
+                <span class="anatomy-category" id="bone-category-text">Fijaci&oacute;n intramedular</span>
+              </div>
+              <h3 id="bone-name">Sistema de enclavado trocant&eacute;rico para f&eacute;mur proximal</h3>
+              <p id="bone-description">Hueso largo del muslo que cumple una funcion clave en movilidad, soporte de peso y estabilidad estructural.</p>
+              <img class="anatomy-product-image" id="bone-product-image" alt="" loading="lazy" decoding="async" hidden>
+              <div class="anatomy-tags" id="bone-tags" aria-label="Etiquetas t&eacute;cnicas"></div>
+              <div class="anatomy-content-pages" data-anatomy-pages></div>
             </div>
             <div class="anatomy-page-controls" aria-label="Navegaci&oacute;n de informaci&oacute;n del producto">
               <button type="button" data-anatomy-page-previous aria-label="Ver informaci&oacute;n anterior" disabled>&lsaquo;</button>
